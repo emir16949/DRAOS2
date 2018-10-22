@@ -1,0 +1,265 @@
+<div class="text-center">
+  <div class="row">
+
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6" style="margin-top: 2%;">
+      <div class="card bg-dark text-white">
+        <img class="card-img" src="assets/sport2.jpg" alt="Card image">
+        <div class="card-img-overlay" style="background-color: rgba(59, 59, 59, 0.555);">
+          <h2 class="card-title" style="margin-top: 13%;">{{ event.name }}</h2>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3"></div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6" style="margin-top: 3%;">
+      <div class="card">
+        <h3 class="card-header">Informacije o događaju</h3>
+        <div class="card-body">
+          <h6 class="card-title">
+            <b>Opis: </b> {{ event.description }}</h6>
+          <hr>
+          <p class="card-text">
+            <b>Lokacija: </b> {{event.place.name}}</p>
+        </div>
+      </div>
+      <hr>
+    </div>
+
+    <div class="col-md-3"></div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6" style="margin-top: 2%;">
+
+      <div class="card">
+        <h5 class="card-header">Ostavite Vašu ocjenu o nastupajućem događaju</h5>
+        <div class="card-body">
+          <div class="form-group">
+            <select class="form-control" id="hitnost" [(ngModel)]="odabranaOcjena" name="ocjene">
+              <option *ngFor="let p of ocjene" [value]="p.id">{{p.name}}</option>
+            </select>
+            <hr>
+            <p>Prosječna ocjena događaja je: {{averageGrade}}</p>
+            <button type="button" class="btn btn-outline-secondary" (click)="addNewGrade()" style="width: 100%">Ostavi
+              ocjenu</button>
+          </div>
+        </div>
+      </div>
+      <hr>
+    </div>
+
+    <div class="col-md-3"></div>
+
+  </div>
+
+  <div class="row" style="margin-bottom: 5%">
+
+    <div class="col-md-3"></div>
+
+    <div class="col-md-6" style="margin-top: 2%;">
+
+      <div class="card">
+        <h5 class="card-header">Ostavite komentar o nastupajućem događaju</h5>
+        <div class="card-body">
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Komentar</th>
+                <th scope="col">Autor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let com of comments, let i = index" [class.selected]="com === selectedComment">
+                <td>{{com.comment}}</td>
+                <td><i>@{{com.user.username}}</i></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <hr>
+
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Komentar" [(ngModel)]="noviKomentar" aria-describedby="basic-addon2">
+            <button type="button" class="btn btn-outline-secondary" (click)="createComment()" style="width: 100%; margin-top:2%;">Komentariši</button>
+          </div>
+        </div>
+
+        <div class="col-md-3"></div>
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+    <!--<div *ngIf="event">
+  <div class="text-center">
+      <h1 id="naslov"> {{ event.name }}</h1>
+      <h5 id="naslov_linija"> ______________________________________ </h5>  
+  </div>
+    
+    <div>
+      <table class="table1">
+        <tr>
+         <td class="col1">
+            <img src="data:image/jpeg;base64,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" class="img-rounded" width="400" height="400">
+        </td>
+        <td class="col2"> 
+          <p class="opis">{{event.description}}</p>
+        </td>
+        
+        </tr>
+        
+      </table>
+    </div>
+    
+    <div>
+        <table class="table1">
+          <tr>
+             <td class="col1">
+             <p class="hclass">Ocjena: {{ averageGrade.grade}}</p>
+             <br>
+             </td>
+             <td class="col2"> 
+              <div class="form-group">
+                <label for="hitnost" class="col-form-label">Ocjeni:</label>
+                <select class="form-control" id="hitnost" [(ngModel)]="odabranaOcjena" name="ocjene">
+                  <option *ngFor="let p of ocjene" [value]="p.id">{{p.name}}</option>
+                </select>
+                <span type="button" class="input-group-addon" id="basic-addon2" (click)="addNewGrade()">Ocjeni</span>
+              </div>
+             </td>
+          </tr>
+          <tr>
+              <td class="col1">
+              </td>
+             <td class="col2"> 
+               <div class="table-responsive">  
+                <table class="table2">
+                  <tr class="row1">
+                    <th>Komentar     </th>
+                    <th>Autor        </th>
+                  </tr>
+                  <tr class="row1" *ngFor="let com of comments, let i = index" [class.selected]="com === selectedComment">
+                     <td>
+                     <p>{{com.comment}}</p>
+                     </td>
+                     <td>
+                     <p>{{com.user.username}}</p>
+                     </td>
+                  </tr>
+                </table>
+                  </div>
+                  <br>
+              
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Komentar" [(ngModel)]="noviKomentar" aria-describedby="basic-addon2">
+                      <span type="button" class="input-group-addon" id="basic-addon2" (click)="createComment()">Pošalji</span>
+                    </div>
+              
+                    <br>
+              
+             </td>
+             </tr>
+          
+        </table>
+      </div>
+    </div>
+  -->
+
+
+
+
+    <!--<div *ngIf="event">
+    <div class="text-center">
+        <h1 id="naslov"> {{ event.name }}</h1>
+        <h5 id="naslov_linija"> ______________________________________ </h5>  
+      </div>
+      
+      <div>
+        <table class="table1">
+          <tr>
+           <td class="col1">
+              <img src="https://i.ytimg.com/vi/F0eYP0KxnIc/hqdefault.jpg" class="img-rounded" width="400" height="400">
+          </td>
+          <td class="col2"> 
+            <p class="opis"> {{ event.description }} </p>
+          </td>
+          </tr>
+          
+        </table>
+      </div>
+      
+      <div>
+          <table class="table1">
+            <tr>
+               <td class="col1">
+               <p class="hclass">Ocjena {{ averageGrade }}</p>
+               <br>
+               </td>
+               <td class="col2"> 
+                <div class="form-group">
+                  <label for="hitnost" class="col-form-label">Ocjeni:</label>
+                  <select class="form-control" id="hitnost" [(ngModel)]="odabranaOcjena" name="ocjene">
+                    <option *ngFor="let p of ocjene" [value]="p.id">{{p.name}}</option>
+                  </select>
+                  <span type="button" class="input-group-addon" id="basic-addon2" (click)="addNewGrade()">Ocjeni</span>
+                </div>
+               </td>
+            </tr>
+            <tr>
+                <td class="col1">
+                </td>
+               <td class="col2"> 
+                  <div class="table-responsive" >  
+                      <table class="table2">
+                        <tr class="row1">
+                          <th>Komentar     </th>
+                          <th>Autor        </th>
+                        </tr>
+                        <tr class="row1" *ngFor="let com of comments, let i = index" [class.selected]="com === selectedComment">
+                           <td>
+                           <p>{{com.comment}}</p>
+                           </td>
+                           <td>
+                           <p>{{com.user.username}}</p>
+                           </td>
+                        </tr>
+
+                      </table>
+                    </div>
+                    <br>
+                
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Komentar" [(ngModel)]="noviKomentar" aria-describedby="basic-addon2">
+                      <span type="button" class="input-group-addon" id="basic-addon2" (click)="createComment()">Pošalji</span>
+                    </div>
+                
+                      <br>
+                
+               </td>
+               </tr>
+              
+          </table>
+        </div>
+    </div>
+      
+        
+  -->

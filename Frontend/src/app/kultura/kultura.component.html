@@ -1,0 +1,131 @@
+<main role="main">
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="second-slide" src="assets/kultura2.jpg" alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption" style="background-color: rgba(2, 2, 2, 0.61)!important;">
+                        <h1>Predstava “Sve se nekako preživi, osim smrti”</h1>
+                        <p>Predstava “Sve se nekako preživi, osim smrti” u režiji Dine Mustafića, a po tekstu Ljubice Ostojić premijerno će biti odigrana u četvrtak u Narodnom pozorištu Sarajevo.</p>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="first-slide" src="assets/kultura1.jpg" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption text-center" style="background-color: rgba(2, 2, 2, 0.61)!important;">
+                        <h1>H a s a n a g i n i c a</h1>
+                        <p>.Reditelj opere “Hasanaginica”, Sulejman Kupusović, je 1988. režirao dramu Alije Isakovića, koja osnovni nesporazum između Hasanage i njegove žene pripisuje socijalnom kontekstu.</p>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="third-slide" src="assets/kultura3.jpg" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption text-right">
+                        <h1>Viva la mamma</h1>
+                        <p>Komična opera Gaetana Donizettia “Viva la mamma ili operne zgode i nezgode”, čiju režiju potpisuje Aleksandar Nikolić, premijerno je izvedena u Narodnom pozorištu Sarajevo.</p>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
+    <div class="container marketing">
+
+        <div class="row">
+            <div class="col-lg-4">
+                <img class="rounded-circle" src="assets/kultura4.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h2>OPERA</h2>
+                <p>Opera se može definirati kao scenska drama u kojoj glavni glumci pjevaju većinu svoje uloge. Smatra se jednim od najsloženijih oblika umjetnosti. Kombinira pjevanje, glumu, orkestralnu glazbu, kostime, scenarij (libreto), a često i balet kao vrstu plesa.</p>
+                <p>
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <img class="rounded-circle" src="assets/kultura5.png" alt="Generic placeholder image" width="140" height="140">
+                <h2>BALET</h2>
+                <p>Balet je muzičko-scensko plesno djelo s dramskim sadržajem. Karakteriziraju ga otvoreni položaj stopala (noga iz kuka zarotirana prema vani) i graciozni ali strogo kontrolirani pokreti.</p>
+                <p>
+                </p>
+            </div>
+
+            <div class="col-lg-4">
+                <img class="rounded-circle" src="assets/kultura6.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h2>DRAMA</h2>
+                <p>Drama je žanr u književnosti, koji je nastao za vrijeme antičke Grčke i koji se i danas razvija. Drama je književno djelo, koje uglavnom služi javnom izvođenju u pozorištu. Tokom 18. i 19. vijeka, opera je nastala kao kombinacija drame, poezije, i muzike.</p>
+                <p>
+                </p>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent" style="margin-bottom: 5%;">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">{{ event.name }}</h2>
+                <p class="lead">{{ event.description }}</p>
+                <p style="margin-top: 20px;">
+                    <a class="btn btn-outline-primary" role="button" (click)="prikaziDetalje(event)" style="margin-left: 10px; margin-right: 20px;">Više informacija &raquo;</a>
+                    <a *ngIf="isAdmin" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#exampleModal12" (click)="prikaziDetaljeIzmjena(event)">Uredi</a>
+                    <a *ngIf="isAdmin" class="btn btn-outline-danger" role="button" (click)="obrisi(event)">Obriši</a>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto" src="assets/kultura.jpg" alt="Generic placeholder image">
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+<div class="modal fade" id="exampleModal12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"> Izmjeni: </h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Naziv:</label>
+                      <input type="text" class="form-control" id="naziv_usluga" value="{{ eventPut.name }}" [(ngModel)]="eventPut.name" [ngModelOptions]="{standalone: true}"> 
+                    </div>
+                    <div class="form-group">
+                      <label for="message-text" class="col-form-label">Opis:</label>
+                      <textarea class="form-control" id="opis_usluga" value="{{ eventPut.description }}" [(ngModel)]="eventPut.description" [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                    <div class="form-group">
+                      <label for="recipient-name" class="col-form-label">Kategorija:</label>
+                      <input type="text" class="form-control" id="cijena_usluga" value="{{ modal_kategorija }}" disabled>
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="zatvori()">Zatvori</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"  id="btn_podnesi_zahtjev" (click)="sacuvajIzmjeneEvent()">Sačuvaj izmjene</button>
+            </div>
+        </div>
+    </div>
+</div>

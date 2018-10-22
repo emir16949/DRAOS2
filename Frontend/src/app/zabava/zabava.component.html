@@ -1,0 +1,143 @@
+<main role="main">
+
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="second-slide" src="assets/zabava3.jpg" alt="Second slide">
+                <div class="container">
+                    <div class="carousel-caption" style="background-color: rgba(2, 2, 2, 0.61)!important;">
+                        <h1>Serije: Vampirski dnevnici</h1>
+                        <p>Vampirski dnevnici je američka tinejdžerska dramska horor TV serija autora Kevina
+                            Williamsona. Riječ je o televizijskoj verziji serije romana istoimenog naziva autorice L.J.
+                            Smith. Serija prati život Elene Gilbert, tinejdžerice koja se zaljubi u vampirsku braću
+                            Stefana i Damona Salvatorea.</p>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="first-slide" src="assets/zabava2.jpg" alt="First slide">
+                <div class="container">
+                    <div class="carousel-caption text-center" style="background-color: rgba(2, 2, 2, 0.61)!important;">
+                        <h1>Importanne: igraonica Bambi</h1>
+                        <p>Dječija igraonica “Bambi” omogućava da Vaši najmlađi dožive bezbrižno i sretno djetinjstvo
+                            kroz igru, zabavu i druženje sa svojim vršnjacima. Nudimo Vam provod u prijatnom ambijentu
+                            u kojem Vas očekuje stručno, edukovano, ljubazno i predusretljivo osoblje.</p>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img class="third-slide" src="assets/zabava1.jpg" alt="Third slide">
+                <div class="container">
+                    <div class="carousel-caption text-center" style="background-color: rgba(2, 2, 2, 0.61)!important;">
+                        <h1>Akcija: Izgubljeni svijet</h1>
+                        <p>Avanture grupe istraživača, koji su zatočeni na nepoznatom otoku naseljenom dinosaurima i
+                            drugim opasnostima.</p>
+                        <p>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+
+    <div class="container marketing">
+
+        <div class="row">
+            <div class="col-lg-4">
+                <img class="rounded-circle" src="assets/zabava4.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h2>FILM</h2>
+                <p>Sve novosti iz svijeta sedme umjetnosti pratite kod nas.</p>
+                <p>
+                </p>
+            </div>
+            <div class="col-lg-4">
+                <img class="rounded-circle" src="assets/zabava5.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h2>ZABAVA</h2>
+                <p>Samo uz naš portal pronađite sve zabavne evente u Vašem gradu.</p>
+                <p>
+                </p>
+            </div>
+
+            <div class="col-lg-4">
+                <img class="rounded-circle" src="assets/zabava6.jpg" alt="Generic placeholder image" width="140" height="140">
+                <h2>PARTY</h2>
+                <p>Ako ste spremni za PAAARTYYY, onda ste na pravom mjestu.</p>
+                <p>
+                </p>
+            </div>
+        </div>
+
+        <hr class="featurette-divider">
+        <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
+            style="margin-bottom: 5%;">
+            <div class="col-md-7">
+                <h2 class="featurette-heading">{{ event.name }}</h2>
+                <p class="lead">{{ event.description }}</p>
+                <p style="margin-top: 20px;">
+                    <a class="btn btn-outline-primary" role="button" (click)="prikaziDetalje(event)" style="margin-left: 10px; margin-right: 20px;">Više
+                        informacija &raquo;</a>
+                    <a *ngIf="isAdmin" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#exampleModal11"
+                        (click)="prikaziDetaljeIzmjena(event)">Uredi</a>
+                    <a *ngIf="isAdmin" class="btn btn-outline-danger" role="button" (click)="obrisi(event)">Obriši</a>
+                </p>
+            </div>
+            <div class="col-md-5">
+                <img class="featurette-image img-fluid mx-auto" src="assets/zabava.jpg" alt="Generic placeholder image">
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<div class="modal fade" id="exampleModal11" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"> Izmjeni: </h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Naziv:</label>
+                        <input type="text" class="form-control" id="naziv_usluga" value="{{ eventPut.name }}"
+                            [(ngModel)]="eventPut.name" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Opis:</label>
+                        <textarea class="form-control" id="opis_usluga" value="{{ eventPut.description }}" [(ngModel)]="eventPut.description"
+                            [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Kategorija:</label>
+                        <input type="text" class="form-control" id="cijena_usluga" value="{{ modal_kategorija }}"
+                            disabled>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="zatvori()">Zatvori</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_podnesi_zahtjev" (click)="sacuvajIzmjeneEvent()">Sačuvaj
+                    izmjene</button>
+            </div>
+        </div>
+    </div>
+</div>

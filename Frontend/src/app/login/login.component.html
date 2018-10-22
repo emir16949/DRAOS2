@@ -1,0 +1,27 @@
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-login mx-auto mt-5">
+      <div class="card-header">Prijava</div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username</label>
+            <input class="form-control" id="exampleInputEmail1" [(ngModel)]="username" [ngModelOptions]="{standalone: true}"
+              type="email" aria-describedby="emailHelp" placeholder="Unesi username">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Šifra</label>
+            <input class="form-control" id="exampleInputPassword1" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"
+              type="password" placeholder="Unesite šifru">
+          </div>
+          <a class="btn btn-primary btn-block" (click)="prijaviSe()">Prijavi se</a>
+        </form>
+        <div class="text-center">
+          <a class="d-block small mt-3" routerLink="/registracija">Registracija</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<router-outlet></router-outlet>

@@ -1,0 +1,37 @@
+<body class="bg-dark">
+  <div class="container">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">Korisnički profil</div>
+      <div class="card-body">
+        <form>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <label for="exampleInputName">Ime</label>
+                <input class="form-control" id="exampleInputName" [(ngModel)]="user.ime" [ngModelOptions]="{standalone: true}"
+                  type="text" aria-describedby="nameHelp">
+              </div>
+              <div class="col-md-6">
+                <label for="exampleInputLastName">Prezime</label>
+                <input class="form-control" id="exampleInputLastName" [(ngModel)]="user.prezime" [ngModelOptions]="{standalone: true}"
+                  type="text" aria-describedby="nameHelp">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Username </label>
+            <input class="form-control" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" type="email"
+              aria-describedby="emailHelp" disabled>
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email adresa</label>
+            <input class="form-control" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" type="email"
+              aria-describedby="emailHelp">
+          </div>
+          <button class="btn btn-primary btn-block" (click)="urediProfil()" data-toggle="modal" data-target="#modal1">Uredi
+            profil</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
