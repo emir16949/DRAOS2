@@ -28,6 +28,16 @@
             <input class="form-control" [(ngModel)]="user.email" [ngModelOptions]="{standalone: true}" type="email"
               aria-describedby="emailHelp">
           </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Password</label>
+            <input class="form-control" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" type="email"
+              aria-describedby="emailHelp">
+          </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Potvrdi password</label>
+            <input class="form-control" [(ngModel)]="ponovniPassword" [ngModelOptions]="{standalone: true}" type="email"
+              aria-describedby="emailHelp">
+          </div>
           <button class="btn btn-primary btn-block" (click)="urediProfil()" data-toggle="modal" data-target="#modal1">Uredi
             profil</button>
         </form>

@@ -1,6 +1,7 @@
 package com.eventpage.Model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +18,7 @@ public class Event {
   @NotNull(message = "Name can not be null")
   @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
   private String name;
+  private Date dateTime;
   @Size(max = 255, message = "Description can not be longer than 255 characters")
   private String description;
 
@@ -101,4 +103,11 @@ public class Event {
     return result;
   }
 
+  public Date getDateTime() {
+    return dateTime;
+  }
+
+  public void setDateTime(Date dateTime) {
+    this.dateTime = dateTime;
+  }
 }

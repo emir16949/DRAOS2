@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -34,15 +35,19 @@ public class User {
 
   private Role user_role;
 
+  private Place user_place;
+
   public User() {
   }
 
-  public User(String ime, String prezime, String username, String password, Role user_role) {
+  public User(String ime, String prezime, String username, String password, Role user_role,
+      Place user_place) {
     this.ime = ime;
     this.prezime = prezime;
     this.username = username;
     this.password = password;
     this.user_role = user_role;
+    this.user_place = user_place;
   }
 
   @Id
@@ -114,4 +119,13 @@ public class User {
     return result;
   }
 
+  @OneToOne
+  @JoinColumn(name = "place_id")
+  public Place getUser_place() {
+    return user_place;
+  }
+
+  public void setUser_place(Place user_place) {
+    this.user_place = user_place;
+  }
 }

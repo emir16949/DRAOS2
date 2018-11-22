@@ -55,31 +55,6 @@
 
     <div class="container marketing">
 
-        <div class="row">
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/kultura4.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>OPERA</h2>
-                <p>Opera se može definirati kao scenska drama u kojoj glavni glumci pjevaju većinu svoje uloge. Smatra se jednim od najsloženijih oblika umjetnosti. Kombinira pjevanje, glumu, orkestralnu glazbu, kostime, scenarij (libreto), a često i balet kao vrstu plesa.</p>
-                <p>
-                </p>
-            </div>
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/kultura5.png" alt="Generic placeholder image" width="140" height="140">
-                <h2>BALET</h2>
-                <p>Balet je muzičko-scensko plesno djelo s dramskim sadržajem. Karakteriziraju ga otvoreni položaj stopala (noga iz kuka zarotirana prema vani) i graciozni ali strogo kontrolirani pokreti.</p>
-                <p>
-                </p>
-            </div>
-
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/kultura6.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>DRAMA</h2>
-                <p>Drama je žanr u književnosti, koji je nastao za vrijeme antičke Grčke i koji se i danas razvija. Drama je književno djelo, koje uglavnom služi javnom izvođenju u pozorištu. Tokom 18. i 19. vijeka, opera je nastala kao kombinacija drame, poezije, i muzike.</p>
-                <p>
-                </p>
-            </div>
-        </div>
-
         <hr class="featurette-divider">
         <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent" style="margin-bottom: 5%;">
             <div class="col-md-7">

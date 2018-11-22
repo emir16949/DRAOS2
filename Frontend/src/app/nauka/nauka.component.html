@@ -66,32 +66,6 @@
 
 
     <div class="container marketing">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/nauka4.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>KONFERENCIJE</h2>
-                <p>Naučne konferencije u BiH.</p>
-                <p>
-                </p>
-            </div>
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/nauka5.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>NAUČNI RAD</h2>
-                <p>Istraživač ste, radite naučni rad? Možda Vam mi možemo pomoći.</p>
-                <p>
-                </p>
-            </div>
-
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/nauka6.jpeg" alt="Generic placeholder image" width="140" height="140">
-                <h2>TAKMIČENJA</h2>
-                <p>Sve novosti o takmičenjima iz oblasti nauke u BiH, na našem portalu.</p>
-                <p>
-                </p>
-            </div>
-        </div>
-
         <hr class="featurette-divider">
         <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
             style="margin-bottom: 5%;">

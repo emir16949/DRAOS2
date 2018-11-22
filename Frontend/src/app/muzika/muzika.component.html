@@ -1,37 +1,3 @@
-<!--<div class="text-center">
-    <div class="jumbotron">
-        <h1>Muzika</h1>
-        <p>Najbolja muzika i najbolji događaji!</p>
-    </div>
-    <div class="panel panel-default" style="width: 1000px; margin-left: 18%;">
-        <div class="panel-heading">
-            <h3 class="panel-title">Ime događaja</h3>
-        </div>
-        <div class="panel-body" style="height: 200px;">
-            Osnovne informacije o događaju
-            <button class="btn btn-default" type="submit"><a href="/muzika-detalji">Više informacija</a></button>
-        </div>
-    </div>
-    <div class="panel panel-default" style="width: 1000px; margin-left: 18%;">
-            <div class="panel-heading">
-                <h3 class="panel-title">Ime događaja</h3>
-            </div>
-            <div class="panel-body" style="height: 200px;">
-                Osnovne informacije o događaju
-                <button class="btn btn-default" type="submit"><a href="/muzika-detalji">Više informacija</a></button>
-            </div>
-        </div>
-        <div class="panel panel-default" style="width: 1000px; margin-left: 18%;">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Ime događaja</h3>
-                </div>
-                <div class="panel-body" style="height: 200px;">
-                    Osnovne informacije o događaju
-                    <button class="btn btn-default" type="submit"><a href="/muzika-detalji">Više informacija</a></button>
-                </div>
-            </div>
-</div> -->
-
 <main role="main">
 
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -80,38 +46,6 @@
     </div>
 
     <div class="container marketing">
-
-
-        <div class="row">
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/eventmuzika4.png" alt="Generic placeholder image" width="140"
-                    height="140">
-                <h2>MY FACE</h2>
-                <p>Najbolji klub u gradu.</p>
-                <p>
-                </p>
-            </div>
-
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/eventmuzika5.jpg" alt="Generic placeholder image" width="140"
-                    height="140">
-                <h2>CINEMAS SLOGA</h2>
-                <p>Samo za vas, Cinemas Sloga uvijek ima najbolje izvođače.</p>
-                <p>
-                </p>
-            </div>
-
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/eventmuzika6.png" alt="Generic placeholder image" width="140"
-                    height="140">
-                <h2>COLOSEUM CLUB</h2>
-                <p>Dođite u Coloseum na pravi provod.</p>
-                <p>
-                </p>
-            </div>
-
-        </div>
-
         <hr class="featurette-divider">
         <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
             style="margin-bottom: 5%;">

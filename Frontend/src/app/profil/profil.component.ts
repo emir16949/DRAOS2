@@ -28,6 +28,7 @@ export class ProfilComponent implements OnInit {
   };
 
   loggedUser: any;
+  ponovniPassword: any;
 
   constructor(private router: Router,
     private authService: AuthService,
@@ -45,6 +46,11 @@ export class ProfilComponent implements OnInit {
   }
 
   urediProfil() {
+    if (this.user.password === this.ponovniPassword) {
+      console.log('PASSWORD JE OK');
+    } else {
+      console.log('PASSWORD NIJE OK');
+    }
     console.log(this.user);
     this.userService.updateUser(this.user).subscribe(data => console.log(data));
     console.log(this.user);

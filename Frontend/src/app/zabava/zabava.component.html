@@ -60,32 +60,6 @@
 
 
     <div class="container marketing">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/zabava4.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>FILM</h2>
-                <p>Sve novosti iz svijeta sedme umjetnosti pratite kod nas.</p>
-                <p>
-                </p>
-            </div>
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/zabava5.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>ZABAVA</h2>
-                <p>Samo uz naš portal pronađite sve zabavne evente u Vašem gradu.</p>
-                <p>
-                </p>
-            </div>
-
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/zabava6.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>PARTY</h2>
-                <p>Ako ste spremni za PAAARTYYY, onda ste na pravom mjestu.</p>
-                <p>
-                </p>
-            </div>
-        </div>
-
         <hr class="featurette-divider">
         <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
             style="margin-bottom: 5%;">

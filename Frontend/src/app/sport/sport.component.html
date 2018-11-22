@@ -59,32 +59,6 @@
 
 
     <div class="container marketing">
-
-        <div class="row">
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/sport4.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>FUDBAL</h2>
-                <p>Sve novosti iz svijeta najvažnije sporedne stvari na svijetu pratite na našem portalu.</p>
-                <p>
-                </p>
-            </div>
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/sport5.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>KOŠARKA</h2>
-                <p>Sve košarkaške događaje, bilo da je to NBA, Euroliga, ili utakmice 1. BH lige, pratite samo kod nas.</p>
-                <p>
-                </p>
-            </div>
-
-            <div class="col-lg-4">
-                <img class="rounded-circle" src="assets/sport6.jpg" alt="Generic placeholder image" width="140" height="140">
-                <h2>PLIVANJE</h2>
-                <p>Događaje i još štošta iz svijeta plivanja možete da pratite kod nas.</p>
-                <p>
-                </p>
-            </div>
-        </div>
-
         <hr class="featurette-divider">
         <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
             style="margin-bottom: 5%;">
