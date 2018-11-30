@@ -18,7 +18,8 @@ public class Event {
   @NotNull(message = "Name can not be null")
   @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
   private String name;
-  private Date dateTime;
+  private Date date_time;
+  private String picture_url;
   @Size(max = 255, message = "Description can not be longer than 255 characters")
   private String description;
 
@@ -103,11 +104,19 @@ public class Event {
     return result;
   }
 
-  public Date getDateTime() {
-    return dateTime;
+  public Date getDate_time() {
+    return date_time;
   }
 
-  public void setDateTime(Date dateTime) {
-    this.dateTime = dateTime;
+  public void setDate_time(Date date_time) {
+    this.date_time = date_time;
+  }
+
+  public String getPicture_url() {
+    return picture_url;
+  }
+
+  public void setPicture_url(String picture_url) {
+    this.picture_url = picture_url;
   }
 }

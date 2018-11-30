@@ -15,6 +15,7 @@ export class NaukaComponent implements OnInit {
     id: null,
     name: '',
     description: '',
+    picture_url: '',
     category: {
       id: null
     },
@@ -28,6 +29,7 @@ export class NaukaComponent implements OnInit {
     id: null,
     name: '',
     description: '',
+    picture_url: '',
     category: {
       id: null
     },

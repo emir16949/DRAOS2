@@ -58,7 +58,6 @@ public class UserController {
   }
 
   @PutMapping
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
   public ResponseEntity putChangeUser(@RequestBody User user) throws ServiceException {
     return ResponseEntity.ok(userServiceForCRUD.putChangeUser(user));
   }

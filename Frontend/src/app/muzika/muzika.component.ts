@@ -15,6 +15,7 @@ export class MuzikaComponent implements OnInit {
     id: null,
     name: '',
     description: '',
+    picture_url: '',
     category: {
       id: null
     },
@@ -28,6 +29,7 @@ export class MuzikaComponent implements OnInit {
     id: null,
     name: '',
     description: '',
+    picture_url: '',
     category: {
       id: null
     },
@@ -51,7 +53,6 @@ export class MuzikaComponent implements OnInit {
     this.isAdmin = this.appComponent.isAdmin;
     this.eventService.getEventsByCategory("Muzika").subscribe(data => {
       this.events = data;
-      console.log(this.events.length);
     });
   }
 

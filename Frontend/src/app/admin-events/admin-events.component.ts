@@ -16,6 +16,7 @@ export class AdminEventsComponent implements OnInit {
     id: null,
     name: '',
     description: '',
+    picture_url: '',
     category: {
       id: null
     },

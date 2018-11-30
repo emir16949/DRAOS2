@@ -84,7 +84,7 @@ public class UserServiceForCRUD {
       user.setPrezime(u.getPrezime());
       user.setEmail(u.getEmail());
       userRepository.save(user);
-      return "User with id = " + u.getId() + " saved successfully";
+      return "\"User with id = " + u.getId() + " saved successfully\"";
     } catch (Exception e) {
       throw new ServiceException("Cannot update user with id = " + u.getId() + ".");
     }

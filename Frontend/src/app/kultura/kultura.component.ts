@@ -16,6 +16,7 @@ export class KulturaComponent implements OnInit {
     id: null,
     name: '',
     description: '',
+    picture_url: '',
     category: {
       id: null
     },
@@ -28,6 +29,7 @@ export class KulturaComponent implements OnInit {
     id: null,
     name: '',
     description: '',
+    picture_url: '',
     category: {
       id: null
     },

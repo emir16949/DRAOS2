@@ -21,6 +21,7 @@ export class KulturaDetaljiComponent implements OnInit {
     id: null,
     name: '',
     description: '',
+    picture_url: '',
     category: {
       id: null
     },

@@ -5,7 +5,7 @@
 
     <div class="col-md-6" style="margin-top: 2%;">
       <div class="card bg-dark text-white">
-        <img class="card-img" src="assets/event.jpg" alt="Card image">
+        <img class="card-img" src={{event.picture_url}} alt="Card image">
         <div class="card-img-overlay" style="background-color: rgba(59, 59, 59, 0.555);">
           <h2 class="card-title" style="margin-top: 13%;">{{ event.name }}</h2>
         </div>
@@ -29,6 +29,8 @@
           <hr>
           <p class="card-text">
             <b>Lokacija: </b> {{event.place.name}}</p>
+          <p class="card-text">
+            <b>Datum: </b> {{event.date_time}}</p>
         </div>
       </div>
       <hr>

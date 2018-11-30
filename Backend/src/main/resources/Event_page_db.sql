@@ -49,8 +49,9 @@ CREATE TABLE `category` (
 CREATE TABLE `event` (
   `id`          INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name`        VARCHAR(50)      NOT NULL,
-  `datetime`        DATETIME             NOT NULL,
+  `date_time`   DATETIME         NOT NULL,
   `description` TEXT                      DEFAULT NULL,
+  `picture_url` VARCHAR(200)              DEFAULT NULL,
   `category_id` INT(10) UNSIGNED NOT NULL,
   `place_id`    INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
@@ -132,50 +133,52 @@ INSERT INTO category (id, name, description) VALUES (3, "Nauka", "Svi naučni ev
 INSERT INTO category (id, name, description) VALUES (4, "Kultura", "Svi kulturni eventi");
 INSERT INTO category (id, name, description) VALUES (5, "Zabava", "Svi zabavni eventi");
 
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (1, "Rada Manojlović u My Faceu", "2015-11-05 14:29:36",
-   "Samo za vas, 04.05.2018. dovodimo u Sarajevo jednu od najvećih pjevačica Balkana u My Face", 1,
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (1, "Rada Manojlović u My Faceu", "2018-08-10 22:00:00",
+   "http://www.kupikartu.ba/img/sd2/850x370/usr/karte/RADASFFWEB.jpg",
+   "Samo za vas, 10.08.2018. dovodimo u Sarajevo jednu od najvećih pjevačica Balkana u My Face, na otvorenje SFF-a", 1,
    1);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (2, "Katarina Grujić u My Faceu", "2015-11-05 14:29:36",
-   "U klub My Face, u petak,  11.05.2018. dolazi Katarina Grujić. Dođite na Kaću da ludujemoo", 1,
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (2, "Katarina Grujić u My Faceu", "2018-04-20 22:00:00", "https://www.kupikartu.ba/img/sd2/850x370/usr/karte/COVER-KATARINA.JPG",
+   "U klub My Face, u petak,  20.04.2018. dolazi Katarina Grujić. Dođite na Kaću da ludujemoo", 1,
    1);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (3, "Student night u Slogi", "2015-11-05 14:29:36",
-   "U četvrtak, 10.05.2018. Cinemas club Sloga organizuje student night. Studenti, dođite na najbolji provod u gradu!",
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (3, "Student night u Slogi", "2017-11-09 22:00:00", "https://adriafest.com/wp-content/uploads/2017/11/22687547_1872015086171800_2211100755000367299_n-740x274.png",
+   "U četvrtak, 09.11.2014. Cinemas club Sloga organizuje student night. Studenti, dođite na najbolji provod u gradu!",
    1, 2);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (4, "Utakmica BiH - Crna Gora", "2015-11-05 14:29:36",
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (4, "Utakmica BiH - Crna Gora", "2015-11-05 14:29:36", "",
    "Na stadionu Bilino polje će, u ponedjeljak, 28.05.2018. snage odmjeriti reprezentacije BiH i Crne Gore. Ovaj utakmica će takođe biti oproštaj naših reprezentativaca Emira Spahića, Vedada Ibiševića, te Zvjezdana Misimovića od reprezentativnog dresa.",
    2, 8);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (5, "Utakmica BiH - Belgija u košarci", "2015-11-05 14:29:36",
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (5, "Utakmica BiH - Belgija u košarci", "2015-11-05 14:29:36", "",
    "U dvorani Mejdan, naša reprezentacija dočekuje reprezentaciju Belgije. Dođite i podržite naše reprezentativce u borbi za svjetsko prvenstvo.",
    2, 9);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (6, "Utjecaj moderne fizike na život običnog čovjeka", "2015-11-05 14:29:36",
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (6, "Utjecaj moderne fizike na život običnog čovjeka", "2015-11-05 14:29:36", "",
    "Imamo priliku da slušamo poznatog BH fizičara Emira Baručiju, koji će nam govoriti o tome kako moderna fizika utiče na život običnog čovjeka",
    3, 5);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (7, "Koji fakultet upisati?", "2015-11-05 14:29:36",
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (7, "Koji fakultet upisati?", "2015-11-05 14:29:36", "",
    "Amra Mujčinović, uspješna studentica Elektrotehničkog fakulteta u Sarajevu, će 12.05.2018. godine u Velikoj sali Grada Zenica održati predavanje na temu: Koji fakultet upisati? Predavanje je posvećeno maturantima srednjih škola, te ih pozivamo da dođu u što većem broju.",
    3, 5);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (8, "Opera Labuđe jezero", "2015-11-05 14:29:36",
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (8, "Opera Labuđe jezero", "2015-11-05 14:29:36", "",
    "U narodnom pozorištu Sarajevo će se 10.04.2018. održati opera Labuđe jezero Pjotra Iljiča Čajkovskog.",
    4, 3);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (9, "Predstava Hamlet u selu Mrđuša donja", "2015-11-05 14:29:36",
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (9, "Predstava Hamlet u selu Mrđuša donja", "2015-11-05 14:29:36", "",
    "U Sartru će se 05.06.2018. godine održati predstava Hamlet u selu Mrđuša donja, spisatelja Ive Brešana",
    4, 4);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (10, "SFF otvaranje", "2015-11-05 14:29:36", "Prva noć otvaranja SFF-a, ispred Narodnog pozorišta.", 4, 3);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (11, "Igre za najmlađe", "2015-11-05 14:29:36",
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (10, "SFF otvaranje", "2015-11-05 14:29:36", "",
+   "Prva noć otvaranja SFF-a, ispred Narodnog pozorišta.", 4, 3);
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (11, "Igre za najmlađe", "2015-11-05 14:29:36", "",
    "Dođite 12.05.2018. u Shopping centar Džananović, jer priređujemo puno igara i zabave za vaše najmlađe",
    5, 6);
-INSERT INTO event (id, name, datetime, description, category_id, place_id) VALUES
-  (12, "Premijera filma Fast and Furious 9", "2015-11-05 14:29:36",
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (12, "Premijera filma Fast and Furious 9", "2015-11-05 14:29:36", "",
    "Premijerno u Multiplexu Ekran predstavljamo najnoviji nastavak franšize Fast and Furoius, dođite da zajedno gledamo Vin Diesela u akciji!!!",
    5, 7);
 
