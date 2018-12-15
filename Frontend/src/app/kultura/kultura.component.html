@@ -1,5 +1,5 @@
 <main role="main">
-
+<!-- hardkodirani carousel
     <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -50,8 +50,34 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+-->
 
-
+ <!--carousel-->
+ <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li *ngFor="let event of events; let i = index" data-target="#myCarousel" data-slide-to="i" class="{{ (i == 0) ? 'active' : ''}}"></li>
+        </ol>
+       <div class="carousel-inner">
+          <div *ngFor="let event of events; let i = index" class="carousel-item {{ (i == 0) ? 'active' : ''}}">
+            <img class="slide" src="{{event.picture_url}}" alt="Slide">
+            <div class="container">
+              <div class="carousel-caption text-left" style="background-color: rgba(2, 2, 2, 0.61)!important;">
+                <h1 background-color = "black">{{event.name}}</h1>
+                <p>{{event.description}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+<!--end carousel-->
 
     <div class="container marketing">
 
@@ -66,8 +92,8 @@
                     <a *ngIf="isAdmin" class="btn btn-outline-danger" role="button" (click)="obrisi(event)">Obriši</a>
                 </p>
             </div>
-            <div class="col-md-5">
-                <img class="featurette-image img-fluid mx-auto" src="assets/kultura.jpg" alt="Generic placeholder image">
+            <div class="col-md-5" style ="margin-top: 7%">
+                    <img class="featurette-image img-fluid mx-auto" src={{event.picture_url}} alt="Generic placeholder image">
             </div>
         </div>
     </div>

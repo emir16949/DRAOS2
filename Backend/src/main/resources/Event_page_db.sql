@@ -147,40 +147,62 @@ INSERT INTO event (id, name, date_time, picture_url, description, category_id, p
    "U četvrtak, 09.11.2014. Cinemas club Sloga organizuje student night. Studenti, dođite na najbolji provod u gradu!",
    1, 2);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (4, "Utakmica BiH - Crna Gora", "2015-11-05 14:29:36", "",
+  (4, "Utakmica BiH - Crna Gora", "2015-11-05 14:29:36", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNMyKQmbMGaEycwDovTA_-k8wGyu-b5uda-5aMpmhoN9VlH3pC",
    "Na stadionu Bilino polje će, u ponedjeljak, 28.05.2018. snage odmjeriti reprezentacije BiH i Crne Gore. Ovaj utakmica će takođe biti oproštaj naših reprezentativaca Emira Spahića, Vedada Ibiševića, te Zvjezdana Misimovića od reprezentativnog dresa.",
    2, 8);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (5, "Utakmica BiH - Belgija u košarci", "2015-11-05 14:29:36", "",
+  (5, "Utakmica BiH - Belgija u košarci", "2015-11-05 14:29:36", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg7NdYD4y_wFXy_pJBWUEx24Hbxb6cOcXwCUIQs53XBu37sjiaaQ",
    "U dvorani Mejdan, naša reprezentacija dočekuje reprezentaciju Belgije. Dođite i podržite naše reprezentativce u borbi za svjetsko prvenstvo.",
    2, 9);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (6, "Utjecaj moderne fizike na život običnog čovjeka", "2015-11-05 14:29:36", "",
+  (6, "Utjecaj moderne fizike na život običnog čovjeka", "2015-11-05 14:29:36", "http://1.bp.blogspot.com/-r5l2qxYmdi0/WJDg5XdB0RI/AAAAAAAAGmE/3c3GZR893WYQ5qfSiqKQVGVkQ47gQ4_6gCK4B/s1600/high-school-physics-curriculum-resource-lesson-plans_138308_large.jpg",
    "Imamo priliku da slušamo poznatog BH fizičara Emira Baručiju, koji će nam govoriti o tome kako moderna fizika utiče na život običnog čovjeka",
    3, 5);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (7, "Koji fakultet upisati?", "2015-11-05 14:29:36", "",
+  (7, "Koji fakultet upisati?", "2015-11-05 14:29:36", "https://storage.radiosarajevo.ba/image/339192/1180x732/kampus_univerzitet_sarajevo_RSA8.JPG",
    "Amra Mujčinović, uspješna studentica Elektrotehničkog fakulteta u Sarajevu, će 12.05.2018. godine u Velikoj sali Grada Zenica održati predavanje na temu: Koji fakultet upisati? Predavanje je posvećeno maturantima srednjih škola, te ih pozivamo da dođu u što većem broju.",
    3, 5);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (8, "Opera Labuđe jezero", "2015-11-05 14:29:36", "",
+  (8, "Opera Labuđe jezero", "2015-11-05 14:29:36", "https://1.bp.blogspot.com/-OCegwwiunEo/V2ZgNCHvJ5I/AAAAAAAAPuA/Y6fXcKofxN4XAGHkwWeUCBDwFZ3QwEjmQCLcB/s1600/20160618_222521.jpg",
    "U narodnom pozorištu Sarajevo će se 10.04.2018. održati opera Labuđe jezero Pjotra Iljiča Čajkovskog.",
    4, 3);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (9, "Predstava Hamlet u selu Mrđuša donja", "2015-11-05 14:29:36", "",
+  (9, "Predstava Hamlet u selu Mrđuša donja", "2015-11-05 14:29:36", "https://sarajevo.travel/assets/photos/events/original/hamlet-in-the-village-of-mrdusa-donja-or-hamlet-knows-what-people-dont-know-1445246774.jpg",
    "U Sartru će se 05.06.2018. godine održati predstava Hamlet u selu Mrđuša donja, spisatelja Ive Brešana",
    4, 4);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (10, "SFF otvaranje", "2015-11-05 14:29:36", "",
+  (10, "SFF otvaranje", "2015-11-05 14:29:36", "http://media.zagrebdox.net/zagreb_dox/news_item_translations/img/000/001/026/lightbox/Sarajevo_Film_Festival.jpg?1532529205",
    "Prva noć otvaranja SFF-a, ispred Narodnog pozorišta.", 4, 3);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (11, "Igre za najmlađe", "2015-11-05 14:29:36", "",
+  (11, "Igre za najmlađe", "2015-11-05 14:29:36", "http://cdn.dubrovniknet.hr/mdata2014/1511349330_241_velika_lunapark003.jpg",
    "Dođite 12.05.2018. u Shopping centar Džananović, jer priređujemo puno igara i zabave za vaše najmlađe",
    5, 6);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (12, "Premijera filma Fast and Furious 9", "2015-11-05 14:29:36", "",
+  (12, "Premijera filma Fast and Furious 9", "2015-11-05 14:29:36", "https://i.ytimg.com/vi/J0iuDbpmjSk/hqdefault.jpg",
    "Premijerno u Multiplexu Ekran predstavljamo najnoviji nastavak franšize Fast and Furoius, dođite da zajedno gledamo Vin Diesela u akciji!!!",
    5, 7);
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (13, "OC JAHORINA - JahorinSKI Retro Opening @Jahorina", "2015-11-05 14:29:36", "https://www.kupikartu.ba/img/sd2/850x370/usr/karte/banerJAHORINA.jpg",
+   "Prodajna mjesta
+   Pored online kupovine svoje karte možete kupiti i na našim prodajnim mjestima. Potražite nas i u Vašem gradu!",
+   2, 9);
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (14, "OSNOVNI PRINCIPI UI-A I UX-A", "2018-12-05 14:29:36", "https://webbootcamp.eu/wp-content/uploads/2016/09/ux.png",
+  "Aleksandra je u dizajn vodama preko pet godina i trenutno radi u Namics-u, vodećoj švajcerskoj web agenciji. Interesuje je UX, dok u slobodno vreme istražuje rodnu perspektivu dizajna i dizajn metodologia rada.
+
+
+U svom detaljnom predavanju Aleksandra će objasniti sledeće pojmove:
+
+Šta je UI
+UI standardi
+Šta je UX
+Istraživačke metode UX-a
+Styleguide
+Persone
+Wireframe
+Protototip",
+   3, 5);
+
 
 INSERT INTO role (id, role) VALUES (1, "ROLE_ADMIN");
 INSERT INTO role (id, role) VALUES (2, "ROLE_USER");
