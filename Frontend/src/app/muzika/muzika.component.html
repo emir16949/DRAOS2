@@ -26,8 +26,161 @@
     </a>
   </div>
   <!--end carousel-->
+<!--amra jos jedan primjer-->
+<div class="container marketing">
+    <hr class="featurette-divider">
+  </div>
 
+<div class="row">
+    <div class="col-8">
+        <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
+        style="margin-bottom: 5%;">
+        <div class="row">
+            <div class="col-sm">
+              <div class="card" style="width: 18rem; margin-left: 40%; background-origin: blue;">
+                <img class="card-img-top" src={{event.picture_url}} alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ event.name }}</h5>
+                  <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
+                  <p class="card-text">{{event.description}}</p>
+                  <a href="#" class="btn btn-primary" (click)="prikaziDetalje(event)">Više</a>
+                </div>
+              </div>
+            </div>   
+            <div class="col-sm">
+                <div class="card" style="width: 18rem; margin-left: 70%; background-origin: blue;">
+                  <img class="card-img-top" src={{event.picture_url}} alt="Card image cap">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ event.name }}</h5>
+                    <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
+                    <p class="card-text">{{event.description}}</p>
+                    <a href="#" class="btn btn-primary" (click)="prikaziDetalje(event)">Više</a>
+                  </div>
+                </div>
+            </div>      
+        </div>   
+        </div>        
+    </div>
+    <div class="col-4">
+      <!--reklama-->
+      <div class="col-sm">
+          <div class="card text-white bg-primary mb-3" style="max-width: 18rem; margin-left: 5%">
+            <div class="card-header">Mjesto za vašu reklamu</div>
+            <div class="card-body">
+              <h5 class="card-title">Kontaktirajte nas:</h5>
+              <p class="card-text">033/488-525 </p>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            </div>
+          </div>
+      </div>
+        <!--end reklama-->
+    </div>
+    <div class="col-4">
+        <!--reklama-->
+        <div class="col-sm">
+            <div class="card text-white bg-primary mb-3" style="max-width: 18rem; ">
+              <div class="card-header">Mjesto za vašu reklamu</div>
+              <div class="card-body">
+                <h5 class="card-title">Danger card title</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+            </div>
+          </div>
+          <!--end reklama-->
+      </div>
+      <div class="col-4">
+          <!--reklama-->
+          <div class="col-sm">
+              <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                <div class="card-header">Mjesto za vašu reklamu</div>
+                <div class="card-body">
+                  <h5 class="card-title">Danger card title</h5>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
+              </div>
+            </div>
+            <!--end reklama-->
+        </div>
+</div>
+<!--end amra jos jedan primjer-->
+<!--novi dio amra-->
+<div class="container marketing">
+  <hr class="featurette-divider">
+</div>
+  <div class="container">
+    <div class="row">
+      
+      <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <!--reklama-->
+      <div class="col-sm">
+        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+          <div class="card-header">Mjesto za vašu reklamu</div>
+          <div class="card-body">
+            <h5 class="card-title">Danger card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+      <!--end reklama-->
+    </div>
+    <!--end row-->
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="card text-white bg-danger mb-3" style="max-width: 18rem;">
+          <div class="card-header">Mjesto za vašu reklamu</div>
+          <div class="card-body">
+            <h5 class="card-title">Danger card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+<!--end novi dio amra-->
+
+<!--stari dio-->
   <div class="container marketing">
     <hr class="featurette-divider">
     <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
@@ -51,11 +204,10 @@
     </div>
 
   </div>
-
-
+<!-- kraj starog dijela-->
 </main>
 
-
+<!-- edit modal-->
 <div class="modal fade" id="exampleModal8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -88,3 +240,4 @@
     </div>
   </div>
 </div>
+<!-- end edit modal-->

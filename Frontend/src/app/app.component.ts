@@ -11,7 +11,7 @@ import { TokenStorage } from './core/token.storage';
 })
 export class AppComponent {
 
-  items: Array<any> = [{ 'name': '', 'text': '' }, { 'name': '', 'text': '' }, { 'name': 'muzika', 'text': 'Muzika' }, { 'name': '', 'text': '' }, { 'name': 'kultura', 'text': 'Kultura' }, { 'name': '', 'text': '' }, { 'name': 'sport', 'text': 'Sport' }, { 'name': '', 'text': '' }, { 'name': 'zabava', 'text': 'Zabava' }, { 'name': '', 'text': '' }, { 'name': 'nauka', 'text': 'Nauka' }];
+  items: Array<any> = [{ 'name': '', 'text': '', 'color': ''}, { 'name': '', 'text': '', 'color': '' }, { 'name': 'muzika', 'text': 'Muzika', 'color':'lineBlue' }, { 'name': '', 'text': '', 'color':'' }, { 'name': 'kultura', 'text': 'Kultura', 'color':'lineOrange' }, { 'name': '', 'text': '', 'color':'' }, { 'name': 'sport', 'text': 'Sport ', 'color':'lineGreen' }, { 'name': '', 'text': '', 'color':'' }, { 'name': 'zabava', 'text': 'Zabava', 'color':'lineYellow' }, { 'name': '', 'text': '', 'color':'' }, { 'name': 'nauka', 'text': 'Nauka', 'color':'linePurple' }];
   selectedIndex: number;
   title = 'app';
   events: Array<any>;
