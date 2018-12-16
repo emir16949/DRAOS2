@@ -1,4 +1,81 @@
-<div class="text-center">
+<div style="height: 100vh;">
+<div class="container" style=" height: 100vh !important;">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron" style="margin-top: 20px !important; background-color: rgb(133,156,154);">
+        <h1 style="text-align: center; color: rgb(255, 253, 253);">Korisnici</h1>
+      </div>
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px !important; margin-bottom: 30px !important;">
+
+    <div class="col-2">
+        <div class="navbar navbar-expand-lg navbar-light" style="margin-right: 0px !important;">
+            <ul class="navbar-nav ml-auto" style="margin-left: 0px !important;">
+              <li class="nav-item dropdown">
+                <a *ngIf="isAdmin==true" style="padding: 0px !important; float:left;" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false"> Pretraži po: </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" routerLink="/admin-useri">Username</a>
+                  <a class="dropdown-item" routerLink="/admin-lokacija">Ime i/ili prezime</a>
+                  <a class="dropdown-item" routerLink="/admin-kategorije">E-mail</a>
+                  <a class="dropdown-item" routerLink="/admin-events">Objekat</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+    </div>
+    <div class="col-7">
+      <input type="text" style="float: left;" placeholder="Pretraži" class="form-control" id="naziv_objekta" [(ngModel)]="username_pretraga" [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="col-1">
+        <button (click)="pretragaUsername()" style="float: left; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)" data-toggle="modal" data-target="#exampleModal19" class="btn btn-primary">
+            <i class="fa fa-search" style="color: rgb(71, 71, 71); font-size: 18px;"></i>
+        </button>
+    </div>
+    <div class="col-2">
+        <button (click)="pretragaUsername()" style="float: right; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)" data-toggle="modal" data-target="#exampleModal19" class="btn btn-primary">
+            <i class="fa fa-user-plus" style="color: rgb(71, 71, 71); font-size: 20px;"></i>
+        </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Username</th>
+            <th scope="col">Ime i prezime</th>
+            <th scope="col">Akcije</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let user of users, let i = index">
+          <tr>
+            <th scope="row">{{i + 1}}</th>
+            <td>{{user.username}}</td>
+            <td>{{user.ime + ' ' + user.prezime}}</td>
+            <td>
+              <button (click)="openUserDetails(user)" style="background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)" class="btn btn-primary pregledaj-profil">
+                  <i class="fa fa-eye" style="color: rgb(95, 95, 95); font-size: 20px;"></i>
+              </button>
+              <button (click)="deleteUser(user)" data-toggle="modal" data-target="#modal1" class="btn btn-danger">
+                  <i class="fa fa-trash" style="color: rgb(255, 255, 255); font-size: 20px;"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+<!-- <div class="text-center">
   <div class="jumbotron">
     <h1>Korisnici</h1>
   </div>
@@ -60,4 +137,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
