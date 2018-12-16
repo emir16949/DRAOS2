@@ -4,7 +4,6 @@
     margin-bottom: 15px;
 }
 
-
 .card-img-top {
     height: 200px;
     width: 250px;
@@ -55,3 +54,7 @@
     border-radius: 50%;
     border: 5px solid rgba(0,0,30,0.8);
   }
+
+.navbar {
+  margin-right: 70%;
+}

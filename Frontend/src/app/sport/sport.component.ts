@@ -51,7 +51,6 @@ export class SportComponent implements OnInit {
     this.isAdmin = this.appComponent.isAdmin;
     this.eventService.getEventsByCategory("Sport").subscribe(data => {
       this.events = data;
-      console.log(this.events.length);
     });
   }
 
@@ -73,7 +72,6 @@ export class SportComponent implements OnInit {
     this.modal_naziv = event.name;
     this.modal_opis = event.description;
     this.modal_kategorija = event.category.name;
-    //this.modal_adresa = place.address;
   }
 
   sacuvajIzmjeneEvent() {

@@ -1,57 +1,51 @@
 <div class="text-center">
-
   <div class="jumbotron">
     <h1>Korisnici</h1>
   </div>
 
-  <input type="text" style="width: 700px; margin-left: 420px; margin-bottom: 20px; " placeholder="Username" class="form-control"
+  <div class="navbar navbar-expand-lg navbar-light">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a *ngIf="isAdmin==true" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false"> Pretraži po: </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" routerLink="/admin-useri">Username</a>
+          <a class="dropdown-item" routerLink="/admin-lokacija">Ime i/ili prezime</a>
+          <a class="dropdown-item" routerLink="/admin-kategorije">E-mail</a>
+          <a class="dropdown-item" routerLink="/admin-events">Objekat</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+  
+  <input type="text" style="width: 700px; margin-left: 420px; margin-bottom: 20px; " placeholder="Pretraži" class="form-control"
     id="naziv_objekta" [(ngModel)]="username_pretraga" [ngModelOptions]="{standalone: true}">
   <button style="width: 500px; margin-bottom: 20px; margin-left: 110px;" (click)="pretragaUsername()" data-toggle="modal"
     data-target="#exampleModal19" class="btn btn-primary">Pretraga</button>
 
 
-  <div class="card" style="width: 40rem;" *ngFor="let user of users">
-    <img class="card-img-top" src="assets/user.svg" alt="Card image cap">
-    <div class="card-body">
-      <h5 class="card-title">{{ user.username }}</h5>
-      <p class="card-text">{{ user.ime + ' ' + user.prezime }}</p>
-      <button (click)="openUserDetails(user)" class="btn btn-primary pregledaj-profil">Pregledaj profil</button>
-      <button (click)="deleteUser(user)" data-toggle="modal" data-target="#modal1" class="btn btn-primary">Obriši
-        korisnika</button>
-    </div>
-  </div>
 
-</div>
-
-<div class="modal fade" id="exampleModal19" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel"> Rezultati pretrage </h3>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Ime:</label>
-            <input type="text" class="form-control" value="{{ userSearch.ime }}" [(ngModel)]="userSearch.name"
-              [ngModelOptions]="{standalone: true}" disabled>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Prezime:</label>
-            <textarea class="form-control" id="opis_usluga" value="{{ userSearch.prezime }}" [(ngModel)]="userSearch.prezime"
-              [ngModelOptions]="{standalone: true}" disabled></textarea>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Email:</label>
-            <input type="text" class="form-control" id="cijena_usluga" value="{{ userSearch.email }}" disabled>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>
-      </div>
-    </div>
-  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Ime i prezime</th>
+        <th scope="col">Pregledaj detalje</th>
+        <th scope="col">Obriši korisnika</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users, let i = index">
+      <tr>
+        <th scope="row">{{i + 1}}</th>
+        <td>{{user.username}}</td>
+        <td>{{user.ime + ' ' + user.prezime}}</td>
+        <td><button (click)="openUserDetails(user)" class="btn btn-primary pregledaj-profil">Pregledaj profil</button></td>
+        <td><button (click)="deleteUser(user)" data-toggle="modal" data-target="#modal1" class="btn btn-primary">Obriši
+            korisnika</button></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 

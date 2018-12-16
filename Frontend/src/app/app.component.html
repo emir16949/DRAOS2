@@ -1,75 +1,18 @@
-<!--<nav class="navbar navbar-default">
-  <div class="container-fluid">
-
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#" style="font-size: 25px">E v e n t s</a>
-    </div>
-
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" style="margin-left: 10%;">
-      <ul class="nav navbar-nav">
-        <li><a routerLink="/muzika">Muzika<span class="sr-only">(current)</span></a></li>
-        <li><a routerLink="/kultura">Kultura</a></li>
-        <li><a routerLink="/sport">Sport</a></li>
-        <li><a routerLink="/zabava">Zabava</a></li>
-        <li><a routerLink="/nauka">Nauka</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink="#">Profil</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> Admin opcije <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a routerLink="/admin-useri">Korisnici</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"> Novi događaj </a></li>
-            <li role="separator" class="divider"></li>
-            <li><a routerLink="/admin-lokacija"> Lokacije </a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#"> Nova kategorija </a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
--->
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">E v e n t s</a>
+  <a class="navbar-brand" href="#">Početna</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="isLoggedIn==true">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/muzika">Muzika
-          <span class="sr-only">(current)</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/kultura">Kultura</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/sport">Sport</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/zabava">Zabava</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/nauka">Nauka</a>
+
+    <ul id="grouplist" class="navbar-nav mr-auto">
+      <li *ngFor="let item of items; let i=index" (click)="select(i)" [ngClass]="{'nav-item': true, 'active': selectedIndex == i}">
+        <a class="nav-link" routerLink="/{{item.name}}">{{ item.text }}</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item" style="margin-top: 8px">
-        <span style="color: rgb(203, 185, 204); margin-right: 20px;"> <i>Dobrodošli, @{{ loggedUser }} </i></span>
-      </li>
       <li class="nav-item dropdown">
         <a *ngIf="isAdmin==true" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
@@ -86,7 +29,13 @@
         <a class="nav-link" routerLink="/profil">Profil</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" routerLink="/"></a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="modal" (click)="pretraga()">Pretraga</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/"></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" (click)="odjaviSe()">Odjavi se</a>
@@ -95,6 +44,9 @@
   </div>
 </nav>
 
+<div *ngIf="isSearchOpen">
+  <app-pretraga></app-pretraga>
+</div>
 
 <!--Lista evenata-->
 <!--<div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent">

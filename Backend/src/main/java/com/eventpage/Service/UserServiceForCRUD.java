@@ -2,6 +2,7 @@ package com.eventpage.Service;
 
 import com.eventpage.Model.User;
 import com.eventpage.Repository.UserRepository;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.hibernate.service.spi.ServiceException;
@@ -90,20 +91,20 @@ public class UserServiceForCRUD {
     }
   }
 
-  public User getByUsername(String title) throws ServiceException {
+  public List<User> getByUsername(String username) throws ServiceException {
     try {
       List<User> users = userRepository.findAll();
+      List<User> result = new ArrayList<>();
 
       for (User user : users) {
-        if (user.getUsername().equals(title)) {
-          return user;
+        if (user.getUsername().equals(username)) {
+          result.add(user);
         }
       }
 
-      return null;
-
+      return result;
     } catch (Exception e) {
-      throw new ServiceException("Cannot find event with title={" + title + "}");
+      throw new ServiceException("Cannot find any user with username={" + username + "}");
     }
   }
 }

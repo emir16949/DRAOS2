@@ -10,35 +10,30 @@ import { TokenStorage } from './core/token.storage';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
 
+  items: Array<any> = [{ 'name': '', 'text': '' }, { 'name': '', 'text': '' }, { 'name': 'muzika', 'text': 'Muzika' }, { 'name': '', 'text': '' }, { 'name': 'kultura', 'text': 'Kultura' }, { 'name': '', 'text': '' }, { 'name': 'sport', 'text': 'Sport' }, { 'name': '', 'text': '' }, { 'name': 'zabava', 'text': 'Zabava' }, { 'name': '', 'text': '' }, { 'name': 'nauka', 'text': 'Nauka' }];
+  selectedIndex: number;
+  title = 'app';
   events: Array<any>;
   modal_naziv: any;
-
   findByEvent: any;
   findByPlace: any;
   odabranaOpcijaPretrage: any;
   opcijePretrage = [{ id: 1, name: 'Pretraga po nazivu događaja' }, { id: 2, name: 'Pretraga po nazivu lokala' }];
-
   isLoggedIn: boolean;
   isAdmin: boolean;
-
   loggedUser: any;
-
+  isSearchOpen: boolean = false;
 
   constructor(private router: Router, private eventService: EventService, private authService: AuthService) { }
 
   pretraga() {
-    this.router.navigate(['/pretraga']);
+    this.isSearchOpen = !this.isSearchOpen;
   }
-
-
 
   goToHomePage() {
     this.router.navigate(['/muzika']);
   }
-
-
 
   ngOnInit() {
     this.isLoggedIn = this.authService.isLoggedIn();
@@ -53,4 +48,7 @@ export class AppComponent {
     this.router.navigate(['/login']);
   }
 
+  select(index: number) {
+    this.selectedIndex = index;
+  }
 }
