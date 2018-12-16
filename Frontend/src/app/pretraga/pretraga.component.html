@@ -1,4 +1,36 @@
-<div class="modal-dialog" role="document">
+<div class="container-fluid" style="padding: 0px; background-color: rgba(48,49,49,0.76);">
+<div class="container">
+  <div class="row" style="margin-left: 0px !important; padding-top: 20px; padding-bottom: 20px;">
+    <div class="col-4" style="padding: 0px; padding-right: 10px;">
+      <div class="row" style="margin-left: 0px !important;">
+        <div class="col-4" style="padding: 0px; margin: auto;">
+          <p style="margin: auto; margin-left: 10px; color: white"> Pretraga po: </p>
+        </div>
+        <div class="col-8" style="padding-left: 0px !important;">
+          <select class="form-control" id="hitnost" [(ngModel)]="odabranaOpcijaPretrage" name="opcije">
+            <option *ngFor="let p of opcijePretrage" [value]="p.id">{{p.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="col-7" style="padding: 0px; padding-right: 15px;">
+      <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="modal_naziv"
+             [ngModelOptions]="{standalone: true}">
+    </div>
+    <div class="col-1" style="padding-right: 10px;">
+      <button (click)="pretraziEvente()" style="float: left; width: 93%; background-color: white; border-width: 1px; border-color: rgb(216, 216, 216)" data-toggle="modal" data-target="#exampleModal19" class="btn btn-primary">
+        <i class="fa fa-search" style="color: rgb(71, 71, 71); font-size: 18px;"></i>
+      </button>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+
+
+<!--<div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-header">
             <h3 class="modal-title" id="exampleModalLabel"> Pretraga </h3>
@@ -21,11 +53,11 @@
             </form>
         </div>
         <div class="modal-footer">
-            <!--<button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>-->
+            &lt;!&ndash;<button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>&ndash;&gt;
             <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_podnesi_zahtjev" (click)="pretraziEvente()">Pretraži</button>
         </div>
     </div>
-</div>
+</div>-->
 
 
 
