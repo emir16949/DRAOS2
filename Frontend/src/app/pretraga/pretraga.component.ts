@@ -18,9 +18,10 @@ export class PretragaComponent implements OnInit {
   findByEvent: any;
   findByPlace: any;
   odabranaOpcijaPretrage: any;
-  opcijePretrage = [{ id: 1, name: 'Pretraga po nazivu događaja' }, { id: 2, name: 'Pretraga po nazivu lokala' }];
+  opcijePretrage = [{ id: 1, name: 'Događaj' }, { id: 2, name: 'Lokal' }];
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   pretraziEvente() {
     if (this.odabranaOpcijaPretrage == 1) {
