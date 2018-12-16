@@ -1,78 +1,62 @@
-<!--<hr>
-<button class="btn btn-default" type="submit" data-toggle="modal" data-target="#exampleModal4">Dodaj novi event</button>
-<hr>
-<div class="row featurette" >
-  <div class="col-md-7">
-      <h2 class="featurette-heading">Probaa naziiv
-          <span class="text-muted"> Neki tekst</span>
-      </h2>
-      <p class="lead">OPIS blaa blaa blaaa</p>
-  </div>
-  <div class="col-md-5">
-      <img class="featurette-image img-fluid mx-auto" width="30%" margin="5%" src="assets/event2.jpg" alt="Generic placeholder image">
-  </div>
-  <p>
-      <a class="btn btn-secondary" role="button" data-toggle="modal" data-target="#exampleModal3">Uredi &raquo;</a>
-      <a class="btn btn-secondary" role="button" (click)="obrisi(event)">Obriši &raquo;</a>
-  </p>
-  <hr>
-</div>
-<div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent">
-  <div class="col-md-7">
-      <h2 class="featurette-heading">{{ event.name }}
-          <span class="text-muted"> Neki tekst</span>
-      </h2>
-      <p class="lead">{{ event.description }}</p>
-  </div>
-  <div class="col-md-5">
-      <img class="featurette-image img-fluid mx-auto" width="30%" margin="5%" src="assets/event2.jpg" alt="Generic placeholder image">
-  </div>
-  <p>
-      <a class="btn btn-secondary" role="button" data-toggle="modal" data-target="#exampleModal3" (click)="prikaziDetalje(event)">Uredi &raquo;</a>
-      <a class="btn btn-secondary" role="button" (click)="obrisi(event)">Obriši &raquo;</a>
-  </p>
-  <hr>
-</div>
-<div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel"> Izmjeni: </h3>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                      <label for="recipient-name" class="col-form-label">Naziv:</label>
-                      <input type="text" class="form-control" id="naziv_usluga" value="{{ modal_naziv }}" [(ngModel)]="modal_name" [ngModelOptions]="{standalone: true}"> 
-                    </div>
-                    <div class="form-group">
-                      <label for="message-text" class="col-form-label">Opis:</label>
-                      <textarea class="form-control" id="opis_usluga" value="{{ modal_opis }}" [(ngModel)]="modal_description" [ngModelOptions]="{standalone: true}"></textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="recipient-name" class="col-form-label">Kategorija:</label>
-                      <input type="text" class="form-control" id="cijena_usluga" value="{{ modal_kategorija }}">
-                    </div>
-                  </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal"  id="btn_podnesi_zahtjev" (click)="sacuvajIzmjeneEvent()">Sačuvaj izmjene</button>
-            </div>
+
+<div style="height: 100vh;">
+  <div class="container" style=" height: 100vh !important;">
+    <div class="row">
+      <div class="col">
+        <div class="jumbotron" style="margin-top: 20px !important; background-color: rgb(133,156,154);">
+          <h1 style="text-align: center; color: rgb(255, 253, 253);">Novi događaj</h1>
         </div>
+      </div>
     </div>
-</div>
--->
-<div class="row">
-    <div class="col-md-12">
-        <div class="jumbotron" style="text-align: center; background-image: url('assets/event.jpg');">
-            <div style="background-color: rgba(48, 48, 48, 0.411); display: inherit;">
-                <h1 style="color: white">Novi događaj</h1>
-            </div>
-        </div>
+    <div class="row" style="margin-top: 20px !important;">
+      <div class="col-9" style="margin: auto;">
+        <form>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label"> Naziv događaja: </label>
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="event.name" [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label"> Datum i vrijeme: </label><br>
+            <input type="date" name="bday" style="border-width: 1px; padding: 10px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;">
+          </div>
+          <div class="form-group">
+            <label for="detalji_zahtjev" class="col-form-label">Opis:</label>
+            <textarea class="form-control" id="opis_objekta" style="height: 150px" [(ngModel)]="event.description"
+                      [ngModelOptions]="{standalone: true}"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="hitnost" class="col-form-label">Izaberi kategoriju:</label>
+            <select class="form-control" id="hitnost" [(ngModel)]="odabranaCategory" name="categories">
+              <option *ngFor="let p of categories" [value]="p.id">{{p.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="hitnost" class="col-form-label">Izaberi lokaciju:</label>
+            <select class="form-control" id="hitnost" [(ngModel)]="odabraniPlace" name="places">
+              <option *ngFor="let p of places" [value]="p.id">{{p.name}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label"> Slika: </label>
+            <button type="button" class="btn btn-success" style="width: 30%; margin-left: 20px; border-color: transparent; background-color: #e6eef5; color: #343a40">
+              <i class="fa fa-image" style="color: rgb(71,71,71); font-size: 21px; margin-left: 10px;"></i> Učitaj sliku</button>
+          <!--  <input type="file" (change)="onFileChanged($event)">-->
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row" style="margin-top: 10px; margin-bottom: 50px;">
+      <div class="col-9" style="margin: auto;">
+        <button type="button" class="btn btn-success" style="width: 100%;" data-dismiss="modal" id="btn_podnesi_zahtjev" (click)="kreirajEvent()"
+                data-toggle="modal" data-target="#modal1">Spremi
+        </button>
+      </div>
     </div>
 </div>
 
+
+
+<!--
 <div class="row">
     <div class="col-md-3">
 
@@ -125,3 +109,4 @@
     </div>
 
 </div>
+-->
