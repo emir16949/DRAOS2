@@ -27,18 +27,17 @@
   </div>
   <!--end carousel-->
 
-  <!--amra jos jedan primjer-->
+    <!--amra jedan primjer-->
 <div class="container marketing">
   <hr class="featurette-divider">
 </div>
 
 <div class="row">
-  <div class="col-8">
       <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
       style="margin-bottom: 5%;">
       <div class="row">
           <div class="col-sm">
-            <div class="card" style="width: 22rem; margin-left: 40%; background-origin: blue;">
+            <div *ngIf="i%3==0" class="card" style="width: 22rem; margin-left: 40%; background-origin: blue;">
               <img class="card-img-top" src={{event.picture_url}} alt="Card image cap">
               <div class="card-body">
                 <h5 class="card-title">{{ event.name }}</h5>
@@ -48,8 +47,8 @@
               </div>
             </div>
           </div>   
-          <div class="col-sm">
-              <div class="card" style="width: 22rem; margin-left: 70%; background-origin: blue;">
+           <div class="col-sm">
+              <div *ngIf="i%3==1" class="card" style="width: 22rem; margin-left: 35%; background-origin: blue;">
                 <img class="card-img-top" src={{event.picture_url}} alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{ event.name }}</h5>
@@ -57,53 +56,65 @@
                   <p class="card-text">{{event.description}}</p>
                   <a class="btn btn-primary" (click)="prikaziDetalje(event)">Više</a>
                 </div>
+            </div>
+          </div>
+        
+            <div class="col-sm">
+              <div *ngIf="i%3==2" class="card" style="width: 22rem; margin-left: 30%; background-origin: blue;">
+                <img class="card-img-top" src={{event.picture_url}} alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">{{ event.name }}</h5>
+                  <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
+                  <p class="card-text">{{event.description}}</p>
+                  <a class="btn btn-primary" (click)="prikaziDetalje(event)">Više</a>
+                </div>
+               </div>
+            </div>
+
+            <div class="col-sm">
+              <div  *ngIf="i%3==2" class="card text-white mb-3" style="width: 18rem; margin-left: 50%; background: purple">
+                <div class="card-header">Mjesto za vašu reklamu</div>
+                <div class="card-body">
+                  <h5 class="card-title">Kontaktirajte nas:</h5>
+                  <p class="card-text">033/488-525 </p>
+                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                </div>
               </div>
-          </div>      
+          </div>     
       </div>   
-      </div>        
   </div>
-  <div class="col-4">
-    <!--reklama-->
-    <div class="col-sm">
-        <div class="card text-white mb-3" style="max-width: 18rem; margin-left: 5%; background:purple">
-          <div class="card-header">Mjesto za vašu reklamu</div>
-          <div class="card-body">
-            <h5 class="card-title">Kontaktirajte nas:</h5>
-            <p class="card-text">033/488-525 </p>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-          </div>
-        </div>
-    </div>
-      <!--end reklama-->
-  </div>
-  <div class="col-4">
-      <!--reklama-->
-      <div class="col-sm">
-          <div class="card text-white mb-3" style="max-width: 18rem; margin-left: 5%; background:purple">
-            <div class="card-header">Mjesto za vašu reklamu</div>
-            <div class="card-body">
-              <h5 class="card-title">Danger card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-          </div>
-        </div>
-        <!--end reklama-->
-    </div>
-    <div class="col-4">
-        <!--reklama-->
-        <div class="col-sm">
-            <div class="card text-white bg-primary mb-3" style="max-width: 18rem; margin-left: 5%; background:purple">
-              <div class="card-header">Mjesto za vašu reklamu</div>
-              <div class="card-body">
-                <h5 class="card-title">Danger card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              </div>
-            </div>
-          </div>
-          <!--end reklama-->
-      </div>
 </div>
-<!--end amra jos jedan primjer-->
+
+<!--end amra  jedan primjer-->
+
+<!--stari dio-->
+<div class="container marketing">
+
+  <hr class="featurette-divider">
+  <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
+    style="margin-bottom: 5%;">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">{{ event.name }}</h2>
+      <p class="lead">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
+      <p class="lead">Lokacija: {{ event.place.name }}</p>
+      <p class="lead">{{ event.description }}</p>
+      <p style="margin-top: 20px;">
+        <a class="btn btn-outline-primary" role="button" (click)="prikaziDetalje(event)" style="margin-left: 10px; margin-right: 20px;">Više
+          informacija &raquo;</a>
+        <a *ngIf="isAdmin" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#exampleModal12"
+          (click)="prikaziDetaljeIzmjena(event)">Uredi</a>
+        <a *ngIf="isAdmin" class="btn btn-outline-danger" role="button" (click)="obrisi(event)">Obriši</a>
+      </p>
+    </div>
+    <div class="col-md-5" style="margin-top: 7%">
+      <img class="featurette-image img-fluid mx-auto" src={{event.picture_url}} alt="Generic placeholder image">
+    </div>
+  </div>
+</div>
+</main>
+
+
+
 
   <div class="container marketing">
     <hr class="featurette-divider">
@@ -127,7 +138,8 @@
       </div>
     </div>
   </div>
-</main>
+
+
 
 <div class="modal fade" id="exampleModal9" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
