@@ -10,6 +10,7 @@ body {
 
 .btn{
   margin-right: 2%;
+  text: black bold;
 }
 
 /* CUSTOMIZE THE CAROUSEL
@@ -62,8 +63,8 @@ body {
 .featurette-divider {
   margin: 5rem 0; /* Space out the Bootstrap <hr> more */
   height: 0.5px;
-  color: red;
-  background: red;
+  color: blue;
+  background: rgb(0, 110, 255);
 }
 
 /* Thin out the marketing headings */

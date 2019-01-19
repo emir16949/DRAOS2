@@ -203,7 +203,7 @@ Wireframe
 Protototip",
    3, 5);
 INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
-  (15, "Rada PONOVO GOSTUJE", "2019-03-09 20:00:00",
+  (15, "Toni Cetinski u Zetri", "2019-03-09 20:00:00",
    "https://www.kupikartu.ba/img/sd2/850x370/usr/karte/850x370zetra.jpg",
    "Tony Cetinski će 9. marta s početkom u 20 sati na zadovoljstvo njegovih brojnih fanova iz BiH održati veliki koncert u sarajevskoj dvorani Zetra.
 Dok teku pripreme za veliki koncert u Sarajevu Tony je nekoliko dana proveo u Johanesburgu gdje je snimio dvije pjesme i spot u saradnji sa klapom Ova klapa sa Korčule. ", 1,
