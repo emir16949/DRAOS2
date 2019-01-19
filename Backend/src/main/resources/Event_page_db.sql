@@ -202,7 +202,28 @@ Persone
 Wireframe
 Protototip",
    3, 5);
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (15, "Rada PONOVO GOSTUJE", "2019-03-09 20:00:00",
+   "https://www.kupikartu.ba/img/sd2/850x370/usr/karte/850x370zetra.jpg",
+   "Tony Cetinski će 9. marta s početkom u 20 sati na zadovoljstvo njegovih brojnih fanova iz BiH održati veliki koncert u sarajevskoj dvorani Zetra.
+Dok teku pripreme za veliki koncert u Sarajevu Tony je nekoliko dana proveo u Johanesburgu gdje je snimio dvije pjesme i spot u saradnji sa klapom Ova klapa sa Korčule. ", 1,
+   1);
 
+INSERT INTO event (id, name, date_time, picture_url, description, category_id, place_id) VALUES
+  (16, "Bijelo Dugme na Bjelašnici", "2018-12-29 14:00:00",
+   "https://cdn-az.allevents.in/banners/6a075ce0-07a0-11e9-857a-334ae117f478-rimg-w300-h300-gmir.jpg",
+   "Hajdemo u planine jer tamo nema zime...
+Legendarni Sarajlija Goran Bregović zajedno s Alenom Islamovićem i Mladenom Vojičićem Tifom tim koncertom će upotpunit slavljeničku atmosferu
+
+Promocija povodom otvorenja zimske ski sezone ”Bjelašnica-Igman 2018/2019” bit će održana sutra na Bjelašnici.
+
+
+Bit će predstavljen program manifestacije „Hajdemo u planine“ u okviru koje će u subotu, 29. decembra, na otvorenom prostoru (Babin do) biti održan koncert grupe Bijelo dugme, s početkom u 14.00 sati.
+
+Legendarni Sarajlija Goran Bregović zajedno s Alenom Islamovićem i Mladenom Vojičićem Tifom tim koncertom će upotpunit slavljeničku atmosferu povodom 35. rođendana ZOI'84.
+
+Na promociji će se obratiti direktor ZOI'84 Nevres Alispahić, Midhat Hubijar direktor Turističke zajednice KS, Mevludin Halilović komesar MUP-a KS, kao i lider grupe ”Bijelo Dugme” Goran Bregović s rediteljem Ademirom Kenovićem – prijateljem projekta i autorom teksta ”Hajdemo u planine”, saopćili su organizatori.", 1,
+   1);
 
 INSERT INTO role (id, role) VALUES (1, "ROLE_ADMIN");
 INSERT INTO role (id, role) VALUES (2, "ROLE_USER");
