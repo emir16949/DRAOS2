@@ -32,6 +32,7 @@ import { UserService } from './services/user/user.service';
 import { ProfilComponent } from './profil/profil.component';
 import { AdminKategorijeComponent } from './admin-kategorije/admin-kategorije.component';
 import { PretragaComponent } from './pretraga/pretraga.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 const routes: Routes = [
   { path: '', redirectTo: 'muzika', pathMatch: 'full' },
@@ -86,6 +87,7 @@ const routes: Routes = [
     HttpClientModule,
     HttpModule,
     FormsModule,
+    BsDatepickerModule.forRoot(),
   ],
   providers: [
     PlaceService,
