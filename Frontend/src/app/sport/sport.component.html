@@ -41,8 +41,8 @@
               <div class="card-body">
                 <h5 class="card-title">{{ event.name }}</h5>
                 <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
-                <p class="card-text">{{event.description.substr(0,100)}}</p>
-                <a class="btn btn-primary" (click)="prikaziDetalje(event)" style="border: orange 2px">Više</a>
+                <p class="card-text">{{event.description.substr(0,100)}}...</p>
+                <a class="btn btn-info" (click)="prikaziDetalje(event)" style="border: orange 2px">Više</a>
               </div>
             </div>
           </div>   
@@ -52,8 +52,8 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ event.name }}</h5>
                   <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
-                  <p class="card-text">{{event.description.substr(0,100)}}</p>
-                  <a class="btn btn-primary" (click)="prikaziDetalje(event)">Više</a>
+                  <p class="card-text">{{event.description.substr(0,100)}}...</p>
+                  <a class="btn btn-info" (click)="prikaziDetalje(event)">Više</a>
                 </div>
             </div>
           </div>
@@ -64,8 +64,8 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ event.name }}</h5>
                   <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
-                  <p class="card-text">{{event.description.substr(0,100)}}</p>
-                  <a class="btn btn-primary" (click)="prikaziDetalje(event)">Više</a>
+                  <p class="card-text">{{event.description.substr(0,100)}}...</p>
+                  <a class="btn btn-info" (click)="prikaziDetalje(event)">Više</a>
                 </div>
                </div>
             </div>
@@ -86,31 +86,10 @@
 
 <!--end amra  jedan primjer-->
 
-<!--stari dio-->
+<div class="container marketing">
+  <hr class="featurette-divider">
+</div>
 
-  <div class="container marketing">
-    <hr class="featurette-divider">
-    <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
-      style="margin-bottom: 5%;">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">{{ event.name }}</h2>
-        <p class="lead">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
-        <p class="lead">Lokacija: {{ event.place.name }}</p>
-        <p class="lead">{{ event.description }}</p>
-        <p style="margin-top: 20px;">
-          <a class="btn btn-outline-primary" role="button" (click)="prikaziDetalje(event)" style="margin-left: 10px; margin-right: 20px;">Više
-            informacija &raquo;</a>
-          <a *ngIf="isAdmin" class="btn btn-outline-danger" role="button" data-toggle="modal" data-target="#exampleModal10"
-            (click)="prikaziDetaljeIzmjena(event)">Uredi</a>
-          <a *ngIf="isAdmin" class="btn btn-outline-danger" role="button" (click)="obrisi(event)">Obriši</a>
-        </p>
-      </div>
-      <div class="col-md-5" style="margin-top: 7%">
-        <img class="featurette-image img-fluid mx-auto" src={{event.picture_url}} alt="Generic placeholder image">
-      </div>
-    </div>
-  </div>
-  <!--end stari dio-->
 </main>
 
 

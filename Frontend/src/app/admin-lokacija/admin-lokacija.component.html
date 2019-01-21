@@ -19,20 +19,26 @@
     </div>
 
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
             <div class="card" *ngFor="let place of places" style="margin-bottom: 5%">
                 <h5 class="card-header">Lokacija: {{place.name}}</h5>
                 <div class="card-body">
-                    <h5 class="card-title">Adresa: {{place.address.name}}, {{place.address.city.name}}</h5>
+                        <div class="row">
+                    <div class="col-md-4">
+                        <img class="card-img-top" height="180rem" width="22rem" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwoTC-AUIktYvhSDQuw3NButYDj25Am_rGZItpXU91aydL9qlyOg" alt="Card image cap">
+                    </div>
+                    <div class="col-md-4">
+                        <h5 class="card-title" >Adresa: {{place.address.name}}, {{place.address.city.name}}</h5>
                     <p class="card-text">Opis: {{place.description}}</p>
                     <button class="btn btn-outline-primary" style="margin-right: 3%" type="submit" data-toggle="modal"
                         data-target="#modaluredi" (click)="urediPlace(place)">Uredi</button>
                     <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deletemodal" (click)="obrisiLokaciju(place)">Obriši</button>
-                </div>
+                  </div></div>
+             </div>
             </div>
         </div>
-        <div class="col-md-3"></div>
+        <div class="col-md-2"></div>
     </div>
 </div>
 
