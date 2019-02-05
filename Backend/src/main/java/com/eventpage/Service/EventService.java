@@ -3,6 +3,7 @@ package com.eventpage.Service;
 import com.eventpage.Model.Event;
 import com.eventpage.Repository.EventRepository;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +38,6 @@ public class EventService {
     try {
       Optional eventHelp = eventRepository.findById(Integer.parseInt(id));
       Event event = (Event) eventHelp.get();
-
       return event;
     } catch (Exception e) {
       throw new ServiceException("Cannot find event with id={" + id + "}");
@@ -67,9 +67,9 @@ public class EventService {
       Set<Event> eventsSet = new HashSet<>();
       boolean exist = false;
 
-      for (Event event : events) {
-        if (event.getName().equals(title)) {
-          eventsSet.add(event);
+      for (Event e : events) {
+        if (e.getName().equals(title)) {
+          eventsSet.add(e);
           exist = true;
         }
       }

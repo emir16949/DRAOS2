@@ -7,7 +7,7 @@
     </ol>
     <div class="carousel-inner">
       <div *ngFor="let event of events; let i = index" class="carousel-item {{ (i == 0) ? 'active' : ''}}">
-        <img class="slide" src="{{event.picture_url}}" alt="Slide">
+        <img class="slide" src="data:image/JPEG;base64,{{event.picture}}" alt="Slide">
         <div class="container">
           <div class="carousel-caption text-left" style="background-color: rgba(2, 2, 2, 0.61)!important;">
             <h1 background-color="black">{{event.name}}</h1>
@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-sm">
               <div *ngIf="i%3==0" class="card" style="width: 22rem; margin-left: 40%; background-origin: blue;">
-                <img class="card-img-top" height="160rem" width="22rem" src={{event.picture_url}} alt="Card image cap">
+                <img class="card-img-top" height="160rem" width="22rem" src="data:image/JPEG;base64,{{event.picture}}" alt="Card image cap">
                 <div class="card-body">
                   <h5 class="card-title">{{ event.name }}</h5>
                   <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
@@ -49,7 +49,7 @@
             </div>   
              <div class="col-sm">
                 <div *ngIf="i%3==1" class="card" style="width: 22rem; margin-left: 35%; background-origin: blue;">
-                  <img class="card-img-top" height="160rem" width="22rem" src={{event.picture_url}} alt="Card image cap">
+                  <img class="card-img-top" height="160rem" width="22rem" src="data:image/JPEG;base64,{{event.picture}}" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title">{{ event.name }}</h5>
                     <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
@@ -61,7 +61,7 @@
           
               <div class="col-sm">
                 <div *ngIf="i%3==2" class="card" style="width: 22rem; margin-left: 30%; background-origin: blue;">
-                  <img class="card-img-top" height="160rem" width="22rem" src={{event.picture_url}} alt="Card image cap">
+                  <img class="card-img-top" height="160rem" width="22rem" src="data:image/JPEG;base64,{{event.picture}}" alt="Card image cap">
                   <div class="card-body">
                     <h5 class="card-title">{{ event.name }}</h5>
                     <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>

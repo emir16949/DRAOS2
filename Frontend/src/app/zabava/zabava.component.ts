@@ -15,7 +15,7 @@ export class ZabavaComponent implements OnInit {
     id: null,
     name: '',
     description: '',
-    picture_url: '',
+    picture: '',
     category: {
       id: null
     },
@@ -29,7 +29,7 @@ export class ZabavaComponent implements OnInit {
     id: null,
     name: '',
     description: '',
-    picture_url: '',
+    picture: '',
     category: {
       id: null
     },

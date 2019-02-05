@@ -19,7 +19,7 @@ public class Event {
   @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
   private String name;
   private Date date_time;
-  private String picture_url;
+  private byte[] picture;
   @Size(max = 255, message = "Description can not be longer than 255 characters")
   private String description;
 
@@ -112,11 +112,11 @@ public class Event {
     this.date_time = date_time;
   }
 
-  public String getPicture_url() {
-    return picture_url;
+  public byte[] getPicture() {
+    return picture;
   }
 
-  public void setPicture_url(String picture_url) {
-    this.picture_url = picture_url;
+  public void setPicture(byte[] picture) {
+    this.picture = picture;
   }
 }

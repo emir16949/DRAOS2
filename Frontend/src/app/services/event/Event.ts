@@ -1,8 +1,8 @@
 export class Event {
     id: number;
-    name: String;
-    description: String;
-    picture_url: String;
+    name: string;
+    description: string;
+    picture: any;
     category: {
         id: number;
     };
