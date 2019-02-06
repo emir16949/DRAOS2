@@ -51,7 +51,7 @@ public class EventService {
       Set<Event> eventsSet = new HashSet<>();
 
       for (Event e : events) {
-        if (e.getCategory().getName().equals(category)) {
+        if (e.getCategory().getName().equals(category) && e.getDate_time().after(Calendar.getInstance().getTime())) {
           eventsSet.add(e);
         }
       }
@@ -69,7 +69,7 @@ public class EventService {
       boolean exist = false;
 
       for (Event e : events) {
-        if (e.getName().equals(title)) {
+        if (e.getName().equals(title) && e.getDate_time().after(Calendar.getInstance().getTime())) {
           eventsSet.add(e);
           exist = true;
         }
@@ -120,7 +120,7 @@ public class EventService {
       Set<Event> eventsSet = new HashSet<>();
 
       for (Event e : events) {
-        if (e.getPlace().getAddress().getCity().getName().equals(city)) {
+        if (e.getPlace().getAddress().getCity().getName().equals(city) && e.getDate_time().after(Calendar.getInstance().getTime())) {
           eventsSet.add(e);
         }
       }
