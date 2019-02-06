@@ -3,7 +3,6 @@ package com.eventpage.Service;
 import com.eventpage.Model.Event;
 import com.eventpage.Repository.EventRepository;
 import java.util.ArrayList;
-import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -112,6 +111,23 @@ public class EventService {
       return new ArrayList<>(eventsSet);
     } catch (Exception e) {
       throw new ServiceException("Cannot find events");
+    }
+  }
+
+  public List<Event> getByCity(String city) throws ServiceException {
+    try {
+      List<Event> events = eventRepository.findAll();
+      Set<Event> eventsSet = new HashSet<>();
+
+      for (Event e : events) {
+        if (e.getPlace().getAddress().getCity().getName().equals(city)) {
+          eventsSet.add(e);
+        }
+      }
+
+      return new ArrayList<>(eventsSet);
+    } catch (Exception e) {
+      throw new ServiceException("Cannot find events with city={" + city + "}");
     }
   }
 

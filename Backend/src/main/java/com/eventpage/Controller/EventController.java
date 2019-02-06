@@ -51,10 +51,15 @@ public class EventController {
   }
 
   @GetMapping(value = "/dateFrom/{dateFrom}/dateTo/{dateTo}")
-  public ResponseEntity getByCategory(@PathVariable("dateFrom") @DateTimeFormat(iso=ISO.DATE) Date dateFrom,
-      @PathVariable("dateTo") @DateTimeFormat(iso=ISO.DATE) Date dateTo)
-      throws ServiceException {
+  public ResponseEntity getByDates(
+      @PathVariable("dateFrom") @DateTimeFormat(iso = ISO.DATE) Date dateFrom,
+      @PathVariable("dateTo") @DateTimeFormat(iso = ISO.DATE) Date dateTo) throws ServiceException {
     return ResponseEntity.ok(eventService.getByDates(dateFrom, dateTo));
+  }
+
+  @GetMapping(value = "/city/{city}")
+  public ResponseEntity getByCity(@PathVariable("city") String city) throws ServiceException {
+    return ResponseEntity.ok(eventService.getByCity(city));
   }
 
   @DeleteMapping(value = "/delete/all")
