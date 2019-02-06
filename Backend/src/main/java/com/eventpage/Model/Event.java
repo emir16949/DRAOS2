@@ -20,7 +20,7 @@ public class Event {
   private String name;
   private Date date_time;
   private byte[] picture;
-  @Size(max = 255, message = "Description can not be longer than 255 characters")
+  @Size(max = 1000, message = "Description can not be longer than 255 characters")
   private String description;
 
   @JsonIgnoreProperties("events")

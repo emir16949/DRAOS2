@@ -2,7 +2,10 @@ package com.eventpage.Controller;
 
 import com.eventpage.Model.Event;
 import com.eventpage.Service.EventService;
+import java.util.Date;
 import org.hibernate.service.spi.ServiceException;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -34,34 +37,36 @@ public class EventController {
   @GetMapping(value = "/id/{id}")
   public ResponseEntity getById(@PathVariable("id") String id) throws ServiceException {
     return ResponseEntity.ok(eventService.getById(id));
-
   }
 
   @GetMapping(value = "/name/{name}")
   public ResponseEntity getByTitle(@PathVariable("name") String name) throws ServiceException {
     return ResponseEntity.ok(eventService.getByTitle(name));
-
   }
 
   @GetMapping(value = "/{category}")
   public ResponseEntity getByCategory(@PathVariable("category") String category)
       throws ServiceException {
     return ResponseEntity.ok(eventService.getByCategory(category));
+  }
 
+  @GetMapping(value = "/dateFrom/{dateFrom}/dateTo/{dateTo}")
+  public ResponseEntity getByCategory(@PathVariable("dateFrom") @DateTimeFormat(iso=ISO.DATE) Date dateFrom,
+      @PathVariable("dateTo") @DateTimeFormat(iso=ISO.DATE) Date dateTo)
+      throws ServiceException {
+    return ResponseEntity.ok(eventService.getByDates(dateFrom, dateTo));
   }
 
   @DeleteMapping(value = "/delete/all")
   @PreAuthorize("@tokenAuthenticationService.isAdmin()")
   public ResponseEntity deleteAll() throws ServiceException {
     return ResponseEntity.ok(eventService.deleteAll());
-
   }
 
   @DeleteMapping(value = "delete/{id}")
   @PreAuthorize("@tokenAuthenticationService.isAdmin()")
   public ResponseEntity deleteById(@PathVariable("id") String id) throws ServiceException {
     return ResponseEntity.ok(eventService.deleteById(id));
-
   }
 
   @PostMapping

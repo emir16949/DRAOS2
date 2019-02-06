@@ -4,6 +4,8 @@ import com.eventpage.Model.Event;
 import com.eventpage.Repository.EventRepository;
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -81,6 +83,35 @@ public class EventService {
       }
     } catch (Exception e) {
       throw new ServiceException("Cannot find event with title={" + title + "}");
+    }
+  }
+
+  public List<Event> getByDates(Date dateFrom, Date dateTo) {
+    try {
+      List<Event> events = eventRepository.findAll();
+      Set<Event> eventsSet = new HashSet<>();
+      Calendar calendar = Calendar.getInstance();
+      calendar.setTime(dateFrom);
+      calendar.set(Calendar.MILLISECOND, 0);
+      calendar.set(Calendar.SECOND, 0);
+      calendar.set(Calendar.MINUTE, 0);
+      calendar.set(Calendar.HOUR_OF_DAY, 0);
+      dateFrom.setTime(calendar.getTimeInMillis() - 1);
+      calendar.setTime(dateTo);
+      calendar.set(Calendar.MILLISECOND, 999);
+      calendar.set(Calendar.SECOND, 59);
+      calendar.set(Calendar.MINUTE, 59);
+      calendar.set(Calendar.HOUR_OF_DAY, 23);
+      dateTo.setTime(calendar.getTimeInMillis() + 1);
+
+      for (Event e : events) {
+        if (e.getDate_time().after(dateFrom) && e.getDate_time().before(dateTo)) {
+          eventsSet.add(e);
+        }
+      }
+      return new ArrayList<>(eventsSet);
+    } catch (Exception e) {
+      throw new ServiceException("Cannot find events");
     }
   }
 
