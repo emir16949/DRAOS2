@@ -45,6 +45,12 @@ export class LoginComponent implements OnInit {
       );
   }
 
+  keyDownFunction(event){
+    if(event.keyCode == 13) {
+      this.prijaviSe();
+    }
+  }
+
   ngOnInit() {
     if (this.authService.isLoggedIn())
       this.router.navigate(['/muzika']);

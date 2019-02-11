@@ -41,6 +41,13 @@ export class PretragaComponent implements OnInit {
     this.router.navigate(['/pretraga']);
   }
 
+  keyDownFunction(event){
+    if(event.keyCode == 13) {
+      console.log('berina')
+      //this.prijaviSe();
+    }
+  }
+
   prikaziDetalje(event: any) {
     var categoryId = event.category.id;
     if (categoryId == 1)
