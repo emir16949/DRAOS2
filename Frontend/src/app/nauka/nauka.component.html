@@ -7,13 +7,15 @@
     </ol>
     <div class="carousel-inner">
       <div *ngFor="let event of events; let i = index" class="carousel-item {{ (i == 0) ? 'active' : ''}}">
-        <img class="slide" src="data:image/JPEG;base64,{{event.picture}}" alt="Slide">
-        <div class="container">
-          <div class="carousel-caption text-left" style="background-color: rgba(2, 2, 2, 0.61)!important;">
-            <h1 background-color="black">{{event.name}}</h1>
-            <p>{{event.description.substr(0,100)}}</p>
+        <figure class="tint" (mouseenter)="mouseEnter()" (mouseleave)="mouseLeave()">
+          <img class="slide" src="data:image/JPEG;base64,{{event.picture}}" alt="Slide" style="height: 32rem; width: 100%;">
+          <div *ngIf="mouseEnterHover" class="container">
+            <div class="carousel-caption text-left">
+              <h1 background-color="black">{{event.name}}</h1>
+              <p>{{event.description.substr(0,100)}}</p>
+            </div>
           </div>
-        </div>
+        </figure>
       </div>
     </div>
     <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">

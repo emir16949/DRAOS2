@@ -46,6 +46,8 @@ export class KulturaComponent implements OnInit {
 
   isAdmin: any;
 
+  mouseEnterHover: any = false;
+
   constructor(private eventService: EventService, private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit() {
@@ -85,5 +87,13 @@ export class KulturaComponent implements OnInit {
 
   zatvori() {
     window.location.reload();
+  }
+
+  mouseEnter(){
+    this.mouseEnterHover = true;
+  }
+
+  mouseLeave(){
+    this.mouseEnterHover = false;
   }
 }
