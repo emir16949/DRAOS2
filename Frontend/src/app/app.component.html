@@ -7,9 +7,9 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="isLoggedIn==true">
 
-    <ul id="grouplist" class="navbar-nav mr-auto">
-      <li *ngFor="let item of items; let i=index" (click)="select(i)" [ngClass]="{'nav-item': true, 'active': selectedIndex == i}">
-        <a class="nav-link" routerLink="/{{item.name}}" style ="color: black">{{ item.text }}<hr class="lineMeni {{item.color}}"></a>
+    <ul id="grouplist" class="navbar-nav mr-auto" style="height: 60px !important;">
+      <li *ngFor="let item of items; let i=index" (click)="select(i)" [ngClass]="{'nav-item': true, 'active': selectedIndex == i}" style="width: 90px;">
+        <a class="nav-link" routerLink="/{{item.name}}" style ="color: black; text-align: center;">{{ item.text }}<hr class="lineMeni {{item.color}}"></a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">

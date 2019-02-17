@@ -45,6 +45,9 @@ export class SportComponent implements OnInit {
   modal_kategorija: any;
   isAdmin: any;
 
+  mouseEnterHover: any = false;
+
+
   constructor(private eventService: EventService, private router: Router, private appComponent: AppComponent) { }
 
   ngOnInit() {
@@ -83,5 +86,13 @@ export class SportComponent implements OnInit {
 
   zatvori() {
     window.location.reload();
+  }
+
+  mouseEnter(){
+    this.mouseEnterHover = true;
+  }
+
+  mouseLeave(){
+    this.mouseEnterHover = false;
   }
 }
