@@ -23,6 +23,8 @@ public class Event {
   @Size(max = 1000, message = "Description can not be longer than 255 characters")
   private String description;
 
+  private double price;
+
   @JsonIgnoreProperties("events")
   private Category category;
 
@@ -38,11 +40,12 @@ public class Event {
 
   }
 
-  public Event(String name, String description, Category category, Place place) {
+  public Event(String name, String description, Category category, Place place, double price) {
     this.name = name;
     this.description = description;
     this.category = category;
     this.place = place;
+    this.price = price;
 
   }
 
@@ -72,6 +75,10 @@ public class Event {
   public void setDescription(String description) {
     this.description = description;
   }
+
+  public double getPrice() { return price; }
+
+  public void setPrice(double price) { this.price = price; }
 
 
   @ManyToOne

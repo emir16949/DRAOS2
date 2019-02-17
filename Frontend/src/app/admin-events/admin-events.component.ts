@@ -22,7 +22,8 @@ export class AdminEventsComponent implements OnInit {
     },
     place: {
       id: null
-    }
+    },
+    price: 0,
   };
 
   categories: Array<any>;

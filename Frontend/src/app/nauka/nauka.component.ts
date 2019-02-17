@@ -21,7 +21,8 @@ export class NaukaComponent implements OnInit {
     },
     place: {
       id: null
-    }
+    },
+    price: 0,
   };
 
   events: Array<any>;
@@ -35,7 +36,8 @@ export class NaukaComponent implements OnInit {
     },
     place: {
       id: null
-    }
+    },
+    price: 0,
   };
 
   selectedEvent: any;

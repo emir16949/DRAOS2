@@ -22,7 +22,8 @@ export class KulturaComponent implements OnInit {
     },
     place: {
       id: null
-    }
+    },
+    price: 0,
   };
 
   event: Event = {
@@ -35,7 +36,8 @@ export class KulturaComponent implements OnInit {
     },
     place: {
       id: null
-    }
+    },
+    price: 0,
   };
 
   selectedEvent: any;

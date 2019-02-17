@@ -9,4 +9,5 @@ export class Event {
     place: {
         id: number;
     };
+    price: number;
 }

@@ -27,7 +27,8 @@ export class KulturaDetaljiComponent implements OnInit {
     },
     place: {
       id: null
-    }
+    },
+    price: 0,
   };
 
   newComment: Comment = {
