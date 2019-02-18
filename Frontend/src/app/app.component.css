@@ -39,9 +39,23 @@
 }
 
 .navbar{
-  margin-bottom: 0 px;
+  position:fixed;
+   top: 0;
+   margin:auto;
+   left: 0;
+   right: 0;
+   width: 100%;
+
+  /*margin-bottom: 0 px;*/
 }
 
 .navbar-collapse{
-  margin-bottom: 0 px;
+  position:fixed;
+   top: 0;
+   margin:auto;
+   left: 0;
+   right: 0;
+   width: 100%;
+   
+
 }
