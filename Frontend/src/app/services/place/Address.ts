@@ -1,8 +1,8 @@
 export class Address {
-    id?: number;
-    name: String;
-    description: String;
-    city: {
-        id: number;
-    };
+  id?: number;
+  name: string;
+  description: string;
+  city: {
+    id: number;
+  };
 }

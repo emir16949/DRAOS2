@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { TokenStorage } from './token.storage';
+import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { Observable } from 'rxjs';
+import { TokenStorage } from './token.storage';
 
 @Injectable()
 export class AuthService {

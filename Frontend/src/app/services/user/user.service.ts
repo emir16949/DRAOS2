@@ -1,8 +1,6 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TokenStorage } from '../../core/token.storage';
 import { User } from '../user/User';
 import { UserModel } from '../user/UserModel';
 
@@ -23,7 +21,6 @@ export class UserService {
   public httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      //    'Authorization':  'Bearer ' + TokenStorage.getToken()
     })
   };
 
@@ -62,6 +59,4 @@ export class UserService {
     return this.http.get(this.USER_API + '/username/' + username);
 
   }
-
-
 }

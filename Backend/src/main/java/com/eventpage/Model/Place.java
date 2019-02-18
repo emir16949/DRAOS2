@@ -22,6 +22,7 @@ public class Place {
   private String name;
   @Size(max = 255, message = "Description can not be longer than 255 characters")
   private String description;
+  private String place_url;
   @JsonIgnoreProperties("places")
   private Address address;
   @JsonIgnoreProperties("place")
@@ -65,6 +66,14 @@ public class Place {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public String getPlace_url() {
+    return place_url;
+  }
+
+  public void setPlace_url(String place_url) {
+    this.place_url = place_url;
   }
 
   @ManyToOne

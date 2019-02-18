@@ -19,8 +19,8 @@ export class PretragaComponent implements OnInit {
   findByPlace: any;
   odabranaOpcijaPretrage: any;
   opcijePretrage = [{ id: 1, name: 'Događaj' }, { id: 2, name: 'Lokal' }];
-  public cities = [{ id: 1, name: 'Sarajevo'}, { id: 2, name: "Mostar"}, { id: 3, name: "Tuzla"}, { id: 4, name: "Zenica"}, { id: 5, name: "Travnik"}, { id: 6, name: "Banja Luka"}];
-  public lokali = [{ id: 1, name: "MyFace"}, { id: 2, name: "Cinemas Sloga"}, { id: 3, name: "City Pub"}, { id: 4, name: "Cheers"}, { id: 5, name: "Kino Bosna"}, { id: 6, name: "Narodno Pozoriste"}];
+  public cities = [{ id: 1, name: 'Sarajevo' }, { id: 2, name: "Mostar" }, { id: 3, name: "Tuzla" }, { id: 4, name: "Zenica" }, { id: 5, name: "Travnik" }, { id: 6, name: "Banja Luka" }];
+  public lokali = [{ id: 1, name: "MyFace" }, { id: 2, name: "Cinemas Sloga" }, { id: 3, name: "City Pub" }, { id: 4, name: "Cheers" }, { id: 5, name: "Kino Bosna" }, { id: 6, name: "Narodno Pozoriste" }];
   selectedCity = null;
   selectedLocal = null;
 
@@ -41,8 +41,8 @@ export class PretragaComponent implements OnInit {
     this.router.navigate(['/pretraga']);
   }
 
-  keyDownFunction(event){
-    if(event.keyCode == 13) {
+  keyDownFunction(event) {
+    if (event.keyCode == 13) {
       console.log('berina')
       //this.prijaviSe();
     }

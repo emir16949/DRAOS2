@@ -7,40 +7,35 @@
   border: none;
   margin-bottom: 0 px;
 }
-.lineRed
-{ 
-color: red;
-background-color: red;
+
+.lineRed { 
+  color: red;
+  background-color: red;
 }
 
-.lineBlue
-{
-color: blue;
-background-color: blue;
+.lineBlue {
+  color: blue;
+  background-color: blue;
 }
 
-.lineOrange
-{
-color: orange;
-background-color:orange;
+.lineOrange {
+  color: orange;
+  background-color:orange;
 }
 
-.lineGreen
-{
-color: green;
-background-color: green;
+.lineGreen {
+  color: green;
+  background-color: green;
 }
 
-.lineYellow
-{
-color: yellow;
-background-color: yellow;
+.lineYellow {
+  color: yellow;
+  background-color: yellow;
 }
 
-.linePurple
-{
-color: purple;
-background-color: purple;
+.linePurple {
+  color: purple;
+  background-color: purple;
 }
 
 .navbar{

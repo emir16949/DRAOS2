@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-user-detalji',
@@ -16,7 +16,6 @@ export class UserDetaljiComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => { this.id = params['idUser']; console.log(params) });
-    console.log(this.id);
     this.getUserById();
   }
 
@@ -25,5 +24,4 @@ export class UserDetaljiComponent implements OnInit {
       this.user = data;
     });
   }
-
 }

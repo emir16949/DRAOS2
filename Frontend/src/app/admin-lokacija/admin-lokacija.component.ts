@@ -9,35 +9,16 @@ import { Place } from '../services/place/Place';
 })
 export class AdminLokacijaComponent implements OnInit {
 
-  places: any;
-
-  objekat: Place = {
-    name: '',
-    description: '',
-    address: {
-      id: null
-    }
-  };
-
-  objekatPut: Place = {
-    id: null,
-    name: '',
-    description: '',
-    address: {
-      id: null
-    }
-  };
-
+  places: Array<Place>;
+  objekat: Place;
+  objekatPut: Place;
   odabranaAdresa: any;
   addresses: any;
-
   objekat_name: any;
   objekat_description: any;
-
   modal_naziv: any;
   modal_opis: any;
   modal_adresa: any;
-
   adresa: any;
 
   constructor(private placeService: PlaceService) { }
@@ -90,5 +71,4 @@ export class AdminLokacijaComponent implements OnInit {
   zatvori() {
     window.location.reload();
   }
-
 }

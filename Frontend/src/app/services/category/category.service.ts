@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../category/Category';
 
@@ -32,5 +31,4 @@ export class CategoryService {
   deleteCategory(category: Category): void {
     this.http.delete(this.CATEGORY_API + '/delete/' + category.id);
   }
-
 }

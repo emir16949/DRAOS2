@@ -1,92 +1,63 @@
 <div class="container-fluid" style="padding: 0px; background-color: rgba(48,49,49,0.76);">
-<div class="container">
-  <div class="row" style="margin-left: 0px !important; padding-top: 20px; padding-bottom: 20px;" (keydown)="keyDownFunction($event)">
-    <div class="col-6" style="padding: 0px; padding-right: 10px;">
-      <div class="row" style="margin-left: 0px !important;">
-        <div class="col-4" style="padding-left: 0px !important;">
-          <label style="color: white">Pretraga po gradu</label>
-          <select class="form-control" id="hitnost" [(ngModel)]="selectedCity" name="opcije">
-            <option [value]="null">All</option>
-            <option *ngFor="let p of cities" [value]="p.id">{{p.name}}</option>
-          </select>
-        </div>
-        <div class="col-4" style="padding-left: 0px !important;">
-          <label style="color: white">Pretraga po lokalu</label>
-          <select class="form-control" id="hitnost2" [(ngModel)]="selectedLocal" name="opcije">
-            <option [value]="null">All</option>
-            <option *ngFor="let p of lokali" [value]="p.id">{{p.name}}</option>
-          </select>
-        </div>
-        <div class="col-4" style="padding-left: 0px !important;">
-          <label style="color: white">Pretraga po datumu</label>
-          <input type="text" placeholder="Datum" class="form-control" [(ngModel)]="selectedDate" #dp="bsDaterangepicker"
-                 bsDaterangepicker>
+  <div class="container">
+    <div class="row" style="margin-left: 0px !important; padding-top: 20px; padding-bottom: 20px;"
+      (keydown)="keyDownFunction($event)">
+      <div class="col-6" style="padding: 0px; padding-right: 10px;">
+        <div class="row" style="margin-left: 0px !important;">
+          <div class="col-4" style="padding-left: 0px !important;">
+            <label style="color: white">Pretraga po gradu</label>
+            <select class="form-control" id="hitnost" [(ngModel)]="selectedCity" name="opcije">
+              <option [value]="null">All</option>
+              <option *ngFor="let p of cities" [value]="p.id">{{p.name}}</option>
+            </select>
+          </div>
+          <div class="col-4" style="padding-left: 0px !important;">
+            <label style="color: white">Pretraga po lokalu</label>
+            <select class="form-control" id="hitnost2" [(ngModel)]="selectedLocal" name="opcije">
+              <option [value]="null">All</option>
+              <option *ngFor="let p of lokali" [value]="p.id">{{p.name}}</option>
+            </select>
+          </div>
+          <div class="col-4" style="padding-left: 0px !important;">
+            <label style="color: white">Pretraga po datumu</label>
+            <input type="text" placeholder="Datum" class="form-control" [(ngModel)]="selectedDate"
+              #dp="bsDaterangepicker" bsDaterangepicker>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-5" style="padding: 0px; padding-right: 15px;">
-      <label style="color: transparent">Pretraga po lokalu</label>
-      <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="modal_naziv" placeholder="Pretraži"
-             [ngModelOptions]="{standalone: true}">
-    </div>
-    <div class="col-1" style="padding-right: 10px;">
-      <label style="color: transparent">Pretraga</label>
-      <button (click)="pretraziEvente()" style="float: left; width: 93%; background-color: white; border-width: 1px; border-color: rgb(216, 216, 216)" data-toggle="modal" data-target="#exampleModal19" class="btn btn-primary">
-        <i class="fa fa-search" style="color: rgb(71, 71, 71); font-size: 18px;"></i>
-      </button>
+      <div class="col-5" style="padding: 0px; padding-right: 15px;">
+        <label style="color: transparent">Pretraga po lokalu</label>
+        <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="modal_naziv" placeholder="Pretraži"
+          [ngModelOptions]="{standalone: true}">
+      </div>
+      <div class="col-1" style="padding-right: 10px;">
+        <label style="color: transparent">Pretraga</label>
+        <button (click)="pretraziEvente()"
+          style="float: left; width: 93%; background-color: white; border-width: 1px; border-color: rgb(216, 216, 216)"
+          data-toggle="modal" data-target="#exampleModal19" class="btn btn-primary">
+          <i class="fa fa-search" style="color: rgb(71, 71, 71); font-size: 18px;"></i>
+        </button>
+      </div>
     </div>
   </div>
 </div>
-</div>
-
-
-
-
-
-<!--<div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel"> Pretraga </h3>
-        </div>
-        <div class="modal-body">
-            <form>
-                <div class="form-group">
-                    <label for="hitnost" class="col-form-label">Pretraga po: </label>
-                    <select class="form-control" id="hitnost" [(ngModel)]="odabranaOpcijaPretrage" name="opcije">
-                        <option *ngFor="let p of opcijePretrage" [value]="p.id">{{p.name}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"> Naziv: </label>
-                    <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="modal_naziv"
-                        [ngModelOptions]="{standalone: true}">
-                </div>
-
-
-            </form>
-        </div>
-        <div class="modal-footer">
-            &lt;!&ndash;<button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>&ndash;&gt;
-            <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_podnesi_zahtjev" (click)="pretraziEvente()">Pretraži</button>
-        </div>
-    </div>
-</div>-->
-
 
 
 <!--Lista evenata-->
 <div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent">
-    <div class="col-md-7">
-        <h2 class="featurette-heading">{{ event.name }}
-        </h2>
-        <p class="lead">{{ event.description }}</p>
-    </div>
-    <div class="col-md-5">
-        <img class="featurette-image img-fluid mx-auto" width="30%" margin="5%" src="assets/event2.jpg" alt="Generic placeholder image">
-    </div>
-    <p>
-        <a class="btn btn-secondary" role="button" data-toggle="modal" data-target="#exampleModal3" (click)="prikaziDetalje(event)">Pregledaj
-            &raquo;</a>
-    </p>
-    <hr>
+  <div class="col-md-7">
+    <h2 class="featurette-heading">{{ event.name }}
+    </h2>
+    <p class="lead">{{ event.description }}</p>
+  </div>
+  <div class="col-md-5">
+    <img class="featurette-image img-fluid mx-auto" width="30%" margin="5%" src="assets/event2.jpg"
+      alt="Generic placeholder image">
+  </div>
+  <p>
+    <a class="btn btn-secondary" role="button" data-toggle="modal" data-target="#exampleModal3"
+      (click)="prikaziDetalje(event)">Pregledaj
+      &raquo;</a>
+  </p>
+  <hr>
 </div>

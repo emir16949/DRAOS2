@@ -1,5 +1,4 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
- <!-- <a class="navbar-brand" href="#">Početna</a>-->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -8,14 +7,16 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="isLoggedIn==true">
 
     <ul id="grouplist" class="navbar-nav mr-auto" style="height: 60px !important;">
-      <li *ngFor="let item of items; let i=index" (click)="select(i)" [ngClass]="{'nav-item': true, 'active': selectedIndex == i}" style="width: 90px;">
-        <a class="nav-link" routerLink="/{{item.name}}" style ="color: black; text-align: center;">{{ item.text }}<hr class="lineMeni {{item.color}}"></a>
+      <li *ngFor="let item of items; let i=index" (click)="select(i)"
+        [ngClass]="{'nav-item': true, 'active': selectedIndex == i}" style="width: 90px;">
+        <a class="nav-link" routerLink="/{{item.name}}" style="color: black; text-align: center;">{{ item.text }}
+          <hr class="lineMeni {{item.color}}"></a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
-        <a *ngIf="isAdmin==true" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-          aria-haspopup="true" aria-expanded="false">
+        <a *ngIf="isAdmin==true" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Admin opcije
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -26,13 +27,15 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/profil"><i class="fa fa-user" style="color: rgb(71, 71, 71); font-size: 21px; margin-left: 10px;"></i></a>
+        <a class="nav-link" routerLink="/profil"><i class="fa fa-user"
+            style="color: rgb(71, 71, 71); font-size: 21px; margin-left: 10px;"></i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/"></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-toggle="modal" (click)="pretraga()"><i class="fa fa-search" style="color: rgb(71, 71, 71); font-size: 18px;"></i></a>
+        <a class="nav-link" data-toggle="modal" (click)="pretraga()"><i class="fa fa-search"
+            style="color: rgb(71, 71, 71); font-size: 18px;"></i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/"></a>
@@ -47,58 +50,5 @@
 <div *ngIf="isSearchOpen">
   <app-pretraga></app-pretraga>
 </div>
-
-<!--Lista evenata-->
-<!--<div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent">
-  <div class="col-md-7">
-      <h2 class="featurette-heading">{{ event.name }}
-          <span class="text-muted"> Neki tekst</span>
-      </h2>
-      <p class="lead">{{ event.description }}</p>
-  </div>
-  <div class="col-md-5">
-      <img class="featurette-image img-fluid mx-auto" width="30%" margin="5%" src="assets/event2.jpg" alt="Generic placeholder image">
-  </div>
-  <p>
-      <a class="btn btn-secondary" role="button" data-toggle="modal" data-target="#exampleModal3" (click)="prikaziDetalje(event)">Uredi &raquo;</a>
-      <a class="btn btn-secondary" role="button" (click)="obrisi(event)">Obriši &raquo;</a>
-  </p>
-  <hr>
-</div>
-
-
-
-
-Pretraga evenata-->
-<!--<div class="modal fade" id="exampleModal5" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h3 class="modal-title" id="exampleModalLabel"> Pretraga </h3>
-          </div>
-          <div class="modal-body">
-               <form>
-                  <div class="form-group">
-                      <label for="hitnost" class="col-form-label">Pretraga po: </label>
-                      <select class="form-control" id="hitnost" [(ngModel)]="odabranaOpcijaPretrage" name="opcije">
-                          <option *ngFor="let p of opcijePretrage" [value]="p.id">{{p.name}}</option>
-                      </select>
-                  </div>
-                  <div class="form-group">
-                    <label for="recipient-name" class="col-form-label"> Naziv: </label>
-                     <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="modal_naziv" [ngModelOptions]="{standalone: true}">
-                 </div>
-
-
-              </form>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>
-              <button type="button" class="btn btn-primary" data-dismiss="modal"  id="btn_podnesi_zahtjev"(click)="pretraziEvente()">Pretraži</button>
-          </div>
-      </div>
-  </div>
-</div>-->
-
 
 <router-outlet></router-outlet>

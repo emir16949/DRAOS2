@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 
-
 const TOKEN_KEY = 'AuthToken';
 const USER_KEY = 'currentUser';
 
 @Injectable()
 export class TokenStorage {
 
-  constructor() {
-  }
+  constructor() { }
 
   static logOut() {
     localStorage.clear();
@@ -28,6 +26,5 @@ export class TokenStorage {
 
   static saveCurrentUser(user: string): void {
     localStorage.setItem(USER_KEY, user);
-    console.log(user);
   }
 }

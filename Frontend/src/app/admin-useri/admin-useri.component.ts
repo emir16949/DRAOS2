@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/auth.service';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-admin-useri',
@@ -15,7 +15,10 @@ export class AdminUseriComponent implements OnInit {
   isAdmin: boolean = true;
   isLoggedIn: boolean = true;
 
-  constructor(private router: Router, private userService: UserService, private authService: AuthService) { }
+  constructor(
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.getAllUsers();
@@ -25,7 +28,6 @@ export class AdminUseriComponent implements OnInit {
   getAllUsers() {
     this.userService.getAllUsers().subscribe(data => {
       this.users = data;
-      console.log(data)
     });
   }
 
@@ -40,7 +42,6 @@ export class AdminUseriComponent implements OnInit {
   pretragaUsername() {
     this.userService.getUserByUsername(this.username_pretraga).subscribe(data => {
       this.users = data;
-      console.log(data);
     });
   }
 }

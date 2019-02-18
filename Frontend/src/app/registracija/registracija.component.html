@@ -8,13 +8,14 @@
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputName">Ime</label>
-                <input class="form-control" id="exampleInputName" [(ngModel)]="user.ime" [ngModelOptions]="{standalone: true}"
-                  type="text" aria-describedby="nameHelp" placeholder="Unesi ime">
+                <input class="form-control" id="exampleInputName" [(ngModel)]="user.ime"
+                  [ngModelOptions]="{standalone: true}" type="text" aria-describedby="nameHelp" placeholder="Unesi ime">
               </div>
               <div class="col-md-6">
                 <label for="exampleInputLastName">Prezime</label>
-                <input class="form-control" id="exampleInputLastName" [(ngModel)]="user.prezime" [ngModelOptions]="{standalone: true}"
-                  type="text" aria-describedby="nameHelp" placeholder="Unesi prezime">
+                <input class="form-control" id="exampleInputLastName" [(ngModel)]="user.prezime"
+                  [ngModelOptions]="{standalone: true}" type="text" aria-describedby="nameHelp"
+                  placeholder="Unesi prezime">
               </div>
             </div>
           </div>
@@ -50,15 +51,13 @@
             <h3 class="modal-title" id="exampleModalLabel"> Korisnik uspješno registrovan! :)</h3>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="zatvori()">Zatvori</button>
+            <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal"
+              (click)="zatvori()">Zatvori</button>
           </div>
         </div>
       </div>
     </div>
 
-
-
   </div>
 </body>
-
 <router-outlet></router-outlet>

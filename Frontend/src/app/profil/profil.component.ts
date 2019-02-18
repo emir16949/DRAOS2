@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../services/user/User';
-import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { AuthService } from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
-import { AppComponent } from '../app.component';
-
-
+import { User } from '../services/user/User';
+import { UserService } from '../services/user/user.service';
 
 @Component({
   selector: 'app-profil',
@@ -30,15 +28,10 @@ export class ProfilComponent implements OnInit {
   loggedUser: any;
   ponovniPassword: any;
 
-  constructor(private router: Router,
-    private authService: AuthService,
-    private tokenService: TokenStorage,
-    private appComponent: AppComponent,
-    private userService: UserService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.loggedUser = TokenStorage.getCurrentUser();
-
     this.userService.getByUsername(this.loggedUser).subscribe(data => {
       this.user = data;
     });
@@ -57,5 +50,4 @@ export class ProfilComponent implements OnInit {
   zatvori() {
     window.location.reload();
   }
-
 }

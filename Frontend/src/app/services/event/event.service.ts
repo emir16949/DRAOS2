@@ -1,8 +1,6 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +51,4 @@ export class EventService {
   getByNameOfPlace(name: string): Observable<any> {
     return this.http.get(this.API + '/place/name/' + name);
   }
-
 }

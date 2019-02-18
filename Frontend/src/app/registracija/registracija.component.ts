@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../services/user/User';
-import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { AuthService } from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
-import { AppComponent } from '../app.component';
+import { UserService } from '../services/user/user.service';
 import { UserModel } from '../services/user/UserModel';
 
 @Component({
@@ -58,8 +57,7 @@ export class RegistracijaComponent implements OnInit {
   }
 
   registrujSe(): void {
-    console.log(this.user);
-    this.userService.createUser(this.user).subscribe(data => console.log(data));
+    this.userService.createUser(this.user).subscribe();
   }
 
   zatvori() {

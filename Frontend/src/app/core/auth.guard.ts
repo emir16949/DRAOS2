@@ -9,7 +9,6 @@ export class AuthGuard implements CanActivate {
 
   canActivate() {
     if (this.auth.isLoggedIn()) {
-      // this.router.navigate(['muzika']);
       return true;
     } else {
       this.router.navigate(['login']);

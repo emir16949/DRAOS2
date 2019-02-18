@@ -1,51 +1,33 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-
-import { AppComponent } from './app.component';
-import { MuzikaComponent } from './muzika/muzika.component';
+import { HttpModule } from '@angular/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { KulturaComponent } from './kultura/kultura.component';
-import { SportComponent } from './sport/sport.component';
-import { ZabavaComponent } from './zabava/zabava.component';
-import { NaukaComponent } from './nauka/nauka.component';
-import { NaukaDetaljiComponent } from './nauka-detalji/nauka-detalji.component';
-import { SportDetaljiComponent } from './sport-detalji/sport-detalji.component';
-import { ZabavaDetaljiComponent } from './zabava-detalji/zabava-detalji.component';
-import { KulturaDetaljiComponent } from './kultura-detalji/kultura-detalji.component';
-import { MuzikaDetaljiComponent } from './muzika-detalji/muzika-detalji.component';
-import { AdminLokacijaComponent } from './admin-lokacija/admin-lokacija.component';
-import { PlaceService } from './services/place/place.service';
-import { EventService } from './services/event/event.service';
-import { AdminUseriComponent } from './admin-useri/admin-useri.component';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { AdminEventsComponent } from './admin-events/admin-events.component';
-import { UserDetaljiComponent } from './user-detalji/user-detalji.component';
-import { LoginComponent } from './login/login.component';
-import { RegistracijaComponent } from './registracija/registracija.component';
+import { AdminLokacijaComponent } from './admin-lokacija/admin-lokacija.component';
+import { AdminUseriComponent } from './admin-useri/admin-useri.component';
+import { AppComponent } from './app.component';
+import { AuthGuard } from './core/auth.guard';
+import { AuthService } from './core/auth.service';
 import { Interceptor } from './core/interceptor';
 import { TokenStorage } from './core/token.storage';
-import { AuthService } from './core/auth.service';
-import { AuthGuard } from './core/auth.guard';
-import { UserService } from './services/user/user.service';
-import { ProfilComponent } from './profil/profil.component';
-import { AdminKategorijeComponent } from './admin-kategorije/admin-kategorije.component';
+import { DetaljiEventaComponent } from './detalji-eventa/detalji-eventa.component';
+import { LoginComponent } from './login/login.component';
 import { PretragaComponent } from './pretraga/pretraga.component';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ProfilComponent } from './profil/profil.component';
+import { RegistracijaComponent } from './registracija/registracija.component';
+import { EventService } from './services/event/event.service';
+import { PlaceService } from './services/place/place.service';
+import { UserService } from './services/user/user.service';
+import { SviEventiIzKategorijeComponent } from './svi-eventi-iz-kategorije/svi-eventi-iz-kategorije.component';
+import { UserDetaljiComponent } from './user-detalji/user-detalji.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'muzika', pathMatch: 'full' },
-  { path: 'muzika', component: MuzikaComponent, canActivate: [AuthGuard] },
-  { path: 'kultura', component: KulturaComponent, canActivate: [AuthGuard] },
-  { path: 'sport', component: SportComponent, canActivate: [AuthGuard] },
-  { path: 'zabava', component: ZabavaComponent, canActivate: [AuthGuard] },
-  { path: 'nauka', component: NaukaComponent, canActivate: [AuthGuard] },
-  { path: 'kultura-detalji/:id', component: KulturaDetaljiComponent, canActivate: [AuthGuard] },
-  { path: 'nauka-detalji/:id', component: NaukaDetaljiComponent, canActivate: [AuthGuard] },
-  { path: 'zabava-detalji/:id', component: ZabavaDetaljiComponent, canActivate: [AuthGuard] },
-  { path: 'sport-detalji/:id', component: SportDetaljiComponent, canActivate: [AuthGuard] },
-  { path: 'muzika-detalji/:id', component: MuzikaDetaljiComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'svi-eventi-iz-kategorije', pathMatch: 'full' },
+  { path: 'svi-eventi-iz-kategorije', component: SviEventiIzKategorijeComponent, canActivate: [AuthGuard] },
+  { path: 'detalji-eventa/:id', component: DetaljiEventaComponent, canActivate: [AuthGuard] },
   { path: 'admin-lokacija', component: AdminLokacijaComponent, canActivate: [AuthGuard] },
   { path: 'admin-useri', component: AdminUseriComponent, canActivate: [AuthGuard] },
   { path: 'admin-events', component: AdminEventsComponent, canActivate: [AuthGuard] },
@@ -53,7 +35,6 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registracija', component: RegistracijaComponent },
   { path: 'profil', component: ProfilComponent },
-  { path: 'admin-kategorije', component: AdminKategorijeComponent },
   { path: 'pretraga', component: PretragaComponent }
 ];
 
@@ -61,16 +42,6 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    MuzikaComponent,
-    KulturaComponent,
-    SportComponent,
-    ZabavaComponent,
-    NaukaComponent,
-    NaukaDetaljiComponent,
-    SportDetaljiComponent,
-    ZabavaDetaljiComponent,
-    KulturaDetaljiComponent,
-    MuzikaDetaljiComponent,
     AdminLokacijaComponent,
     AdminUseriComponent,
     AdminEventsComponent,
@@ -78,8 +49,9 @@ const routes: Routes = [
     LoginComponent,
     RegistracijaComponent,
     ProfilComponent,
-    AdminKategorijeComponent,
-    PretragaComponent
+    PretragaComponent,
+    DetaljiEventaComponent,
+    SviEventiIzKategorijeComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Place } from './Place';
 
@@ -49,5 +48,4 @@ export class PlaceService {
 
     return this.http.put(this.PLACE_API, place, httpOptions);
   }
-
 }
