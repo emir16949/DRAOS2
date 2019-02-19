@@ -120,7 +120,7 @@ public class EventService {
       Set<Event> eventsSet = new HashSet<>();
 
       for (Event e : events) {
-        if (e.getPlace().getAddress().getCity().getName().equals(city) && e.getDate_time().after(Calendar.getInstance().getTime())) {
+        if (e.getPlace().getCity().getName().equals(city) && e.getDate_time().after(Calendar.getInstance().getTime())) {
           eventsSet.add(e);
         }
       }

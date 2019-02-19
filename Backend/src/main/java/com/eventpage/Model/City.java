@@ -19,7 +19,7 @@ public class City {
   @Size(min = 3, max = 30, message = "Name must be between 3 and 30 characters")
   private String name;
   @JsonIgnoreProperties("city")
-  private Set<Address> addresses;
+  private Set<Place> places;
 
   protected City() {
   }
@@ -47,12 +47,12 @@ public class City {
   }
 
   @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-  public Set<Address> getAddresses() {
-    return addresses;
+  public Set<Place> getAddresses() {
+    return places;
   }
 
-  public void setAddresses(Set<Address> addresses) {
-    this.addresses = addresses;
+  public void setAddresses(Set<Place> places) {
+    this.places = places;
   }
 
   @Override
@@ -60,9 +60,9 @@ public class City {
     String result = String.format(
         "City[id=%d, name='%s']%n",
         id, name);
-    if (addresses != null) {
-      for (Address address : addresses) {
-        result += address.toString();
+    if (places != null) {
+      for (Place place : places) {
+        result += place.toString();
       }
     }
     return result;

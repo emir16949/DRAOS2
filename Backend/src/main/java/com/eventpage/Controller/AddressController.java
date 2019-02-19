@@ -1,5 +1,5 @@
 package com.eventpage.Controller;
-
+/*
 import com.eventpage.Model.Address;
 import com.eventpage.Service.AddressService;
 import org.hibernate.service.spi.ServiceException;
@@ -65,3 +65,4 @@ public class AddressController {
     return ResponseEntity.ok(addressService.putChangeAddress(address));
   }
 }
+*/

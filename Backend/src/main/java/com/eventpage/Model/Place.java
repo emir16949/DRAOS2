@@ -22,9 +22,11 @@ public class Place {
   private String name;
   @Size(max = 255, message = "Description can not be longer than 255 characters")
   private String description;
+  private String address;
   private String place_url;
+  private byte[] picture;
   @JsonIgnoreProperties("places")
-  private Address address;
+  private City city;
   @JsonIgnoreProperties("place")
   private Set<Event> events;
 
@@ -36,9 +38,10 @@ public class Place {
     this.description = description;
   }
 
-  public Place(String name, String description, Address address) {
+  public Place(String name, String description, String address, City city) {
     this.name = name;
     this.description = description;
+    this.city = city;
     this.address = address;
   }
 
@@ -60,6 +63,14 @@ public class Place {
     this.name = name;
   }
 
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
   public String getDescription() {
     return description;
   }
@@ -77,13 +88,13 @@ public class Place {
   }
 
   @ManyToOne
-  @JoinColumn(name = "address_id")
-  public Address getAddress() {
-    return address;
+  @JoinColumn(name = "city_id")
+  public City getCity() {
+    return this.city;
   }
 
-  public void setAddress(Address address) {
-    this.address = address;
+  public void setCity(City city) {
+    this.city = city;
   }
 
   @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)
