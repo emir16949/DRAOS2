@@ -40,22 +40,20 @@
 
 .navbar{
   position:fixed;
-   top: 0;
-   margin:auto;
-   left: 0;
-   right: 0;
-   width: 100%;
-
-  /*margin-bottom: 0 px;*/
+  top: 0;
+  margin:auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  z-index: 1;
 }
 
 .navbar-collapse{
   position:fixed;
-   top: 0;
-   margin:auto;
-   left: 0;
-   right: 0;
-   width: 100%;
-   
-
+  top: 0;
+  margin:auto;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background-color: aquamarine;
 }
