@@ -46,15 +46,6 @@ public class City {
     this.name = name;
   }
 
-  @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-  public Set<Place> getAddresses() {
-    return places;
-  }
-
-  public void setAddresses(Set<Place> places) {
-    this.places = places;
-  }
-
   @Override
   public String toString() {
     String result = String.format(
