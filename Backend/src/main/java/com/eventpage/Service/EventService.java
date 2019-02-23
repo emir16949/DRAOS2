@@ -51,7 +51,8 @@ public class EventService {
       Set<Event> eventsSet = new HashSet<>();
 
       for (Event e : events) {
-        if (e.getCategory().getName().equals(category) && e.getDate_time().after(Calendar.getInstance().getTime())) {
+        if (e.getCategory().getName().equals(category) && e.getDate_time()
+            .after(Calendar.getInstance().getTime())) {
           eventsSet.add(e);
         }
       }
@@ -120,7 +121,8 @@ public class EventService {
       Set<Event> eventsSet = new HashSet<>();
 
       for (Event e : events) {
-        if (e.getPlace().getCity().getName().equals(city) && e.getDate_time().after(Calendar.getInstance().getTime())) {
+        if (e.getPlace().getCity().getName().equals(city) && e.getDate_time()
+            .after(Calendar.getInstance().getTime())) {
           eventsSet.add(e);
         }
       }
@@ -129,6 +131,64 @@ public class EventService {
     } catch (Exception e) {
       throw new ServiceException("Cannot find events with city={" + city + "}");
     }
+  }
+
+  public List<Event> getFromSearch(List<String> cities, List<String> categories,
+      List<String> places,
+      Date dateFrom, Date dateTo, String name) throws ServiceException {
+    try {
+      List<Event> events = eventRepository.findAll();
+      Set<Event> eventsSet = new HashSet<>();
+      if (dateFrom != null && dateTo != null) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(dateFrom);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        dateFrom.setTime(calendar.getTimeInMillis() - 1);
+        calendar.setTime(dateTo);
+        calendar.set(Calendar.MILLISECOND, 999);
+        calendar.set(Calendar.SECOND, 59);
+        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.HOUR_OF_DAY, 23);
+        dateTo.setTime(calendar.getTimeInMillis() + 1);
+      }
+
+      for (Event e : events) {
+        if (cities != null && cities.contains(e.getPlace().getCity().getName()) || cities == null) {
+          if (categories != null && categories.contains(e.getCategory().getName())
+              || categories == null) {
+            if (places != null && places.contains(e.getPlace().getName()) || places == null) {
+              if ((dateFrom != null && dateTo != null) && (e.getDate_time().after(dateFrom) && e
+                  .getDate_time().before(dateTo)) || (dateFrom == null && dateTo == null)) {
+                if (name != null && uporediNazive(name, e.getName()) || name == null) {
+                  if (e.getDate_time().after(Calendar.getInstance().getTime())) {
+                    eventsSet.add(e);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      return new ArrayList<>(eventsSet);
+    } catch (Exception e) {
+      throw new ServiceException("Cannot find events");
+    }
+  }
+
+  private boolean uporediNazive(String searchName, String eventName) {
+    String[] searchNameWords = searchName.split("\\s+");
+    String[] eventNameWords = eventName.split("\\s+");
+    for (String searchNameWord : searchNameWords) {
+      for (String eventNameWord : eventNameWords) {
+        if (searchNameWord.equals(eventNameWord)) {
+          return true;
+        }
+      }
+    }
+    return false;
   }
 
   @Bean
@@ -172,7 +232,8 @@ public class EventService {
       eventRepository.save(event);
       return "Event with id = " + event.getId() + " saved successfully as " + event.getName();
     } catch (Exception e) {
-      throw new ServiceException("Cannot update event with id = " + eventFromRequest.getId() + ".");
+      throw new ServiceException(
+          "Cannot update event with id = " + eventFromRequest.getId() + ".");
     }
   }
 }

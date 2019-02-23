@@ -3,6 +3,7 @@ package com.eventpage.Controller;
 import com.eventpage.Model.Event;
 import com.eventpage.Service.EventService;
 import java.util.Date;
+import java.util.List;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -60,6 +62,18 @@ public class EventController {
   @GetMapping(value = "/city/{city}")
   public ResponseEntity getByCity(@PathVariable("city") String city) throws ServiceException {
     return ResponseEntity.ok(eventService.getByCity(city));
+  }
+
+  @GetMapping(value = "search")
+  public ResponseEntity getFromSearch(@RequestParam("cities") List<String> cities,
+      @RequestParam("categories") List<String> categories,
+      @RequestParam("places") List<String> places,
+      @RequestParam("dateFrom") @DateTimeFormat(iso = ISO.DATE) Date dateFrom,
+      @RequestParam("dateTo") @DateTimeFormat(iso = ISO.DATE) Date dateTo,
+      @RequestParam("name") String name)
+      throws ServiceException {
+    return ResponseEntity
+        .ok(eventService.getFromSearch(cities, categories, places, dateFrom, dateTo, name));
   }
 
   @DeleteMapping(value = "/delete/all")
