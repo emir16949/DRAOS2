@@ -11,7 +11,7 @@ export class PlaceService {
 
   public API = '//localhost:8080';
   public PLACE_API = this.API + '/place';
-  public ADDRESS_API = this.API + '/address/all';
+  public CITY_API = this.API + '/city/all';
 
   result: Array<Object>;
 
@@ -21,8 +21,8 @@ export class PlaceService {
     return this.http.get(this.PLACE_API + '/all');
   }
 
-  getAllAddresses(): Observable<any> {
-    return this.http.get(this.ADDRESS_API);
+  getAllCities(): Observable<any> {
+    return this.http.get(this.CITY_API);
   }
 
   deletePlace(id: number): Observable<any> {

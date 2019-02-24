@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../services/place/place.service';
 import { Place } from '../services/place/Place';
+import { City } from '../services/place/City';
 
 @Component({
   selector: 'app-admin-lokacija',
@@ -10,10 +11,10 @@ import { Place } from '../services/place/Place';
 export class AdminLokacijaComponent implements OnInit {
 
   places: Array<Place>;
-  objekat: Place;
+  objekat: Place = new Place();
   objekatPut: Place;
-  odabranaAdresa: any;
-  addresses: any;
+  odabraniGrad: any;
+  cities: City[];
   objekat_name: any;
   objekat_description: any;
   modal_naziv: any;
@@ -32,13 +33,13 @@ export class AdminLokacijaComponent implements OnInit {
       this.places = data;
     });
 
-    this.placeService.getAllAddresses().subscribe(data => {
-      this.addresses = data;
+    this.placeService.getAllCities().subscribe(data => {
+      this.cities = data;
     });
   }
 
   kreirajObjekat() {
-    this.objekat.address.id = this.odabranaAdresa;
+    this.objekat.city.id = this.odabraniGrad;
     this.placeService.createPlace(this.objekat).subscribe(data => {
       console.log(data);
     });
@@ -61,7 +62,8 @@ export class AdminLokacijaComponent implements OnInit {
     this.objekatPut.id = place.id;
     this.objekatPut.name = place.name;
     this.objekatPut.description = place.description;
-    this.objekatPut.address.id = place.id;
+    this.objekatPut.address = place.address;
+    this.objekatPut.city.id = place.city.id;
   }
 
   obrisiLokaciju(place) {
