@@ -21,6 +21,7 @@ export class AdminLokacijaComponent implements OnInit {
   modal_opis: any;
   modal_adresa: any;
   adresa: any;
+  url: string;
 
   constructor(private placeService: PlaceService) { }
 
@@ -37,6 +38,18 @@ export class AdminLokacijaComponent implements OnInit {
       this.cities = data;
     });
   }
+
+  onSelectFile(event) { // called each time file input changes
+    if (event.target.files && event.target.files[0]) {
+      var reader = new FileReader();
+
+      reader.readAsDataURL(event.target.files[0]); // read file as data url
+
+      reader.onload = (event) => { // called once readAsDataURL is completed
+        this.url = event.target.dispatchEvent.name;
+      }
+    }
+}
 
   kreirajObjekat() {
     this.objekat.city.id = this.odabraniGrad;
@@ -73,4 +86,5 @@ export class AdminLokacijaComponent implements OnInit {
   zatvori() {
     window.location.reload();
   }
+  //binarni kod hexadekadno
 }
