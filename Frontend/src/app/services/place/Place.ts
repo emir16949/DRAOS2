@@ -3,7 +3,9 @@ export class Place {
   name: string;
   description: string;
   place_url: string;
-  address: {
+  picture: any;
+  address: string;
+  city: {
     id: number;
   };
 }
