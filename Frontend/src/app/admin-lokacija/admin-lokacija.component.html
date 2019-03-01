@@ -83,6 +83,11 @@
                             [ngModelOptions]="{standalone: true}">
                     </div>
                     <div class="form-group">
+                        <label for="recipient-name" class="col-form-label"> Link postojeće web stranice objekta: </label>
+                        <input type="text" class="form-control" id="link_objekta" [(ngModel)]="objekat.place_url"
+                            [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
                         <label for="detalji_zahtjev" class="col-form-label">Opis:</label>
                         <textarea class="form-control" id="opis_objekta" style="height: 150px" [(ngModel)]="objekat.description"
                             [ngModelOptions]="{standalone: true}"></textarea>
@@ -97,6 +102,13 @@
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label"> Adresa: </label>
                         <input type="text" class="form-control" id="adresa_objekta" [(ngModel)]="objekat.address"                             [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Menadžer objekta:</label>
+                        <br>
+                        <select class="form-control" id="hitnost" [(ngModel)]="odabraniMenadzer" name="users">
+                            <option *ngFor="let a of users" [value]="a">{{a.name}}</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label"> Slika:  <br></label>

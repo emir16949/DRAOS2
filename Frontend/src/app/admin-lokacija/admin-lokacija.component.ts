@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../services/place/place.service';
+import { UserService } from '../services/user/user.service';
 import { Place } from '../services/place/Place';
 import { City } from '../services/place/City';
 
@@ -14,7 +15,7 @@ export class AdminLokacijaComponent implements OnInit {
   objekat: Place = new Place();
   objekatPut: Place;
   odabraniGrad: City;
-  cities: any;
+  cities: Array<any>;
   objekat_name: any;
   objekat_description: any;
   modal_naziv: any;
@@ -23,11 +24,19 @@ export class AdminLokacijaComponent implements OnInit {
   adresa: any;
   url: string;
   selectedImage: string;
+  odabraniMenadzer: any;
+  users: Array<any>;
 
-  constructor(private placeService: PlaceService) { }
+  constructor(private placeService: PlaceService,
+              private userService: UserService) { }
 
   ngOnInit() {
     this.getAllPlaces();
+
+    this.userService.getAllUsers().subscribe(data => {
+      this.users = data;
+    });
+    console.log("users: " + this.users);
   }
 
   getAllPlaces() {
