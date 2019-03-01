@@ -91,37 +91,17 @@
                         <label for="recipient-name" class="col-form-label">Grad:</label>
                         <br>
                         <select class="form-control" id="hitnost" [(ngModel)]="odabraniGrad" name="cities">
-                            <option *ngFor="let a of cities" [value]="a.id">{{a.name}}</option>
+                            <option *ngFor="let a of cities" [value]="a">{{a.name}}</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label"> Adresa: </label>
-                        <input type="text" class="form-control" id="adresa_objekta" [(ngModel)]="objekat.address"
-                            [ngModelOptions]="{standalone: true}">
+                        <input type="text" class="form-control" id="adresa_objekta" [(ngModel)]="objekat.address"                             [ngModelOptions]="{standalone: true}">
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label"> Slika:  <br></label>
-                        <input type='file' (change)="onSelectFile($event)">
-                        <!--<button type="button" class="btn btn-success" 
-                          style="width: 30%; margin-left: 20px; border-color: transparent; background-color: #e6eef5; color: #343a40">
-                          <i class="fa fa-image" style="color: rgb(71,71,71); font-size: 21px; margin-left: 10px;"></i> Učitaj
-                          sliku</button>-->
-                        <!--  <input type="file" (change)="onFileChanged($event)">-->
+                        <input type='file' name="Odaberi sliku" (change)="onSelectFile($event)">
                       </div>
-                    <!--<div class="form-group">
-                        <label for="recipient-name" class="col-form-label">Adresa:</label>
-                        <br>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="" [(ngModel)]="wayOfResponseTelefon" [ngModelOptions]="{standalone: true}">Telefon</label>
-                        <label class="checkbox-inline">
-                            <input type="checkbox" value="" [(ngModel)]="wayOfResponseEmail" [ngModelOptions]="{standalone: true}">E-mail</label>
-                    </div>-->
-                    <!--   <div class="form-group">
-                        <label for="hitnost1" class="col-form-label">Adresa:</label>
-                        <select class="form-control" id="hitnost1" [(ngModel)]="odabraniPrioritet1" name="priorities">
-                            <option *ngFor="let p of prioritetii" [value]="p.id">{{p.name}}</option>
-                        </select>
-                    </div>-->
                 </form>
             </div>
             <div class="modal-footer">

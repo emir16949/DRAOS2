@@ -13,8 +13,8 @@ export class AdminLokacijaComponent implements OnInit {
   places: Array<Place>;
   objekat: Place = new Place();
   objekatPut: Place;
-  odabraniGrad: any;
-  cities: City[];
+  odabraniGrad: City;
+  cities: any;
   objekat_name: any;
   objekat_description: any;
   modal_naziv: any;
@@ -22,6 +22,7 @@ export class AdminLokacijaComponent implements OnInit {
   modal_adresa: any;
   adresa: any;
   url: string;
+  selectedImage: string;
 
   constructor(private placeService: PlaceService) { }
 
@@ -37,6 +38,7 @@ export class AdminLokacijaComponent implements OnInit {
     this.placeService.getAllCities().subscribe(data => {
       this.cities = data;
     });
+    console.log(this.cities);
   }
 
   onSelectFile(event) { // called each time file input changes
@@ -44,6 +46,10 @@ export class AdminLokacijaComponent implements OnInit {
       var reader = new FileReader();
 
       reader.readAsDataURL(event.target.files[0]); // read file as data url
+      console.log("amra1");
+      reader.onload = this._handleReaderLoaded.bind(this);
+      console.log("amra2");
+      reader.readAsBinaryString(event.target.files[0]);
 
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = event.target.dispatchEvent.name;
@@ -51,8 +57,20 @@ export class AdminLokacijaComponent implements OnInit {
     }
 }
 
+  _handleReaderLoaded(readerEvt) {
+
+    var binaryString = readerEvt.target.result;
+    this.selectedImage = btoa(binaryString);
+
+  }
+
   kreirajObjekat() {
-    this.objekat.city.id = this.odabraniGrad;
+    console.log("kreiranje objekta....");
+    console.log("objekat: "+ this.objekat);
+    //console.log(this.odabraniGrad.id);
+    //this.objekat.city.id = this.odabraniGrad.id;
+    this.objekat.picture = this.selectedImage;
+    console.log("objekat: "+ this.objekat);
     this.placeService.createPlace(this.objekat).subscribe(data => {
       console.log(data);
     });
@@ -86,5 +104,5 @@ export class AdminLokacijaComponent implements OnInit {
   zatvori() {
     window.location.reload();
   }
-  //binarni kod hexadekadno
+
 }
