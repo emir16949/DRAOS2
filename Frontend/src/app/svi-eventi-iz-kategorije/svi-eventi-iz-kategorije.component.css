@@ -29,15 +29,14 @@ body {
 
 .tint:before {
   content: "";
-  /*display: block;
-  /*position: absolute;
+  display: block;
+  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 0;*/
+  right: 0;
   background: none;
   transition: all .3s linear;
-  margin-top: 60px;
 }
 
 .tint:hover:before { background: rgba(0,0,0, 0.7); }

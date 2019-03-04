@@ -38,9 +38,9 @@
     <hr class="featurette-divider">
   </div>
 
-  <div class="row" style="margin-left: 20%;">
+  <div class="row" style="margin-left: 10%; margin-right: 10%;">
 
-    <div class="col-3" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent">
+    <div class="col-12" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent" style="margin-bottom: 2%;">
       <div class="card" style="height: 100%; width: 100%;">
         <img class="card-img-top" height="160rem" width="22rem" src="data:image/JPEG;base64,{{event.picture}}"
           alt="Card image cap">
