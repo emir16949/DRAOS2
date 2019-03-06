@@ -1,6 +1,6 @@
-<body class="bg-dark">
-  <div class="container">
-    <div class="card card-login mx-auto mt-5">
+<div class="container1" style="padding-top: 5rem!important;">
+  <div style="padding-top: 3rem!important; position: absolute; top: 0; bottom: 0; left: 0; right: 0; background: rgba(0,0,0, 0.7);">
+    <div class="card card-login mx-auto mt-5" style="margin-top: 0rem!important;">
       <div class="card-header">Prijava</div>
       <div class="card-body">
         <form (keydown)="keyDownFunction($event)">
@@ -14,14 +14,16 @@
             <input class="form-control" id="exampleInputPassword1" [(ngModel)]="password" [ngModelOptions]="{standalone: true}"
               type="password" placeholder="Unesite šifru">
           </div>
-          <a class="btn btn-primary btn-block" (click)="prijaviSe()">Prijavi se</a>
+          <button class="btn btn-primary btn-block" style="background-color: #6753a1" (click)="prijaviSe()">Prijavi se</button>
         </form>
-        <!--<div class="text-center">
-          <a class="d-block small mt-3" routerLink="/registracija">Registracija</a>
-        </div>-->
       </div>
     </div>
+    <div style="margin-top: 12%; text-align: center; font-size: 50px; font-family: fantasy;">
+      <p style="color: #c8c8c8;">
+        E v e n t s
+      </p>
+    </div>
   </div>
-</body>
+</div>
 
 <router-outlet></router-outlet>
