@@ -9,14 +9,14 @@
     <ul id="grouplist" class="navbar-nav mr-auto" style="height: 60px !important;">
       <li *ngFor="let item of items; let i=index" (click)="select(i)"
         [ngClass]="{'nav-item': true, 'active': selectedIndex == i}" style="width: 90px;">
-        <a class="nav-link" routerLink="/{{item.name}}" style="color: black; text-align: center;">{{ item.text }}
-          <hr class="lineMeni {{item.color}}"></a>
+        <a class="nav-link" routerLink="/{{item.name}}" style="color: white; text-align: center; padding-top: 10px;">{{ item.text }}
+          <hr class="lineMeni {{item.color}}" style="margin-top: 8px"></a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a *ngIf="isAdmin==true" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
           Admin opcije
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -27,20 +27,20 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/profil"><i class="fa fa-user"
-            style="color: rgb(71, 71, 71); font-size: 21px; margin-left: 10px;"></i></a>
+            style="color: white; font-size: 21px; margin-left: 10px;"></i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/"></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" data-toggle="modal" (click)="pretraga()"><i class="fa fa-search"
-            style="color: rgb(71, 71, 71); font-size: 18px;"></i></a>
+            style="color: white; font-size: 18px;"></i></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/"></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" (click)="odjaviSe()">Odjavi se</a>
+        <a class="nav-link" (click)="odjaviSe()" style="color: white">Odjavi se</a>
       </li>
     </ul>
   </div>

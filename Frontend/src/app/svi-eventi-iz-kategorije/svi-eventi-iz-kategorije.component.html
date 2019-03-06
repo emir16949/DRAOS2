@@ -1,7 +1,7 @@
-<main role="main">
+<main role="main" style="background-color: lavender; margin: 0px">
 
   <!--carousel-->
-  <div id="myCarousel1" class="carousel slide" data-ride="carousel" (mouseenter)="mouseEnter()"
+  <div id="myCarousel1" class="carousel slide" data-ride="carousel" (mouseenter)="mouseEnter()" style="width: 80%;margin-left: 10%; padding-top: 1%; margin-bottom: 0px;"
     (mouseleave)="mouseLeave()">
     <ol class="carousel-indicators">
       <li *ngFor="let event of events; let i = index" data-target="#myCarousel" data-slide-to="i"
@@ -35,12 +35,12 @@
 
   <!--amra jedan primjer-->
   <div class="container marketing">
-    <hr class="featurette-divider">
+    <hr class="featurette-divider" style="background-color: #5c4991; height: 3px;  margin: 2rem 0;">
   </div>
 
   <div class="row" style="margin-left: 10%; margin-right: 10%;">
 
-    <div class="col-12" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent" style="margin-bottom: 2%;">
+    <div class="col-4" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent" style="margin-bottom: 2%;">
       <div class="card" style="height: 100%; width: 100%;">
         <img class="card-img-top" height="160rem" width="22rem" src="data:image/JPEG;base64,{{event.picture}}"
           alt="Card image cap">
@@ -49,7 +49,7 @@
           <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}
           </p>
           <p class="card-text">{{event.description.substr(0,100)}}...</p>
-          <a class="btn btn-info" (click)="prikaziDetalje(event)" style="border: rgb(0, 110, 255) 2px">Više</a>
+          <a class="btn btn-info" (click)="prikaziDetalje(event)" style="border: rgb(0, 110, 255) 2px; background-color: #5c4991; color: white;">Više ...</a>
         </div>
       </div>
     </div>
@@ -59,10 +59,9 @@
   <!--end amra  jedan primjer-->
 
   <div class="container marketing">
-    <hr class="featurette-divider">
+    <hr class="featurette-divider" style="background-color: #5c4991; height: 3px;  margin: 1rem 0;">
   </div>
-
-
+  
 </main>
 
 

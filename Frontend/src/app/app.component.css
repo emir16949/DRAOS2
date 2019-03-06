@@ -9,33 +9,33 @@
 }
 
 .lineRed { 
-  color: red;
-  background-color: red;
+  color: #ff2b5c;
+  background-color: #ff2b5c;
 }
 
 .lineBlue {
-  color: blue;
-  background-color: blue;
+  color: #36befa;
+  background-color: #36befa;
 }
 
 .lineOrange {
-  color: orange;
-  background-color:orange;
+  color: #ff724f;
+  background-color: #ff724f;
 }
 
 .lineGreen {
-  color: green;
-  background-color: green;
+  color: #27ab93;
+  background-color: #27ab93;
 }
 
 .lineYellow {
-  color: yellow;
-  background-color: yellow;
+  color: #ffd33b;
+  background-color: #ffd33b;
 }
 
 .linePurple {
-  color: purple;
-  background-color: purple;
+  color: #b831f3;
+  background-color: #b831f3;
 }
 
 .navbar{
@@ -55,6 +55,6 @@
   left: 0;
   right: 0;
   width: 100%;
-  background-color: aquamarine;
+  background-color: rgba(88, 65, 107, 0.94);
 }
 
