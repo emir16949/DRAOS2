@@ -2,11 +2,12 @@
   <div class="container">
     <h1 class="display-4">{{ event.name }}</h1>
     <hr style="color: blue; height: 1px; background-color: blue">
-    <p class="card-text" style="font-size: 18px">u <a href="">{{event.place.name}}</a>, dana
+    <p class="card-text" style="font-size: 18px">u <a href={{event.place.place_url}}>{{event.place.name}}</a>, dana
       {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
     <img class="card-img" src="data:image/JPEG;base64,{{event.picture}}" alt="Card image">
     <br>
     <p class="card-text" style="font-size: 22px">Ulaz: slobodan</p>
+    <p class="card-text" style="font-size: 22px">Ulaz: {{event.price}} KM</p>
     <p class="lead">{{ event.description }}</p>
   </div>
   <br>
