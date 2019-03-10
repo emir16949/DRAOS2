@@ -1,9 +1,16 @@
 <div class="container-fluid" style="padding: 0px; background-color: rgba(48,49,49,0.76);">
   <div class="container">
-    <div class="row" style="margin-left: 0px !important; padding-top: 20px; padding-bottom: 20px;"
+    <div class="row" style="margin-left: 0px !important; padding-top: 7%; padding-bottom: 2%;"
       (keydown)="keyDownFunction($event)">
       <div class="col-6" style="padding: 0px; padding-right: 10px;">
         <div class="row" style="margin-left: 0px !important;">
+          <div class="col-4" style="padding-left: 0px !important;">
+            <label style="color: white">Pretraga po kategoriji</label>
+            <select class="form-control" id="hitnost" [(ngModel)]="selectedCategory" name="opcije">
+              <option [value]="null">All</option>
+              <option *ngFor="let p of categories" [value]="p.id">{{p.name}}</option>
+            </select>
+          </div>
           <div class="col-4" style="padding-left: 0px !important;">
             <label style="color: white">Pretraga po gradu</label>
             <select class="form-control" id="hitnost" [(ngModel)]="selectedCity" name="opcije">

@@ -8,4 +8,14 @@ export class User {
   user_role: {
     id: number;
   };
+
+  constructor(){
+    this.id = null;
+    this.username = '';
+    this.password = '';
+    this.email = '';
+    this.ime = '';
+    this.prezime = '';
+    this.user_role = null;
+  }
 }

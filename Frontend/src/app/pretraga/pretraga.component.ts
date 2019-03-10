@@ -23,6 +23,8 @@ export class PretragaComponent implements OnInit {
   public lokali = [{ id: 1, name: "MyFace" }, { id: 2, name: "Cinemas Sloga" }, { id: 3, name: "City Pub" }, { id: 4, name: "Cheers" }, { id: 5, name: "Kino Bosna" }, { id: 6, name: "Narodno Pozoriste" }];
   selectedCity = null;
   selectedLocal = null;
+  selectedCategory = null;
+  categories: Array<any>;
 
   ngOnInit() {
   }

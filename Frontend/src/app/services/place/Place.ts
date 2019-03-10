@@ -1,3 +1,5 @@
+import { City } from "./City";
+
 export class Place {
   id?: number;
   name: string;
@@ -5,7 +7,15 @@ export class Place {
   place_url: string;
   picture: any;
   address: string;
-  city: {
-    id: number;
-  };
+  city: City;
+
+  constructor() {
+    this.id = null;
+    this.name = '';
+    this.description = '';
+    this.place_url = '';
+    this.picture = null;
+    this.address = '';
+    this.city = new City();
+  }
 }

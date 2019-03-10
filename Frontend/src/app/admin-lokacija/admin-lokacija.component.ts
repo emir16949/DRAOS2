@@ -3,6 +3,7 @@ import { PlaceService } from '../services/place/place.service';
 import { UserService } from '../services/user/user.service';
 import { Place } from '../services/place/Place';
 import { City } from '../services/place/City';
+import { User } from '../services/user/User';
 
 @Component({
   selector: 'app-admin-lokacija',
@@ -11,10 +12,10 @@ import { City } from '../services/place/City';
 })
 export class AdminLokacijaComponent implements OnInit {
 
-  places: Array<Place>;
+  places: Array<any>;
   objekat: Place = new Place();
-  objekatPut: Place;
-  odabraniGrad: City;
+  objekatPut: Place = new Place();
+  odabraniGrad: number;
   cities: Array<any>;
   objekat_name: any;
   objekat_description: any;
@@ -24,7 +25,7 @@ export class AdminLokacijaComponent implements OnInit {
   adresa: any;
   url: string;
   selectedImage: string;
-  odabraniMenadzer: any;
+  odabraniMenadzer: number;
   users: Array<any>;
 
   constructor(private placeService: PlaceService,
@@ -36,7 +37,6 @@ export class AdminLokacijaComponent implements OnInit {
     this.userService.getAllUsers().subscribe(data => {
       this.users = data;
     });
-    console.log("users: " + this.users);
   }
 
   getAllPlaces() {
@@ -47,7 +47,6 @@ export class AdminLokacijaComponent implements OnInit {
     this.placeService.getAllCities().subscribe(data => {
       this.cities = data;
     });
-    console.log(this.cities);
   }
 
   onSelectFile(event) { // called each time file input changes
@@ -74,14 +73,12 @@ export class AdminLokacijaComponent implements OnInit {
   }
 
   kreirajObjekat() {
-    console.log("kreiranje objekta....");
-    console.log("objekat: "+ this.objekat);
-    //console.log(this.odabraniGrad.id);
-    //this.objekat.city.id = this.odabraniGrad.id;
+    console.log("kreiranje objekta...." + this.odabraniGrad + this.odabraniMenadzer);
+    this.objekat.city.id = this.odabraniGrad;
     this.objekat.picture = this.selectedImage;
-    console.log("objekat: "+ this.objekat);
+    console.log("objekat: " + this.objekat);
     this.placeService.createPlace(this.objekat).subscribe(data => {
-      console.log(data);
+      console.log("kreiranje objekta");
     });
     window.location.reload();
   }
@@ -113,5 +110,4 @@ export class AdminLokacijaComponent implements OnInit {
   zatvori() {
     window.location.reload();
   }
-
 }
