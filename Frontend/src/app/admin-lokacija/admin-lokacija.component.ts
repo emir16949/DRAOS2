@@ -57,7 +57,7 @@ export class AdminLokacijaComponent implements OnInit {
       console.log("amra1");
       reader.onload = this._handleReaderLoaded.bind(this);
       console.log("amra2");
-      reader.readAsBinaryString(event.target.files[0]);
+      //reader.readAsBinaryString(event.target.files[0]);
 
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = event.target.dispatchEvent.name;

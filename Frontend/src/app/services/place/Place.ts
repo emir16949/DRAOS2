@@ -14,7 +14,7 @@ export class Place {
     this.name = '';
     this.description = '';
     this.place_url = '';
-    this.picture = null;
+    this.picture = '';
     this.address = '';
     this.city = new City();
   }
