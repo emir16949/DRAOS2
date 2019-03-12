@@ -1,4 +1,5 @@
-import { City } from "./City";
+import { City } from './City';
+import { User } from '../user/User';
 
 export class Place {
   id?: number;
@@ -8,6 +9,7 @@ export class Place {
   picture: any;
   address: string;
   city: City;
+  manager: User;
 
   constructor() {
     this.id = null;
@@ -17,5 +19,6 @@ export class Place {
     this.picture = '';
     this.address = '';
     this.city = new City();
+    this.manager = new User();
   }
 }

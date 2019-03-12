@@ -4,6 +4,7 @@ import com.eventpage.Model.Event;
 import com.eventpage.Service.EventService;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Logger;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EventController {
 
   private EventService eventService;
+  private static Logger log = Logger.getLogger("EventController");
 
   public EventController(EventService eventService) {
     this.eventService = eventService;

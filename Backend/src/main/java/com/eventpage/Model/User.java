@@ -1,12 +1,15 @@
 package com.eventpage.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -15,39 +18,32 @@ import javax.validation.constraints.Size;
 public class User {
 
   private int id;
-
   @NotNull
   @Size(min = 4, max = 10)
   private String username;
-
   @NotNull
   @Size(min = 2)
   private String password;
-
   @Email(message = "Email should be valid")
   private String email;
-
   @Size(min = 4, max = 10)
   private String ime;
-
   @Size(min = 4, max = 20)
   private String prezime;
-
   private Role user_role;
-
-  private Place user_place;
+  private Set<Place> user_places;
 
   public User() {
   }
 
   public User(String ime, String prezime, String username, String password, Role user_role,
-      Place user_place) {
+      Set<Place> user_places) {
     this.ime = ime;
     this.prezime = prezime;
     this.username = username;
     this.password = password;
     this.user_role = user_role;
-    this.user_place = user_place;
+    this.user_places = user_places;
   }
 
   @Id
@@ -110,6 +106,16 @@ public class User {
     this.user_role = user_role;
   }
 
+  @JsonIgnore
+  @OneToMany(mappedBy = "manager", cascade = CascadeType.ALL)
+  public Set<Place> getUser_places() {
+    return user_places;
+  }
+
+  public void setUser_places(Set<Place> user_places) {
+    this.user_places = user_places;
+  }
+
   @Override
   public String toString() {
     String result = String.format(
@@ -117,15 +123,5 @@ public class User {
         id, username, password, email, ime, prezime);
     result += user_role.toString();
     return result;
-  }
-
-  @OneToOne
-  @JoinColumn(name = "place_id")
-  public Place getUser_place() {
-    return user_place;
-  }
-
-  public void setUser_place(Place user_place) {
-    this.user_place = user_place;
   }
 }

@@ -1,16 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './core/auth.service';
 import { TokenStorage } from './core/token.storage';
-import { SviEventiIzKategorijeComponent } from './svi-eventi-iz-kategorije/svi-eventi-iz-kategorije.component';
-import { EventService } from './services/event/event.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
   items: Array<any> = [
     { 'name': 'muzika', 'text': 'Muzika', 'color': 'lineBlue' },
@@ -33,7 +31,7 @@ export class AppComponent {
   isLoggedIn: boolean;
   isAdmin: boolean;
   loggedUser: any;
-  isSearchOpen: boolean = false;
+  isSearchOpen = false;
 
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -56,6 +54,10 @@ export class AppComponent {
     TokenStorage.logOut();
     this.isLoggedIn = false;
     this.isAdmin = false;
+    this.router.navigate(['/login']);
+  }
+
+  login() {
     this.router.navigate(['/login']);
   }
 

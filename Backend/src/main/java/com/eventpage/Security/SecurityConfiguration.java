@@ -83,6 +83,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/**/*.html",
             "/**/*.css",
             "/**/*.js"
+        )
+        .and()
+        .ignoring()
+        .antMatchers(
+            HttpMethod.GET,
+            "/event/*",
+            "/event/id/*",
+            "/category/*",
+            "/city/*",
+            "/place/*"
         );
   }
 

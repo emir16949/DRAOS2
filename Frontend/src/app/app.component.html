@@ -1,31 +1,32 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" *ngIf="isLoggedIn==true">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="isLoggedIn==true">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
     <ul id="grouplist" class="navbar-nav mr-auto" style="height: 60px !important;">
       <li *ngFor="let item of items; let i=index" (click)="select(i)"
         [ngClass]="{'nav-item': true, 'active': selectedIndex == i}" style="width: 90px;">
-        <a class="nav-link" routerLink="/{{item.name}}" style="color: white; text-align: center; padding-top: 10px;">{{ item.text }}
+        <a class="nav-link" routerLink="/{{item.name}}"
+          style="color: white; text-align: center; padding-top: 10px;">{{ item.text }}
           <hr class="lineMeni {{item.color}}" style="margin-top: 8px"></a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
-        <a *ngIf="isAdmin==true" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+        <a *ngIf="isLoggedIn==true" class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
           Admin opcije
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" routerLink="/admin-useri">Korisnici</a>
+          <a class="dropdown-item" routerLink="/admin-useri" *ngIf="isAdmin==true">Korisnici</a>
           <a class="dropdown-item" routerLink="/admin-lokacija">Lokacije</a>
           <a class="dropdown-item" routerLink="/admin-events">Novi događaj</a>
         </div>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" *ngIf="isLoggedIn==true">
         <a class="nav-link" routerLink="/profil"><i class="fa fa-user"
             style="color: white; font-size: 21px; margin-left: 10px;"></i></a>
       </li>
@@ -39,7 +40,13 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/"></a>
       </li>
+      <li class="nav-item" *ngIf="isLoggedIn==false">
+        <a class="nav-link" (click)="login()" style="color: white">Login</a>
+      </li>
       <li class="nav-item">
+        <a class="nav-link" routerLink="/"></a>
+      </li>
+      <li class="nav-item" *ngIf="isLoggedIn==true">
         <a class="nav-link" (click)="odjaviSe()" style="color: white">Odjavi se</a>
       </li>
     </ul>

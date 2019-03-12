@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../core/auth.service';
+import { TokenStorage } from '../core/token.storage';
 import { CategoryService } from '../services/category/category.service';
 import { Event } from '../services/event/Event';
 import { EventService } from '../services/event/event.service';
+import { Place } from '../services/place/Place';
 import { PlaceService } from '../services/place/place.service';
 
 @Component({
@@ -11,20 +14,7 @@ import { PlaceService } from '../services/place/place.service';
 })
 export class AdminEventsComponent implements OnInit {
 
-  event: Event = {
-    id: null,
-    name: '',
-    description: '',
-    picture: '',
-    category: {
-      id: null
-    },
-    place: {
-      id: null
-    },
-    price: 0,
-  };
-
+  event: Event = new Event();
   categories: Array<any>;
   places: Array<any>;
   odabranaCategory: any;
@@ -35,14 +25,24 @@ export class AdminEventsComponent implements OnInit {
   constructor(
     private eventService: EventService,
     private categoryService: CategoryService,
-    private placeService: PlaceService) { }
+    private placeService: PlaceService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.categoryService.getAllCategory().subscribe(data => {
       this.categories = data;
     });
     this.placeService.getAllPlaces().subscribe(data => {
-      this.places = data;
+      this.places = new Array<Place>();
+      if (this.authService.isAdmin() === true) {
+        this.places = data;
+      } else {
+        for (const place of data) {
+          if (place.manager.username === TokenStorage.getCurrentUser()) {
+            this.places.push(place);
+          }
+        }
+      }
     });
 
   }
@@ -65,7 +65,7 @@ export class AdminEventsComponent implements OnInit {
         this.url = event.target.dispatchEvent.name;
       }
     }
-}
+  }
 
   _handleReaderLoaded(readerEvt) {
 

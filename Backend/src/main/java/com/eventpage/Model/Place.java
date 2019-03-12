@@ -27,6 +27,8 @@ public class Place {
   private byte[] picture;
   @JsonIgnoreProperties("places")
   private City city;
+  @JsonIgnoreProperties("places")
+  private User manager;
   @JsonIgnoreProperties("place")
   private Set<Event> events;
 
@@ -95,6 +97,16 @@ public class Place {
 
   public void setCity(City city) {
     this.city = city;
+  }
+
+  @ManyToOne
+  @JoinColumn(name = "manager_id")
+  public User getManager() {
+    return manager;
+  }
+
+  public void setManager(User manager) {
+    this.manager = manager;
   }
 
   @OneToMany(mappedBy = "place", cascade = CascadeType.ALL)

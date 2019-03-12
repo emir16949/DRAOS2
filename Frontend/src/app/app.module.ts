@@ -1,7 +1,6 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
@@ -26,8 +25,8 @@ import { UserDetaljiComponent } from './user-detalji/user-detalji.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'svi-eventi-iz-kategorije', pathMatch: 'full' },
-  { path: 'svi-eventi-iz-kategorije', component: SviEventiIzKategorijeComponent, canActivate: [AuthGuard] },
-  { path: 'detalji-eventa/:id', component: DetaljiEventaComponent, canActivate: [AuthGuard] },
+  { path: 'svi-eventi-iz-kategorije', component: SviEventiIzKategorijeComponent },
+  { path: 'detalji-eventa/:id', component: DetaljiEventaComponent },
   { path: 'admin-lokacija', component: AdminLokacijaComponent, canActivate: [AuthGuard] },
   { path: 'admin-useri', component: AdminUseriComponent, canActivate: [AuthGuard] },
   { path: 'admin-events', component: AdminEventsComponent, canActivate: [AuthGuard] },
@@ -57,7 +56,6 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpClientModule,
-    HttpModule,
     FormsModule,
     BsDatepickerModule.forRoot(),
   ],

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PlaceService } from '../services/place/place.service';
 import { UserService } from '../services/user/user.service';
 import { Place } from '../services/place/Place';
-import { City } from '../services/place/City';
-import { User } from '../services/user/User';
+import { TokenStorage } from '../core/token.storage';
+import { AuthService } from '../core/auth.service';
 
 @Component({
   selector: 'app-admin-lokacija',
@@ -28,8 +28,10 @@ export class AdminLokacijaComponent implements OnInit {
   odabraniMenadzer: number;
   users: Array<any>;
 
-  constructor(private placeService: PlaceService,
-              private userService: UserService) { }
+  constructor(
+    private placeService: PlaceService,
+    private userService: UserService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.getAllPlaces();
@@ -41,7 +43,16 @@ export class AdminLokacijaComponent implements OnInit {
 
   getAllPlaces() {
     this.placeService.getAllPlaces().subscribe(data => {
-      this.places = data;
+      this.places = new Array<Place>();
+      if (this.authService.isAdmin() === true) {
+        this.places = data;
+      } else {
+        for (const place of data) {
+          if (place.manager.username === TokenStorage.getCurrentUser()) {
+            this.places.push(place);
+          }
+        }
+      }
     });
 
     this.placeService.getAllCities().subscribe(data => {
@@ -63,7 +74,7 @@ export class AdminLokacijaComponent implements OnInit {
         this.url = event.target.dispatchEvent.name;
       }
     }
-}
+  }
 
   _handleReaderLoaded(readerEvt) {
 
@@ -91,7 +102,7 @@ export class AdminLokacijaComponent implements OnInit {
 
   sacuvajIzmjenePlace() {
     this.placeService.changePlace(this.objekatPut).subscribe(data => { });
-    window.location.reload()
+    window.location.reload();
   }
 
   urediPlace(place) {

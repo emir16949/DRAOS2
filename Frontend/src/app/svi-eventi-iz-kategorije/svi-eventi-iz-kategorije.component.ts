@@ -11,33 +11,9 @@ import { EventService } from '../services/event/event.service';
 })
 export class SviEventiIzKategorijeComponent implements OnInit {
 
-  eventPut: Event = {
-    id: null,
-    name: '',
-    description: '',
-    picture: '',
-    category: {
-      id: null
-    },
-    place: {
-      id: null
-    },
-    price: 0
-  };
+  eventPut: Event = new Event();
   events: Array<any>;
-  event: Event = {
-    id: null,
-    name: '',
-    description: '',
-    picture: '',
-    category: {
-      id: null
-    },
-    place: {
-      id: null
-    },
-    price: 0
-  };
+  event: Event = new Event();
   selectedEvent: Event;
   modal_naziv: any;
   modal_opis: any;
@@ -53,6 +29,9 @@ export class SviEventiIzKategorijeComponent implements OnInit {
   ngOnInit() {
     this.isAdmin = this.appComponent.isAdmin;
     let kategorija = localStorage.getItem('kategorija');
+    if (kategorija == null) {
+      kategorija = 'Muzika';
+    }
     this.eventService.getEventsByCategory(kategorija).subscribe(data => {
       this.events = data;
     });

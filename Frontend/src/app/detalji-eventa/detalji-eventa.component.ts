@@ -4,6 +4,7 @@ import { TokenStorage } from '../core/token.storage';
 import { EventService } from '../services/event/event.service';
 import { User } from '../services/user/User';
 import { UserService } from '../services/user/user.service';
+import { Event } from '../services/event/Event';
 
 @Component({
   selector: 'app-detalji-eventa',
@@ -12,7 +13,7 @@ import { UserService } from '../services/user/user.service';
 })
 export class DetaljiEventaComponent implements OnInit {
 
-  event: Event;
+  event: Event = new Event();
   eventId: any;
   loggedUser: any;
   user: User;
