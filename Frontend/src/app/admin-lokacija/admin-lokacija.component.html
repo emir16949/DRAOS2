@@ -26,7 +26,7 @@
                 <div class="card-body">
                         <div class="row">
                     <div class="col-md-4">
-                        <img class="card-img-top" height="180rem" width="22rem" src="data:image/JPEG;base64,{{objekat.picture}}" alt="Card image cap">
+                        <img class="card-img-top" height="180rem" width="22rem" src="{{objekat.picture}}" alt="Card image cap">
                     </div>
                     <div class="col-md-4">
                         <h5 class="card-title" >Adresa: {{objekat.address}}</h5>
@@ -112,7 +112,8 @@
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label"> Slika:  <br></label>
-                        <input type='file' name="Odaberi sliku" (change)="onSelectFile($event)">
+                        <!-- <input type='file' name="Odaberi sliku" (change)="onSelectFile($event)"> -->
+                        <input #file id="file" type="file" (change)="onUploadChange($event)"/>
                       </div>
                 </form>
             </div>

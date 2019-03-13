@@ -18,7 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/token")
-public class AuthenticationController {
+public class
+
+
+
+
+AuthenticationController {
 
   @Autowired
   private AuthenticationManager authenticationManager;

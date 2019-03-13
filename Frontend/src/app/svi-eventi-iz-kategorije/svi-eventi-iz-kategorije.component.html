@@ -42,8 +42,7 @@
 
     <div class="col-4" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent" style="margin-bottom: 2%;">
       <div class="card" style="height: 100%; width: 100%;">
-        <img class="card-img-top" height="160rem" width="22rem" src="data:image/JPEG;base64,{{event.picture}}"
-          alt="Card image cap">
+        <img class="card-img-top" height="160rem" width="22rem" src="data:image/JPEG;base64,{{event.picture}}">
         <div class="card-body">
           <h5 class="card-title">{{ event.name }}</h5>
           <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}
