@@ -19,10 +19,10 @@
             </select>
           </div>
           <div class="col-4" style="padding-left: 0px !important;">
-            <label style="color: white">Pretraga po lokalu</label>
-            <select class="form-control" id="hitnost2" [(ngModel)]="selectedLocal" name="opcije">
+            <label style="color: white">Pretraga po objektu</label>
+            <select class="form-control" id="hitnost2" [(ngModel)]="selectedPlace" name="opcije">
               <option [value]="null">All</option>
-              <option *ngFor="let p of lokali" [value]="p.id">{{p.name}}</option>
+              <option *ngFor="let p of places" [value]="p.id">{{p.name}}</option>
             </select>
           </div>
           <div class="col-4" style="padding-left: 0px !important;">
@@ -51,7 +51,8 @@
 
 
 <!--Lista evenata-->
-<div class="row featurette" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent">
+<div class="row featurette" *ngFor="let event of searchedEvents, let i = index"
+  [class.selected]="event === selectedEvent">
   <div class="col-md-7">
     <h2 class="featurette-heading">{{ event.name }}
     </h2>

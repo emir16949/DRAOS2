@@ -13,6 +13,10 @@ export class EventService {
 
   constructor(private http: HttpClient) { }
 
+  getAllEvents(): Observable<any> {
+    return this.http.get(this.EVENT_API + '/all');
+  }
+
   getEventsByCategory(category: string): Observable<any> {
     return this.http.get(this.EVENT_API + '/' + category);
   }

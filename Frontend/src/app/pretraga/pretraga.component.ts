@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Category } from '../services/category/Category';
+import { CategoryService } from '../services/category/category.service';
+import { Event } from '../services/event/Event';
 import { EventService } from '../services/event/event.service';
-import { AuthService } from '../core/auth.service';
+import { City } from '../services/place/City';
+import { CityService } from '../services/place/city.service';
+import { Place } from '../services/place/Place';
+import { PlaceService } from '../services/place/place.service';
 
 @Component({
   selector: 'app-pretraga',
@@ -10,57 +16,74 @@ import { AuthService } from '../core/auth.service';
 })
 export class PretragaComponent implements OnInit {
 
-  constructor(private router: Router, private eventService: EventService, private authService: AuthService) { }
-
-  events: Array<any>;
+  searchedEvents: Set<Event>;
+  events: Array<Event>;
+  categories: Array<Category>;
+  places: Array<Place>;
+  cities: Array<City>;
   modal_naziv: any;
-
   findByEvent: any;
   findByPlace: any;
-  odabranaOpcijaPretrage: any;
-  opcijePretrage = [{ id: 1, name: 'Događaj' }, { id: 2, name: 'Lokal' }];
-  public cities = [{ id: 1, name: 'Sarajevo' }, { id: 2, name: "Mostar" }, { id: 3, name: "Tuzla" }, { id: 4, name: "Zenica" }, { id: 5, name: "Travnik" }, { id: 6, name: "Banja Luka" }];
-  public lokali = [{ id: 1, name: "MyFace" }, { id: 2, name: "Cinemas Sloga" }, { id: 3, name: "City Pub" }, { id: 4, name: "Cheers" }, { id: 5, name: "Kino Bosna" }, { id: 6, name: "Narodno Pozoriste" }];
   selectedCity = null;
-  selectedLocal = null;
+  selectedPlace = null;
   selectedCategory = null;
-  categories: Array<any>;
+
+  constructor(
+    private router: Router,
+    private eventService: EventService,
+    private categoryService: CategoryService,
+    private placeService: PlaceService,
+    private cityService: CityService) { }
 
   ngOnInit() {
+    this.categoryService.getAllCategory().subscribe(data => {
+      this.categories = data;
+    });
+    this.eventService.getAllEvents().subscribe(data => {
+      this.events = data;
+    });
+    this.placeService.getAllPlaces().subscribe(data => {
+      this.places = data;
+    });
+    this.cityService.getAllCities().subscribe(data => {
+      this.cities = data;
+    });
   }
 
   pretraziEvente() {
-    if (this.odabranaOpcijaPretrage == 1) {
-      this.eventService.getByName(this.modal_naziv).subscribe(data => {
-        this.events = data;
+    this.searchedEvents = new Set<Event>();
+    this.events.forEach(element => { this.searchedEvents.add(element); });
+    if (this.selectedCategory) {
+      this.searchedEvents.forEach(element => {
+        if (element.category.id != this.selectedCategory) {
+          this.searchedEvents.delete(element);
+        }
       });
     }
-    if (this.odabranaOpcijaPretrage == 2) {
-      this.eventService.getByNameOfPlace(this.modal_naziv).subscribe(data => {
-        this.events = data;
+    if (this.selectedCity) {
+      this.searchedEvents.forEach(element => {
+        if (element.place.city.id != this.selectedCity) {
+          this.searchedEvents.delete(element);
+        }
       });
     }
-    this.router.navigate(['/pretraga']);
+    if (this.selectedPlace) {
+      this.searchedEvents.forEach(element => {
+        if (element.place.id != this.selectedPlace) {
+          this.searchedEvents.delete(element);
+        }
+      });
+    }
   }
 
   keyDownFunction(event) {
     if (event.keyCode == 13) {
-      console.log('berina')
-      //this.prijaviSe();
+      console.log('berina');
+      // this.prijaviSe();
     }
   }
 
   prikaziDetalje(event: any) {
-    var categoryId = event.category.id;
-    if (categoryId == 1)
-      this.router.navigate(['/muzika-detalji', event.id]);
-    else if (categoryId == 2)
-      this.router.navigate(['/sport-detalji', event.id]);
-    else if (categoryId == 3)
-      this.router.navigate(['/nauka-detalji', event.id]);
-    else if (categoryId == 4)
-      this.router.navigate(['/kultura-detalji', event.id]);
-    else if (categoryId == 5)
-      this.router.navigate(['/zabava-detalji', event.id]);
+    this.router.navigate(['/detalji-eventa', event.id]);
   }
 }

@@ -19,6 +19,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { RegistracijaComponent } from './registracija/registracija.component';
 import { EventService } from './services/event/event.service';
 import { PlaceService } from './services/place/place.service';
+import { CityService } from './services/place/city.service';
 import { UserService } from './services/user/user.service';
 import { SviEventiIzKategorijeComponent } from './svi-eventi-iz-kategorije/svi-eventi-iz-kategorije.component';
 import { UserDetaljiComponent } from './user-detalji/user-detalji.component';
@@ -62,6 +63,7 @@ const routes: Routes = [
   providers: [
     PlaceService,
     EventService,
+    CityService,
     UserService,
     AuthService,
     AuthGuard,
