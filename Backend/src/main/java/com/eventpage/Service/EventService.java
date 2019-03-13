@@ -4,6 +4,8 @@ import com.eventpage.Model.Event;
 import com.eventpage.Repository.EventRepository;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -48,16 +50,18 @@ public class EventService {
   public List<Event> getByCategory(String category) throws ServiceException {
     try {
       List<Event> events = eventRepository.findAll();
-      Set<Event> eventsSet = new HashSet<>();
+      List<Event> eventsList = new ArrayList<>();
 
       for (Event e : events) {
         if (e.getCategory().getName().equals(category) && e.getDate_time()
             .after(Calendar.getInstance().getTime())) {
-          eventsSet.add(e);
+          eventsList.add(e);
         }
       }
 
-      return new ArrayList<>(eventsSet);
+      Collections.sort(eventsList, new SortByDate());
+
+      return new ArrayList<>(eventsList);
     } catch (Exception e) {
       throw new ServiceException("Cannot fetch all events.");
     }
@@ -235,5 +239,12 @@ public class EventService {
       throw new ServiceException(
           "Cannot update event with id = " + eventFromRequest.getId() + ".");
     }
+  }
+}
+
+class SortByDate implements Comparator<Event> {
+
+  public int compare(Event a, Event b) {
+    return a.getDate_time().compareTo(b.getDate_time());
   }
 }
