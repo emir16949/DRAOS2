@@ -24,7 +24,7 @@ public class Place {
   private String description;
   private String address;
   private String place_url;
-  private byte[] picture;
+  private String[] picture;
   @JsonIgnoreProperties("places")
   private City city;
   @JsonIgnoreProperties("places")
@@ -65,12 +65,18 @@ public class Place {
     this.name = name;
   }
 
-  public String getAddress() {
-    return address;
-  }
+  public String getAddress() {    return address;  }
 
   public void setAddress(String address) {
     this.address = address;
+  }
+
+  public String[] getPicture() {
+    return picture;
+  }
+
+  public void setPicture(String[] picture) {
+    this.picture = picture;
   }
 
   public String getDescription() {
@@ -121,8 +127,8 @@ public class Place {
   @Override
   public String toString() {
     String result = String.format(
-        "Place[id=%d, name='%s', description = '%s']%n",
-        id, name, description);
+        "Place[id=%d, name='%s', description = '%s', picture= '%s']%n",
+        id, name, description, picture);
     if (events != null) {
       for (Event event : events) {
         result += event.toString();
