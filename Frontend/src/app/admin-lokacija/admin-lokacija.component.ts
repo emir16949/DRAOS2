@@ -28,7 +28,7 @@ export class AdminLokacijaComponent implements OnInit {
   modal_adresa: any;
   adresa: any;
   url: string;
-  selectedImage: string;
+  selectedImage: any;
   odabraniMenadzer: number;
   users: Array<any>;
   @ViewChild('file') el: ElementRef;
@@ -82,7 +82,7 @@ export class AdminLokacijaComponent implements OnInit {
   
   handleReaderLoaded(e) {
     this.base64textString.push('data:image/JPEG;base64,' + btoa(e.target.result));
-    this.selectedImage = this.base64textString.toString();
+    this.selectedImage = this.base64textString;
     console.log(this.selectedImage);
   }
 
