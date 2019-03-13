@@ -1,19 +1,53 @@
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">{{ event.name }}</h1>
-    <hr style="color: blue; height: 1px; background-color: blue">
-    <p class="card-text" style="font-size: 18px">u <a href={{event.place.place_url}}>{{event.place.name}}</a>, dana
-      {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
-    <img class="card-img" src="data:image/JPEG;base64,{{event.picture}}" alt="Card image">
-    <br>
-    <p class="card-text" style="font-size: 22px">Ulaz: slobodan</p>
-    <p class="card-text" style="font-size: 22px">Ulaz: {{event.price}} KM</p>
-    <p class="lead">{{ event.description }}</p>
-  </div>
-  <br>
-  <br>
+<div class="container-fluid" style="background-color: lavender; margin: 0px; min-height: 100%">
 
-  <div class="container marketing">
+  <div class="col-8" style=" margin: auto; padding-top: 5%; min-height: 100%;">
+    <div class="row">
+      <div class="col-12">
+        <img class="card-img" src="data:image/JPEG;base64,{{event.picture}}" alt="Card image">
+      </div>
+    </div>
+    <br>
+    <br>
+
+    <div class="row">
+      <div class="col-12">
+        <h1 class="display-4">{{ event.name }}</h1>
+        <hr class="featurette-divider" style="background-color: #5c4991; height: 3px;">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-12">
+        <p class="card-text" style="font-size: 22px; color: #343a40">u <a href={{event.place.place_url}}>{{event.place.name}}</a>,
+          dana
+          {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}</p>
+      </div>
+    </div>
+    <br>
+
+    <div class="row">
+      <div class="col-12">
+        <p *ngIf="event.price === 0" class="card-text" style="font-size: 20px; font-weight: bold">Ulaz: Slobodan</p>
+        <p *ngIf="event.price !== 0" class="card-text" style="font-size: 20px">Ulaz: {{event.price}} KM</p>
+      </div>
+    </div>
+
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <p style="font-size: 20px;">O događaju: </p>
+        <hr>
+        <p class="lead">{{ event.description }}</p>
+      </div>
+    </div>
+
+  </div>
+
+
+</div>
+
+
+<!--  <div class="container marketing">
     <h3>Posjetite slične događaje:</h3>
     <hr class="featurette-divider" style="color: purple; height: 1px; background-color: purple">
   </div>
@@ -60,7 +94,6 @@
         </div>
       </div>
     </div>
-    <!--end row-->
+    &lt;!&ndash;end row&ndash;&gt;
     <br>
-  </div>
-</div>
+  </div>-->
