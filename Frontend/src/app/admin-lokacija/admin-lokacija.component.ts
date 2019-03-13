@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PlaceService } from '../services/place/place.service';
 import { UserService } from '../services/user/user.service';
 import { Place } from '../services/place/Place';
 import { TokenStorage } from '../core/token.storage';
 import { AuthService } from '../core/auth.service';
+import { City } from '../services/place/City';
+import { User } from '../services/user/User';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
+
 
 @Component({
   selector: 'app-admin-lokacija',
@@ -27,6 +31,8 @@ export class AdminLokacijaComponent implements OnInit {
   selectedImage: string;
   odabraniMenadzer: number;
   users: Array<any>;
+  @ViewChild('file') el: ElementRef;
+  uploadedFile: string;
 
   constructor(
     private placeService: PlaceService,
@@ -60,34 +66,32 @@ export class AdminLokacijaComponent implements OnInit {
     });
   }
 
-  onSelectFile(event) { // called each time file input changes
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
+  base64textString = [];
 
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      console.log("amra1");
-      reader.onload = this._handleReaderLoaded.bind(this);
-      console.log("amra2");
-      //reader.readAsBinaryString(event.target.files[0]);
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.dispatchEvent.name;
-      }
+  onUploadChange(evt: any) {
+    const file = evt.target.files[0];
+    console.log(file);
+  
+    if (file) {
+      const reader = new FileReader();
+  
+      reader.onload = this.handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
     }
   }
-
-  _handleReaderLoaded(readerEvt) {
-
-    var binaryString = readerEvt.target.result;
-    this.selectedImage = btoa(binaryString);
-
+  
+  handleReaderLoaded(e) {
+    this.base64textString.push('data:image/JPEG;base64,' + btoa(e.target.result));
+    this.selectedImage = this.base64textString.toString();
+    console.log(this.selectedImage);
   }
 
   kreirajObjekat() {
+
     console.log("kreiranje objekta...." + this.odabraniGrad + this.odabraniMenadzer);
     this.objekat.city.id = this.odabraniGrad;
     this.objekat.picture = this.selectedImage;
-    console.log("objekat: " + this.objekat);
+    this.objekat.manager.id = this.odabraniMenadzer;
     this.placeService.createPlace(this.objekat).subscribe(data => {
       console.log("kreiranje objekta");
     });
