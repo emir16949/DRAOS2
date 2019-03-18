@@ -24,7 +24,7 @@ public class Place {
   private String description;
   private String address;
   private String place_url;
-  private String[] picture;
+  private String picture;
   @JsonIgnoreProperties("places")
   private City city;
   @JsonIgnoreProperties("places")
@@ -71,11 +71,11 @@ public class Place {
     this.address = address;
   }
 
-  public String[] getPicture() {
+  public String getPicture() {
     return picture;
   }
 
-  public void setPicture(String[] picture) {
+  public void setPicture(String picture) {
     this.picture = picture;
   }
 

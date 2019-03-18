@@ -1,12 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AuthService } from '../core/auth.service';
+import { TokenStorage } from '../core/token.storage';
+import { Place } from '../services/place/Place';
 import { PlaceService } from '../services/place/place.service';
 import { UserService } from '../services/user/user.service';
-import { Place } from '../services/place/Place';
-import { TokenStorage } from '../core/token.storage';
-import { AuthService } from '../core/auth.service';
-import { City } from '../services/place/City';
-import { User } from '../services/user/User';
-import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 
 @Component({
@@ -66,35 +63,27 @@ export class AdminLokacijaComponent implements OnInit {
     });
   }
 
-  base64textString = [];
-
   onUploadChange(evt: any) {
     const file = evt.target.files[0];
     console.log(file);
-  
+
     if (file) {
       const reader = new FileReader();
-  
+
       reader.onload = this.handleReaderLoaded.bind(this);
       reader.readAsBinaryString(file);
     }
   }
-  
+
   handleReaderLoaded(e) {
-    this.base64textString.push('data:image/JPEG;base64,' + btoa(e.target.result));
-    this.selectedImage = this.base64textString;
-    console.log(this.selectedImage);
+    this.selectedImage = 'data:image/JPEG;base64,' + btoa(e.target.result);
   }
 
   kreirajObjekat() {
-
-    console.log("kreiranje objekta...." + this.odabraniGrad + this.odabraniMenadzer);
     this.objekat.city.id = this.odabraniGrad;
     this.objekat.picture = this.selectedImage;
     this.objekat.manager.id = this.odabraniMenadzer;
-    this.placeService.createPlace(this.objekat).subscribe(data => {
-      console.log("kreiranje objekta");
-    });
+    this.placeService.createPlace(this.objekat).subscribe(data => { });
     window.location.reload();
   }
 
