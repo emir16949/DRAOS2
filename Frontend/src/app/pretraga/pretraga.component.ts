@@ -27,6 +27,8 @@ export class PretragaComponent implements OnInit {
   selectedCity = null;
   selectedPlace = null;
   selectedCategory = null;
+  selectedName = null;
+  selectedDate = null;
 
   constructor(
     private router: Router,
@@ -53,6 +55,7 @@ export class PretragaComponent implements OnInit {
   pretraziEvente() {
     this.searchedEvents = new Set<Event>();
     this.events.forEach(element => { this.searchedEvents.add(element); });
+
     if (this.selectedCategory) {
       this.searchedEvents.forEach(element => {
         if (element.category.id != this.selectedCategory) {
@@ -74,11 +77,32 @@ export class PretragaComponent implements OnInit {
         }
       });
     }
+    if(this.selectedName) {
+      this.searchedEvents.forEach(element => {
+        if (!element.name.toLowerCase().includes(this.selectedName.toLowerCase())) {
+          this.searchedEvents.delete(element);
+        }
+      });
+    }
+    if(this.selectedDate){
+    const startDate = this.convertDate(this.selectedDate[0]);
+    const endDate = this.convertDate(this.selectedDate[1]);
+
+    this.searchedEvents.forEach(element => {
+      const eventDate = this.convertDate(element.date_time);
+
+      if (this.reverseAndTimeStamp(eventDate) > this.reverseAndTimeStamp(startDate) && this.reverseAndTimeStamp(eventDate) < this.reverseAndTimeStamp(endDate)) {
+      }
+      else {
+        this.searchedEvents.delete(element);
+      }
+    });
+    }
   }
 
   keyDownFunction(event) {
     if (event.keyCode == 13) {
-      console.log('berina');
+      console.log('berina lutka');
       // this.prijaviSe();
     }
   }
@@ -86,4 +110,17 @@ export class PretragaComponent implements OnInit {
   prikaziDetalje(event: any) {
     this.router.navigate(['/detalji-eventa', event.id]);
   }
+
+  convertDate(str) {
+    var date = new Date(str),
+        mnth = ("0" + (date.getMonth()+1)).slice(-2),
+        day  = ("0" + date.getDate()).slice(-2);
+    return [ date.getFullYear(), day, mnth ].join("-");
+  }
+
+  reverseAndTimeStamp(dateString) {
+    const reverse = new Date(dateString.split("-").reverse().join("-"));
+    return reverse.getTime();
+  }
+
 }
