@@ -77,26 +77,33 @@ export class PretragaComponent implements OnInit {
         }
       });
     }
-    if(this.selectedName) {
+    var names = this.selectedName.split(' ');
+    if (this.selectedName) {
       this.searchedEvents.forEach(element => {
-        if (!element.name.toLowerCase().includes(this.selectedName.toLowerCase())) {
+        var existName = false;
+        names.forEach(name => {
+          if (element.name.toLowerCase().includes(name.toLowerCase())) {
+            existName = true;
+          }
+        });
+        if (existName === false) {
           this.searchedEvents.delete(element);
         }
       });
     }
-    if(this.selectedDate){
-    const startDate = this.convertDate(this.selectedDate[0]);
-    const endDate = this.convertDate(this.selectedDate[1]);
+    if (this.selectedDate) {
+      const startDate = this.convertDate(this.selectedDate[0]);
+      const endDate = this.convertDate(this.selectedDate[1]);
 
-    this.searchedEvents.forEach(element => {
-      const eventDate = this.convertDate(element.date_time);
+      this.searchedEvents.forEach(element => {
+        const eventDate = this.convertDate(element.date_time);
 
-      if (this.reverseAndTimeStamp(eventDate) > this.reverseAndTimeStamp(startDate) && this.reverseAndTimeStamp(eventDate) < this.reverseAndTimeStamp(endDate)) {
-      }
-      else {
-        this.searchedEvents.delete(element);
-      }
-    });
+        if (this.reverseAndTimeStamp(eventDate) > this.reverseAndTimeStamp(startDate) && this.reverseAndTimeStamp(eventDate) < this.reverseAndTimeStamp(endDate)) {
+        }
+        else {
+          this.searchedEvents.delete(element);
+        }
+      });
     }
   }
 
@@ -113,9 +120,9 @@ export class PretragaComponent implements OnInit {
 
   convertDate(str) {
     var date = new Date(str),
-        mnth = ("0" + (date.getMonth()+1)).slice(-2),
-        day  = ("0" + date.getDate()).slice(-2);
-    return [ date.getFullYear(), day, mnth ].join("-");
+      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
+      day = ("0" + date.getDate()).slice(-2);
+    return [date.getFullYear(), day, mnth].join("-");
   }
 
   reverseAndTimeStamp(dateString) {

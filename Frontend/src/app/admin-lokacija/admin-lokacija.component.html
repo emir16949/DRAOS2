@@ -24,18 +24,20 @@
             <div class="card" *ngFor="let objekat of places" style="margin-bottom: 5%">
                 <h5 class="card-header">Lokacija: {{objekat.name}}</h5>
                 <div class="card-body">
-                        <div class="row">
-                    <div class="col-md-4">
-                        <img class="card-img-top" height="180rem" width="22rem" src="{{objekat.picture}}" alt="Card image cap">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <img class="card-img-top" height="180rem" width="22rem" src="{{objekat.picture}}" alt="Card image cap">
+                        </div>
+                        <div class="col-md-4">
+                            <h5 class="card-title">Adresa: {{objekat.address}}</h5>
+                            <p class="card-text">Opis: {{objekat.description}}</p>
+                            <button class="btn btn-outline-primary" style="margin-right: 3%" type="submit" data-toggle="modal"
+                                data-target="#modaluredi" (click)="urediPlace(place)">Uredi</button>
+                            <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deletemodal"
+                                (click)="obrisiLokaciju(place)">Obriši</button>
+                        </div>
                     </div>
-                    <div class="col-md-4">
-                        <h5 class="card-title" >Adresa: {{objekat.address}}</h5>
-                    <p class="card-text">Opis: {{objekat.description}}</p>
-                    <button class="btn btn-outline-primary" style="margin-right: 3%" type="submit" data-toggle="modal"
-                        data-target="#modaluredi" (click)="urediPlace(place)">Uredi</button>
-                    <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deletemodal" (click)="obrisiLokaciju(place)">Obriši</button>
-                  </div></div>
-             </div>
+                </div>
             </div>
         </div>
         <div class="col-md-2"></div>
@@ -83,7 +85,8 @@
                             [ngModelOptions]="{standalone: true}">
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label"> Link postojeće web stranice objekta: </label>
+                        <label for="recipient-name" class="col-form-label"> Link postojeće web stranice objekta:
+                        </label>
                         <input type="text" class="form-control" id="link_objekta" [(ngModel)]="objekat.place_url"
                             [ngModelOptions]="{standalone: true}">
                     </div>
@@ -101,7 +104,8 @@
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label"> Adresa: </label>
-                        <input type="text" class="form-control" id="adresa_objekta" [(ngModel)]="objekat.address"                             [ngModelOptions]="{standalone: true}">
+                        <input type="text" class="form-control" id="adresa_objekta" [(ngModel)]="objekat.address"
+                            [ngModelOptions]="{standalone: true}">
                     </div>
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Menadžer objekta-username:</label>
@@ -111,10 +115,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="recipient-name" class="col-form-label"> Slika:  <br></label>
-                        <!-- <input type='file' name="Odaberi sliku" (change)="onSelectFile($event)"> -->
-                        <input #file id="file" type="file" (change)="onUploadChange($event)"/>
-                      </div>
+                        <label for="recipient-name" class="col-form-label"> Slika: <br></label>
+                        <input #file id="file" type="file" (change)="onUploadChange($event)" />
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">

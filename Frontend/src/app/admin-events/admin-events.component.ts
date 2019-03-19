@@ -6,6 +6,7 @@ import { Event } from '../services/event/Event';
 import { EventService } from '../services/event/event.service';
 import { Place } from '../services/place/Place';
 import { PlaceService } from '../services/place/place.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-events',
@@ -26,7 +27,8 @@ export class AdminEventsComponent implements OnInit {
     private eventService: EventService,
     private categoryService: CategoryService,
     private placeService: PlaceService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private router: Router) { }
 
   ngOnInit() {
     this.categoryService.getAllCategory().subscribe(data => {
@@ -51,34 +53,16 @@ export class AdminEventsComponent implements OnInit {
     window.location.reload();
   }
 
-  onSelectFile(event) { // called each time file input changes
-    if (event.target.files && event.target.files[0]) {
-      var reader = new FileReader();
-
-      reader.readAsDataURL(event.target.files[0]); // read file as data url
-      console.log("amra1");
-      reader.onload = this._handleReaderLoaded.bind(this);
-      console.log("amra2");
-      //reader.readAsBinaryString(event.target.files[0]);
-
-      reader.onload = (event) => { // called once readAsDataURL is completed
-        this.url = event.target.dispatchEvent.name;
-      }
-    }
-  }
-
-  _handleReaderLoaded(readerEvt) {
-
-    var binaryString = readerEvt.target.result;
-    this.selectedImage = btoa(binaryString);
-
-  }
 
   kreirajEvent() {
+
     this.event.category.id = this.odabranaCategory;
     this.event.place.id = this.odabraniPlace;
     this.event.picture = this.selectedImage;
+    console.log(this.event);
     this.eventService.createEvent(this.event).subscribe();
+    window.location.reload();
+    console.log("snimilo");
   }
 
   zatvori() {
@@ -88,5 +72,20 @@ export class AdminEventsComponent implements OnInit {
     this.event.category.id = null;
     this.odabranaCategory = null;
     this.odabraniPlace = null;
+  }
+
+  onUploadChange(evt: any) {
+    const file = evt.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = this.handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  handleReaderLoaded(e) {
+    this.selectedImage = 'data:image/JPEG;base64,' + btoa(e.target.result);
   }
 }
