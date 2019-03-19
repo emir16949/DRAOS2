@@ -1,17 +1,15 @@
 <main role="main" style="background-color: lavender; margin: 0px">
 
   <!--carousel-->
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" (mouseenter)="mouseEnter()"
-    style="width: 80%;margin-left: 10%; padding-top: 1%; margin-bottom: 0px;" (mouseleave)="mouseLeave()">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" (mouseenter)="mouseEnter()" style="width: 80%;margin-left: 10%; padding-top: 1%; margin-bottom: 0px;"
+    (mouseleave)="mouseLeave()">
     <ol class="carousel-indicators">
-      <li *ngFor="let event of events; let i = index" data-target="#myCarousel" data-slide-to="i"
-        class="{{ (i == 0) ? 'active' : ''}}"></li>
+      <li *ngFor="let event of events; let i = index" data-target="#myCarousel" data-slide-to="i" class="{{ (i == 0) ? 'active' : ''}}"></li>
     </ol>
     <div class="carousel-inner">
       <div *ngFor="let event of events; let i = index" class="carousel-item {{ (i == 0) ? 'active' : ''}}">
         <figure class="tint">
-          <img class="slide" src="data:image/JPEG;base64,{{event.picture}}" alt="Slide"
-            style="height: 32rem; width: 100%;">
+          <img class="slide" src="{{event.picture}}" alt="Slide" style="height: 32rem; width: 100%;">
           <div *ngIf="mouseEnterHover" class="container">
             <div class="carousel-caption text-left">
               <h1 background-color="black">{{event.name}}</h1>
@@ -40,17 +38,16 @@
 
   <div class="row" style="margin-left: 10%; margin-right: 10%;">
 
-    <div class="col-4" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent"
-      style="margin-bottom: 2%;">
+    <div class="col-4" *ngFor="let event of events, let i = index" [class.selected]="event === selectedEvent" style="margin-bottom: 2%;">
       <div class="card" style="height: 100%; width: 100%;">
-        <img class="card-img-top" height="160rem" width="22rem" src="data:image/JPEG;base64,{{event.picture}}">
+        <img class="card-img-top" height="160rem" width="22rem" src="{{event.picture}}">
         <div class="card-body">
           <h5 class="card-title">{{ event.name }}</h5>
           <p class="card-text" style="font-size: 11px">Datum: {{ event.date_time | date: "dd.MM.yyyy. HH:mm:ss" }}
           </p>
           <p class="card-text">{{event.description.substr(0,100)}}...</p>
-          <a class="btn btn-info" (click)="prikaziDetalje(event)"
-            style="border: rgb(0, 110, 255) 2px; background-color: #5c4991; color: white;">Više ...</a>
+          <a class="btn btn-info" (click)="prikaziDetalje(event)" style="border: rgb(0, 110, 255) 2px; background-color: #5c4991; color: white;">Više
+            ...</a>
         </div>
       </div>
     </div>
@@ -67,8 +64,7 @@
 
 
 <!-- edit modal-->
-<div class="modal fade" id="exampleModal8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div class="modal fade" id="exampleModal8" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -78,13 +74,13 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Naziv:</label>
-            <input type="text" class="form-control" id="naziv_usluga" value="{{ eventPut.name }}"
-              [(ngModel)]="eventPut.name" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="naziv_usluga" value="{{ eventPut.name }}" [(ngModel)]="eventPut.name"
+              [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Opis:</label>
-            <textarea class="form-control" id="opis_usluga" value="{{ eventPut.description }}"
-              [(ngModel)]="eventPut.description" [ngModelOptions]="{standalone: true}"></textarea>
+            <textarea class="form-control" id="opis_usluga" value="{{ eventPut.description }}" [(ngModel)]="eventPut.description"
+              [ngModelOptions]="{standalone: true}"></textarea>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Kategorija:</label>
@@ -93,10 +89,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal"
-          (click)="zatvori()">Zatvori</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_podnesi_zahtjev"
-          (click)="sacuvajIzmjeneEvent()">Sačuvaj
+        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="zatvori()">Zatvori</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_podnesi_zahtjev" (click)="sacuvajIzmjeneEvent()">Sačuvaj
           izmjene</button>
       </div>
     </div>
