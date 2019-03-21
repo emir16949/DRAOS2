@@ -55,14 +55,11 @@ export class AdminEventsComponent implements OnInit {
 
 
   kreirajEvent() {
-
     this.event.category.id = this.odabranaCategory;
     this.event.place.id = this.odabraniPlace;
     this.event.picture = this.selectedImage;
-    console.log(this.event);
     this.eventService.createEvent(this.event).subscribe();
     window.location.reload();
-    console.log("snimilo");
   }
 
   zatvori() {

@@ -11,6 +11,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.logging.Logger;
 import jdk.nashorn.internal.parser.JSONParser;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import org.springframework.web.client.RestTemplate;
 public class EventService {
 
   private final EventRepository eventRepository;
+  private static Logger log = Logger.getLogger("EventService");
 
   @Autowired
   public EventService(EventRepository eventRepository) {

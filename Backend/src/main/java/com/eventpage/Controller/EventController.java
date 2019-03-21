@@ -91,7 +91,6 @@ public class EventController {
   }
 
   @PostMapping
-  @PreAuthorize("@tokenAuthenticationService.isAdmin()")
   public ResponseEntity createEvent(@RequestBody Event event) throws ServiceException {
     return ResponseEntity.ok(eventService.createEvent(event));
   }
