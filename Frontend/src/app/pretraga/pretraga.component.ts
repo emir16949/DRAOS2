@@ -20,6 +20,7 @@ export class PretragaComponent implements OnInit {
   events: Array<Event>;
   categories: Array<Category>;
   places: Array<Place>;
+  placesForDropDown: Array<Place>;
   cities: Array<City>;
   modal_naziv: any;
   findByEvent: any;
@@ -46,6 +47,7 @@ export class PretragaComponent implements OnInit {
     });
     this.placeService.getAllPlaces().subscribe(data => {
       this.places = data;
+      this.placesForDropDown = data;
     });
     this.cityService.getAllCities().subscribe(data => {
       this.cities = data;
@@ -77,10 +79,10 @@ export class PretragaComponent implements OnInit {
         }
       });
     }
-    var names = this.selectedName.split(' ');
+    const names = this.selectedName.split(' ');
     if (this.selectedName) {
       this.searchedEvents.forEach(element => {
-        var existName = false;
+        let existName = false;
         names.forEach(name => {
           if (element.name.toLowerCase().includes(name.toLowerCase())) {
             existName = true;
@@ -99,8 +101,7 @@ export class PretragaComponent implements OnInit {
         const eventDate = this.convertDate(element.date_time);
 
         if (this.reverseAndTimeStamp(eventDate) > this.reverseAndTimeStamp(startDate) && this.reverseAndTimeStamp(eventDate) < this.reverseAndTimeStamp(endDate)) {
-        }
-        else {
+        } else {
           this.searchedEvents.delete(element);
         }
       });
@@ -119,15 +120,28 @@ export class PretragaComponent implements OnInit {
   }
 
   convertDate(str) {
-    var date = new Date(str),
-      mnth = ("0" + (date.getMonth() + 1)).slice(-2),
-      day = ("0" + date.getDate()).slice(-2);
-    return [date.getFullYear(), day, mnth].join("-");
+    const date = new Date(str),
+      mnth = ('0' + (date.getMonth() + 1)).slice(-2),
+      day = ('0' + date.getDate()).slice(-2);
+    return [date.getFullYear(), day, mnth].join('-');
   }
 
   reverseAndTimeStamp(dateString) {
-    const reverse = new Date(dateString.split("-").reverse().join("-"));
+    const reverse = new Date(dateString.split('-').reverse().join('-'));
     return reverse.getTime();
   }
 
+  onChangedCity() {
+    if (this.selectedCity != null) {
+      this.placesForDropDown = new Array<Place>();
+      this.places.forEach(place => {
+        if (place.city.id == this.selectedCity) {
+          this.placesForDropDown.push(place);
+        }
+      });
+      this.selectedPlace = null;
+    } else {
+      this.placesForDropDown = this.places;
+    }
+  }
 }
