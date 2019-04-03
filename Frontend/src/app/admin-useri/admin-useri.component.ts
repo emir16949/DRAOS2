@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/auth.service';
 import { UserService } from '../services/user/user.service';
+import { User } from '../services/user/User';
 
 @Component({
   selector: 'app-admin-useri',
@@ -10,10 +11,12 @@ import { UserService } from '../services/user/user.service';
 })
 export class AdminUseriComponent implements OnInit {
 
-  users: any;
+  users: Array<any>;
+  user: User = new User();
+  korisnik: User = new User();
   username_pretraga: any;
-  isAdmin: boolean = true;
-  isLoggedIn: boolean = true;
+  isAdmin = true;
+  isLoggedIn = true;
 
   constructor(
     private router: Router,

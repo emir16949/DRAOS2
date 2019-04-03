@@ -30,13 +30,15 @@
           [(ngModel)]="username_pretraga" [ngModelOptions]="{standalone: true}">
       </div>
       <div class="col-2" style="padding-left: 0px;">
-        <button (click)="pretragaUsername()" style="float: left; width: 30%; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
+        <button (click)="pretragaUsername()"
+          style="float: left; width: 30%; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
           data-toggle="modal" data-target="#exampleModal2" class="btn btn-primary">
           <i class="fa fa-search" style="color: rgb(71, 71, 71); font-size: 18px;"></i>
         </button>
       </div>
       <div class="col-2">
-        <button style="float: right; width: 40%; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
+        <button
+          style="float: right; width: 40%; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
           data-toggle="modal" data-target="#exampleModal19" class="btn btn-primary">
           <i class="fa fa-user-plus" style="color: rgb(71, 71, 71); font-size: 20px;"></i>
         </button>
@@ -59,7 +61,8 @@
               <td>{{user.username}}</td>
               <td>{{user.ime + ' ' + user.prezime}}</td>
               <td>
-                <button (click)="openUserDetails(user)" style="background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
+                <button (click)="openUserDetails(user)"
+                  style="background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
                   class="btn btn-primary pregledaj-profil">
                   <i class="fa fa-eye" style="color: rgb(95, 95, 95); font-size: 20px;"></i>
                 </button>
@@ -75,7 +78,8 @@
   </div>
 </div>
 
-<div class="modal fade" id="exampleModal19" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="exampleModal19" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -85,23 +89,28 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Ime: </label>
-            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.ime" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.ime"
+              [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Prezime: </label>
-            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.prezime" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.prezime"
+              [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Korisničko ime: </label>
-            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.username" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.username"
+              [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Email: </label>
-            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.email" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.email"
+              [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Password: </label>
-            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.password" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.password"
+              [ngModelOptions]="{standalone: true}">
           </div>
 
         </form>

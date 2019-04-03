@@ -9,13 +9,15 @@ export class User {
     id: number;
   };
 
-  constructor(){
+  constructor() {
     this.id = null;
     this.username = '';
     this.password = '';
     this.email = '';
     this.ime = '';
     this.prezime = '';
-    this.user_role = null;
+    this.user_role = {
+      id: null
+    };
   }
 }
