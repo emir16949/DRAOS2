@@ -5,6 +5,7 @@ import { AuthService } from '../core/auth.service';
 import { TokenStorage } from '../core/token.storage';
 import { UserService } from '../services/user/user.service';
 import { UserModel } from '../services/user/UserModel';
+import { User } from '../services/user/User';
 
 @Component({
   selector: 'app-registracija',
@@ -57,7 +58,7 @@ export class RegistracijaComponent implements OnInit {
   }
 
   registrujSe(): void {
-    this.userService.createUser(this.user).subscribe();
+    this.userService.createUser1(this.user).subscribe();
   }
 
   zatvori() {

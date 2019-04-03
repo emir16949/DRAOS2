@@ -47,4 +47,11 @@ export class AdminUseriComponent implements OnInit {
       this.users = data;
     });
   }
+
+  kreirajUsera(): void {
+
+    this.korisnik.user_role.id = 2;
+    this.userService.createUser(this.korisnik).subscribe(data => { });
+    window.location.reload();
+  }
 }

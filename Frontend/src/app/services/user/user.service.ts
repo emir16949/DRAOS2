@@ -24,7 +24,12 @@ export class UserService {
     })
   };
 
-  createUser(user: UserModel): Observable<any> {
+  createUser(user: User): Observable<any> {
+    user.user_role.id = 2; // postavljanje user role da bude ROLE_USER
+    return this.http.post<UserModel>(this.USER_API + '/create', user, httpOptions);
+  }
+
+  createUser1(user: UserModel): Observable<any> {
     user.user_role.id = 2; // postavljanje user role da bude ROLE_USER
     return this.http.post<UserModel>(this.USER_API + '/create', user, httpOptions);
   }
