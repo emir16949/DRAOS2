@@ -108,10 +108,8 @@ export class PretragaComponent implements OnInit {
     }
   }
 
-  keyDownFunction(event) {
-    if (event.keyCode == 13) {
-      this.pretraziEvente();
-    }
+  keyUpFunction(event) {
+    this.pretraziEvente();
   }
 
   prikaziDetalje(event: any) {
