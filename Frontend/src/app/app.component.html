@@ -56,4 +56,4 @@
 <div *ngIf="isSearchOpen">
   <app-pretraga></app-pretraga>
 </div>
-<router-outlet></router-outlet>
+<router-outlet *ngIf="!isSearchOpen"></router-outlet>
