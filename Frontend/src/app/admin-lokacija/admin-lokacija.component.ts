@@ -30,6 +30,7 @@ export class AdminLokacijaComponent implements OnInit {
   users: Array<any>;
   @ViewChild('file') el: ElementRef;
   uploadedFile: string;
+  mozeSeBrisati = true;
 
   constructor(
     private placeService: PlaceService,
@@ -49,7 +50,9 @@ export class AdminLokacijaComponent implements OnInit {
       this.places = new Array<Place>();
       if (this.authService.isAdmin() === true) {
         this.places = data;
+        this.mozeSeBrisati = true;
       } else {
+        this.mozeSeBrisati = false;
         for (const place of data) {
           if (place.manager.username === TokenStorage.getCurrentUser()) {
             this.places.push(place);
