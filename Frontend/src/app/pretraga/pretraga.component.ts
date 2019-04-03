@@ -110,8 +110,7 @@ export class PretragaComponent implements OnInit {
 
   keyDownFunction(event) {
     if (event.keyCode == 13) {
-      console.log('berina lutka');
-      // this.prijaviSe();
+      this.pretraziEvente();
     }
   }
 
