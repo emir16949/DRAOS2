@@ -13,7 +13,8 @@
           </div>
           <div class="col-3" style="padding-left: 0px !important;">
             <label style="color: white">Grad</label>
-            <select class="form-control" id="hitnost" [(ngModel)]="selectedCity" name="opcije" (change)="onChangedCity()">
+            <select class="form-control" id="hitnost" [(ngModel)]="selectedCity" name="opcije"
+              (change)="onChangedCity()">
               <option [value]="null">Svi</option>
               <option *ngFor="let p of cities" [value]="p.id">{{p.name}}</option>
             </select>
@@ -33,9 +34,9 @@
         </div>
       </div>
       <div class="col-3" style="padding: 0px; padding-right: 15px;">
-        <label style="color: transparent">Pretraga po lokalu</label>
+        <label style="color: white">Naziv događaja</label>
         <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="selectedName" placeholder="Pretraži"
-               [ngModelOptions]="{standalone: true}" />
+          [ngModelOptions]="{standalone: true}" />
       </div>
       <div class="col-1" style="padding: 0px;">
         <label style="color: transparent">Pretraga</label>

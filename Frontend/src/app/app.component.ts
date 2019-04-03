@@ -37,6 +37,7 @@ export class AppComponent implements OnInit {
 
   pretraga() {
     this.isSearchOpen = !this.isSearchOpen;
+    this.router.navigate(['/pretraga']);
   }
 
   goToHomePage() {
