@@ -49,6 +49,13 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = this.authService.isLoggedIn();
     this.isAdmin = this.authService.isAdmin();
     this.loggedUser = TokenStorage.getCurrentUser();
+    const kat = localStorage.getItem('kategorija');
+    this.selectedIndex = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      if (this.items[i].text === kat) {
+        this.selectedIndex = i;
+      }
+    }
   }
 
   odjaviSe() {
