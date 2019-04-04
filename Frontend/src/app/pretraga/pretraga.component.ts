@@ -52,6 +52,8 @@ export class PretragaComponent implements OnInit {
     this.cityService.getAllCities().subscribe(data => {
       this.cities = data;
     });
+    // this.searchedEvents = new Set<Event>();
+    // this.events.forEach(element => { this.searchedEvents.add(element); });
   }
 
   pretraziEvente() {
@@ -79,19 +81,21 @@ export class PretragaComponent implements OnInit {
         }
       });
     }
-    const names = this.selectedName.split(' ');
-    if (this.selectedName) {
-      this.searchedEvents.forEach(element => {
-        let existName = false;
-        names.forEach(name => {
-          if (element.name.toLowerCase().includes(name.toLowerCase())) {
-            existName = true;
+    if (this.selectedName !== null) {
+      const names = this.selectedName.split(' ');
+      if (this.selectedName) {
+        this.searchedEvents.forEach(element => {
+          let existName = false;
+          names.forEach(name => {
+            if (element.name.toLowerCase().includes(name.toLowerCase())) {
+              existName = true;
+            }
+          });
+          if (existName === false) {
+            this.searchedEvents.delete(element);
           }
         });
-        if (existName === false) {
-          this.searchedEvents.delete(element);
-        }
-      });
+      }
     }
     if (this.selectedDate) {
       const startDate = this.convertDate(this.selectedDate[0]);
@@ -140,5 +144,28 @@ export class PretragaComponent implements OnInit {
     } else {
       this.placesForDropDown = this.places;
     }
+
+    this.pretraziEvente();
   }
+
+  onChangedCategory() {
+    console.log("kategorija");
+    this.pretraziEvente();
+  }
+
+  onChangedPlace() {
+    console.log("place");
+    this.pretraziEvente();
+  }
+
+  onChangedDate() {
+    console.log("date");
+    this.pretraziEvente();
+  }
+
+  onChangedName() {
+    console.log("name");
+    this.pretraziEvente();
+  }
+
 }
