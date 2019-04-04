@@ -25,9 +25,9 @@ export class PretragaComponent implements OnInit {
   modal_naziv: any;
   findByEvent: any;
   findByPlace: any;
-  selectedCity = null;
-  selectedPlace = null;
-  selectedCategory = null;
+  selectedCity = 0;
+  selectedPlace = 0;
+  selectedCategory = 0;
   selectedName = null;
   selectedDate = null;
 
@@ -60,14 +60,14 @@ export class PretragaComponent implements OnInit {
     this.searchedEvents = new Set<Event>();
     this.events.forEach(element => { this.searchedEvents.add(element); });
 
-    if (this.selectedCategory) {
+    if (this.selectedCategory != 0) {
       this.searchedEvents.forEach(element => {
         if (element.category.id != this.selectedCategory) {
           this.searchedEvents.delete(element);
         }
       });
     }
-    if (this.selectedCity) {
+    if (this.selectedCity != 0) {
       this.searchedEvents.forEach(element => {
         if (element.place.city.id != this.selectedCity) {
           this.searchedEvents.delete(element);
@@ -133,14 +133,14 @@ export class PretragaComponent implements OnInit {
   }
 
   onChangedCity() {
-    if (this.selectedCity != null) {
+    if (this.selectedCity != 0) {
       this.placesForDropDown = new Array<Place>();
       this.places.forEach(place => {
         if (place.city.id == this.selectedCity) {
           this.placesForDropDown.push(place);
         }
       });
-      this.selectedPlace = null;
+      this.selectedPlace = 0;
     } else {
       this.placesForDropDown = this.places;
     }
@@ -149,23 +149,18 @@ export class PretragaComponent implements OnInit {
   }
 
   onChangedCategory() {
-    console.log("kategorija");
     this.pretraziEvente();
   }
 
   onChangedPlace() {
-    console.log("place");
     this.pretraziEvente();
   }
 
   onChangedDate() {
-    console.log("date");
     this.pretraziEvente();
   }
 
   onChangedName() {
-    console.log("name");
     this.pretraziEvente();
   }
-
 }

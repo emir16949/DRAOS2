@@ -6,21 +6,21 @@
           <div class="col-2" style="padding-left: 0px !important;">
             <label style="color: white">Kategorija</label>
             <select class="form-control" id="hitnost" [(ngModel)]="selectedCategory" name="opcije" (change)="onChangedCategory()">
-              <option [value]="null">Svi</option>
+              <option [value]="0">Svi</option>
               <option *ngFor="let p of categories" [value]="p.id">{{p.name}}</option>
             </select>
           </div>
           <div class="col-3" style="padding-left: 0px !important;">
             <label style="color: white">Grad</label>
             <select class="form-control" id="hitnost" [(ngModel)]="selectedCity" name="opcije" (change)="onChangedCity()">
-              <option [value]="null">Svi</option>
+              <option [value]="0">Svi</option>
               <option *ngFor="let p of cities" [value]="p.id">{{p.name}}</option>
             </select>
           </div>
           <div class="col-3" style="padding-left: 0px !important;">
             <label style="color: white">Lokal</label>
             <select class="form-control" id="hitnost2" [(ngModel)]="selectedPlace" (change)="onChangedPlace()" name="opcije">
-              <option [value]="null">Svi</option>
+              <option [value]="0">Svi</option>
               <option *ngFor="let p of placesForDropDown" [value]="p.id">{{p.name}}</option>
             </select>
           </div>
