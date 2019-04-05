@@ -1,46 +1,52 @@
-<div class="text-center">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="jumbotron" style="text-align: center; background-image: url('assets/kultura2.jpg');">
-        <div style="background-color: rgba(233, 233, 233, 0.658); display: inherit;">
-          <h1 style="color: rgb(39, 39, 39)">Lokacije</h1>
-        </div>
+<div class="text-center" style="margin-top: 4rem;">
+
+  <div class="col-md-10" style="margin: auto; margin-bottom: 2rem;">
+    <div class="row">
+      <div class="col-md-10" style="margin-top: 2rem;">
+        <h2 style="text-align: left; margin-left: 7%">LOKACIJE</h2>
+      </div>
+      <div class="col-md-2" style="margin-top: 2rem;">
+        <button class="btn btn-outline-secondary" type="submit" data-toggle="modal" data-target="#exampleModal"
+          style="width: 40%;">+</button>
       </div>
     </div>
+    <hr />
   </div>
 
-  <div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-      <button class="btn btn-outline-secondary" type="submit" data-toggle="modal" data-target="#exampleModal"
-        style="margin-bottom: 7%; width: 100%;">Dodaj novu lokaciju</button>
-    </div>
-    <div class="col-md-4"></div>
-  </div>
+  <div class="col-md-10" style="margin: auto;">
 
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
-      <div class="card" *ngFor="let objekat of places" style="margin-bottom: 5%">
-        <h5 class="card-header">Lokacija: {{objekat.name}}</h5>
+    <div class="row">
+    <div class="col-md-6" *ngFor="let objekat of places">
+      <div class="card" style="margin-bottom: 5% !important; height: 90% !important;">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-md-8">
+              <h4 style="margin-top: 0.5rem; float: left;">{{objekat.name}}</h4>
+            </div>
+            <div class="col-md-4" style="padding-right: 0px; ">
+              <button class="btn btn-outline-primary" style="float: right; border-color: #4e555b; color: #4e555b; margin-right: 10%" type="submit" data-toggle="modal"
+                      data-target="#modaluredi" (click)="urediPlace(objekat)">Uredi</button>
+              <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deletemodal"
+                      (click)="obrisiLokaciju(objekat)" *ngIf='mozeSeBrisati'>Obriši</button>
+            </div>
+          </div>
+        </div>
         <div class="card-body">
           <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
               <img class="card-img-top" height="180rem" width="22rem" src="{{objekat.picture}}" alt="Card image cap">
             </div>
-            <div class="col-md-4">
-              <h5 class="card-title">Adresa: {{objekat.address}}</h5>
-              <p class="card-text">Opis: {{objekat.description}}</p>
-              <button class="btn btn-outline-primary" style="margin-right: 3%" type="submit" data-toggle="modal"
-                data-target="#modaluredi" (click)="urediPlace(objekat)">Uredi</button>
-              <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deletemodal"
-                (click)="obrisiLokaciju(place)" *ngIf='mozeSeBrisati'>Obriši</button>
+            <div class="col-md-7">
+              <h5 class="card-title" style="text-align: left; color: #4e555b; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Adresa: {{objekat.address}}</h5>
+              <hr/>
+              <p class="card-text" style="text-align: left;">Opis: {{objekat.description}}</p>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-2"></div>
+    </div>
+
   </div>
 </div>
 

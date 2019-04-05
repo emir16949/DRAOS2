@@ -1,6 +1,6 @@
-<body class="bg-dark" style="background-color: rgb(133,156,154) !important; height: 100vh !important;">
+<body class="bg-dark" style="background-color: lavender !important; height: 100vh !important;">
   <div class="container">
-    <div class="card card-register mx-auto mt-5">
+    <div class="card card-register mx-auto mt-5" style="margin-top: 6rem !important;">
       <div class="card-header">Korisnički profil</div>
       <div class="card-body">
         <form>
@@ -19,7 +19,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Username</label>
+            <label for="exampleInputEmail1">Korisničko ime</label>
             <input class="form-control" [(ngModel)]="user.username" [ngModelOptions]="{standalone: true}" type="email"
               aria-describedby="emailHelp" disabled>
           </div>
@@ -29,17 +29,17 @@
               aria-describedby="emailHelp">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Password</label>
+            <label for="exampleInputEmail1">Šifra</label>
             <input class="form-control" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" type="email"
               aria-describedby="emailHelp">
           </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Potvrdi password</label>
+            <label for="exampleInputEmail1">Potvrdi šifru</label>
             <input class="form-control" [(ngModel)]="ponovniPassword" [ngModelOptions]="{standalone: true}" type="email"
               aria-describedby="emailHelp">
           </div>
-          <button class="btn btn-success btn-block" (click)="urediProfil()" data-toggle="modal"
-            data-target="#modal1">Uredi profil</button>
+          <button class="btn btn-success btn-block" style="background-color: #846e87; border-color: #5c4d5f;" (click)="urediProfil()" data-toggle="modal"
+                  data-target="#modal1">Uredi profil</button>
         </form>
       </div>
     </div>
