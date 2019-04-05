@@ -25,9 +25,9 @@ export class PretragaComponent implements OnInit {
   modal_naziv: any;
   findByEvent: any;
   findByPlace: any;
-  selectedCity = null;
-  selectedPlace = null;
-  selectedCategory = null;
+  selectedCity = 0;
+  selectedPlace = 0;
+  selectedCategory = 0;
   selectedName = null;
   selectedDate = null;
 
@@ -52,20 +52,22 @@ export class PretragaComponent implements OnInit {
     this.cityService.getAllCities().subscribe(data => {
       this.cities = data;
     });
+    // this.searchedEvents = new Set<Event>();
+    // this.events.forEach(element => { this.searchedEvents.add(element); });
   }
 
   pretraziEvente() {
     this.searchedEvents = new Set<Event>();
     this.events.forEach(element => { this.searchedEvents.add(element); });
 
-    if (this.selectedCategory) {
+    if (this.selectedCategory != 0) {
       this.searchedEvents.forEach(element => {
         if (element.category.id != this.selectedCategory) {
           this.searchedEvents.delete(element);
         }
       });
     }
-    if (this.selectedCity) {
+    if (this.selectedCity != 0) {
       this.searchedEvents.forEach(element => {
         if (element.place.city.id != this.selectedCity) {
           this.searchedEvents.delete(element);
@@ -79,19 +81,21 @@ export class PretragaComponent implements OnInit {
         }
       });
     }
-    const names = this.selectedName.split(' ');
-    if (this.selectedName) {
-      this.searchedEvents.forEach(element => {
-        let existName = false;
-        names.forEach(name => {
-          if (element.name.toLowerCase().includes(name.toLowerCase())) {
-            existName = true;
+    if (this.selectedName !== null) {
+      const names = this.selectedName.split(' ');
+      if (this.selectedName) {
+        this.searchedEvents.forEach(element => {
+          let existName = false;
+          names.forEach(name => {
+            if (element.name.toLowerCase().includes(name.toLowerCase())) {
+              existName = true;
+            }
+          });
+          if (existName === false) {
+            this.searchedEvents.delete(element);
           }
         });
-        if (existName === false) {
-          this.searchedEvents.delete(element);
-        }
-      });
+      }
     }
     if (this.selectedDate) {
       const startDate = this.convertDate(this.selectedDate[0]);
@@ -129,16 +133,34 @@ export class PretragaComponent implements OnInit {
   }
 
   onChangedCity() {
-    if (this.selectedCity != null) {
+    if (this.selectedCity != 0) {
       this.placesForDropDown = new Array<Place>();
       this.places.forEach(place => {
         if (place.city.id == this.selectedCity) {
           this.placesForDropDown.push(place);
         }
       });
-      this.selectedPlace = null;
+      this.selectedPlace = 0;
     } else {
       this.placesForDropDown = this.places;
     }
+
+    this.pretraziEvente();
+  }
+
+  onChangedCategory() {
+    this.pretraziEvente();
+  }
+
+  onChangedPlace() {
+    this.pretraziEvente();
+  }
+
+  onChangedDate() {
+    this.pretraziEvente();
+  }
+
+  onChangedName() {
+    this.pretraziEvente();
   }
 }
