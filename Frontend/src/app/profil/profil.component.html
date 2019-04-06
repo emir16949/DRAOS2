@@ -8,13 +8,13 @@
             <div class="form-row">
               <div class="col-md-6">
                 <label for="exampleInputName">Ime</label>
-                <input class="form-control" id="exampleInputName" [(ngModel)]="user.ime"
-                  [ngModelOptions]="{standalone: true}" type="text" aria-describedby="nameHelp">
+                <input class="form-control" id="exampleInputName" [(ngModel)]="user.ime" [ngModelOptions]="{standalone: true}"
+                  type="text" aria-describedby="nameHelp">
               </div>
               <div class="col-md-6">
                 <label for="exampleInputLastName">Prezime</label>
-                <input class="form-control" id="exampleInputLastName" [(ngModel)]="user.prezime"
-                  [ngModelOptions]="{standalone: true}" type="text" aria-describedby="nameHelp">
+                <input class="form-control" id="exampleInputLastName" [(ngModel)]="user.prezime" [ngModelOptions]="{standalone: true}"
+                  type="text" aria-describedby="nameHelp">
               </div>
             </div>
           </div>
@@ -30,16 +30,16 @@
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Šifra</label>
-            <input class="form-control" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" type="email"
+            <input class="form-control" [(ngModel)]="user.password" [ngModelOptions]="{standalone: true}" type="password"
               aria-describedby="emailHelp">
           </div>
           <div class="form-group">
             <label for="exampleInputEmail1">Potvrdi šifru</label>
-            <input class="form-control" [(ngModel)]="ponovniPassword" [ngModelOptions]="{standalone: true}" type="email"
+            <input class="form-control" [(ngModel)]="ponovniPassword" [ngModelOptions]="{standalone: true}" type="password"
               aria-describedby="emailHelp">
           </div>
-          <button class="btn btn-success btn-block" style="background-color: rgba(88, 65, 107, 0.94); border-color: #5c4d5f;" (click)="urediProfil()" data-toggle="modal"
-                  data-target="#modal1">Uredi profil</button>
+          <button class="btn btn-success btn-block" style="background-color: rgba(88, 65, 107, 0.94); border-color: #5c4d5f;"
+            (click)="urediProfil()" data-toggle="modal" data-target="#modal1">Uredi profil</button>
         </form>
       </div>
     </div>
