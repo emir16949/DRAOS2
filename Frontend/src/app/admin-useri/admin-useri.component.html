@@ -61,10 +61,10 @@
               <td>{{user.username}}</td>
               <td>{{user.ime + ' ' + user.prezime}}</td>
               <td>
-                <button (click)="openUserDetails(user)" style="background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
+                <!--<button (click)="openUserDetails(user)" style="background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
                   class="btn btn-primary pregledaj-profil">
                   <i class="fa fa-eye" style="color: rgb(95, 95, 95); font-size: 20px;"></i>
-                </button>
+                </button>-->
                 <button (click)="deleteUser(user)" data-toggle="modal" data-target="#modal1" class="btn btn-danger">
                   <i class="fa fa-trash" style="color: rgb(255, 255, 255); font-size: 20px;"></i>
                 </button>
@@ -76,6 +76,7 @@
     </div>
 
 </div>
+
 
 <div class="modal fade" id="exampleModal19" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
