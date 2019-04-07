@@ -38,12 +38,12 @@ export class LoginComponent implements OnInit {
           data => {
             TokenStorage.saveToken(data.token);
             TokenStorage.saveCurrentUser(this.username);
-            this.appComponent.loggedUser = this.username;
-            this.appComponent.isLoggedIn = true;
-            this.appComponent.isAdmin = this.authService.isAdmin();
             this.success = true;
             setTimeout(() => {
               this.appComponent.goToHomePage();
+              this.appComponent.loggedUser = this.username;
+              this.appComponent.isLoggedIn = true;
+              this.appComponent.isAdmin = this.authService.isAdmin();
             }, 2000);
           },
           error => {
