@@ -16,18 +16,19 @@
     </ul>
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
-        <a *ngIf="isLoggedIn==true" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; cursor: pointer;">
+        <a *ngIf="isLoggedIn==true" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" style="color: white; cursor: pointer;">
           Admin opcije
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a class="dropdown-item" routerLink="/admin-useri" *ngIf="isAdmin==true">Menadžeri</a>
-          <a class="dropdown-item" routerLink="/admin-lokacija">Lokacije</a>
-          <a class="dropdown-item" routerLink="/admin-events">Novi događaj</a>
+          <a class="dropdown-item" (click)="pocistiIndex()" routerLink="/admin-useri"
+            *ngIf="isAdmin==true">Menadžeri</a>
+          <a class="dropdown-item" (click)="pocistiIndex()" routerLink="/admin-lokacija">Lokacije</a>
+          <a class="dropdown-item" (click)="pocistiIndex()" routerLink="/admin-events">Novi događaj</a>
         </div>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn==true">
-        <a class="nav-link" routerLink="/profil"><i class="fa fa-user"
+        <a class="nav-link" routerLink="/profil" (click)="pocistiIndex()"><i class="fa fa-user"
             style="color: white; font-size: 21px; margin-left: 10px;"></i></a>
       </li>
       <li class="nav-item">
@@ -44,7 +45,7 @@
         <a class="nav-link" (click)="login()" style="color: white; cursor: pointer; padding-right: 1rem;">Prijava</a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn==true" style="cursor: pointer; padding-right: 1rem;">
-          <a class="nav-link" (click)="odjaviSe()" style="color: white">Odjava</a>
+        <a class="nav-link" (click)="odjaviSe()" style="color: white">Odjava</a>
       </li>
     </ul>
   </div>

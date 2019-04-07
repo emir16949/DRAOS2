@@ -38,6 +38,7 @@ export class AppComponent implements OnInit {
   pretraga() {
     this.isSearchOpen = !this.isSearchOpen;
     this.router.navigate(['/pretraga']);
+    this.pocistiIndex();
   }
 
   goToHomePage() {
@@ -63,16 +64,26 @@ export class AppComponent implements OnInit {
     this.isLoggedIn = false;
     this.isAdmin = false;
     this.router.navigate(['/login']);
+    this.pocistiIndex();
   }
 
   login() {
     this.router.navigate(['/login']);
+    this.pocistiIndex();
   }
 
   select(index: number) {
     this.selectedIndex = index;
     localStorage.setItem('kategorija', this.items[index].text);
-    this.router.navigate(['/svi-eventi-iz-kategorije']);
-    window.location.reload();
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; };
+    const currentUrl = this.router.url + '?';
+    this.router.navigateByUrl(currentUrl).then(() => {
+      this.router.navigated = false;
+      this.router.navigate(['/svi-eventi-iz-kategorije']);
+    });
+  }
+
+  pocistiIndex() {
+    this.selectedIndex = null;
   }
 }
