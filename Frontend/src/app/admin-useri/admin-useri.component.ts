@@ -51,10 +51,9 @@ export class AdminUseriComponent implements OnInit {
   }
 
   kreirajUsera(): void {
-
     this.korisnik.user_role.id = 2;
-    this.userService.createUser(this.korisnik).subscribe(data => { });
-    window.location.reload();
+    this.userService.createUser(this.korisnik).subscribe();
+    setTimeout(() => { this.getAllUsers(); }, 1000);
   }
 
   keyUpFunction(event): void {

@@ -19,16 +19,16 @@ public class User {
 
   private int id;
   @NotNull
-  @Size(min = 4, max = 10)
+  @Size(min = 4, max = 20)
   private String username;
   @NotNull
-  @Size(min = 2)
+  @Size(min = 6)
   private String password;
   @Email(message = "Email should be valid")
   private String email;
-  @Size(min = 4, max = 10)
+  @Size(min = 4, max = 100)
   private String ime;
-  @Size(min = 4, max = 20)
+  @Size(min = 4, max = 100)
   private String prezime;
   private Role user_role;
   private Set<Place> user_places;

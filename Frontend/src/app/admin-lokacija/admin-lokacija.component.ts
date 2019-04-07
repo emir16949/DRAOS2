@@ -86,8 +86,8 @@ export class AdminLokacijaComponent implements OnInit {
     this.objekat.city.id = this.odabraniGrad;
     this.objekat.picture = this.selectedImage;
     this.objekat.manager.id = this.odabraniMenadzer;
-    this.placeService.createPlace(this.objekat).subscribe(data => { });
-    window.location.reload();
+    this.placeService.createPlace(this.objekat).subscribe();
+    setTimeout(() => { this.getAllPlaces(); }, 1000);
   }
 
   prikaziDetalje(place) {
@@ -97,8 +97,8 @@ export class AdminLokacijaComponent implements OnInit {
   }
 
   sacuvajIzmjenePlace() {
-    this.placeService.changePlace(this.objekatPut).subscribe(data => { });
-    window.location.reload();
+    this.placeService.changePlace(this.objekatPut).subscribe();
+    setTimeout(() => { this.getAllPlaces(); }, 1000);
   }
 
   urediPlace(place) {
@@ -111,10 +111,10 @@ export class AdminLokacijaComponent implements OnInit {
   }
 
   obrisiLokaciju(place) {
-    this.placeService.deletePlace(place.id).subscribe(data => { });
+    this.placeService.deletePlace(place.id).subscribe();
   }
 
   zatvori() {
-    window.location.reload();
+    this.getAllPlaces();
   }
 }

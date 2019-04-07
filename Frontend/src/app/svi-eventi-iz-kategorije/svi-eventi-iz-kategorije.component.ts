@@ -43,11 +43,6 @@ export class SviEventiIzKategorijeComponent implements OnInit {
     this.router.navigate(['/detalji-eventa', this.selectedEvent.id]);
   }
 
-  obrisi(event: any) {
-    this.eventService.deleteEvent(event.id).subscribe();
-    window.location.reload();
-  }
-
   prikaziDetaljeIzmjena(event) {
     this.eventPut = event;
     this.modal_naziv = event.name;

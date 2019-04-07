@@ -36,8 +36,4 @@ export class ProfilComponent implements OnInit {
       });
     }
   }
-
-  zatvori() {
-    window.location.reload();
-  }
 }
