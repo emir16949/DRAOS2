@@ -2,57 +2,55 @@
     <div class="col-md-10" style="margin: auto; margin-bottom: 2rem;">
       <div class="row">
         <div class="col-md-12" style="margin-top: 2rem;">
-          <h2 style="text-align: left; margin-left: 7%">DOGAĐAJI</h2>
+          <h2 style="text-align: left; margin-left: 7%">NOVI DOGAĐAJ</h2>
         </div>
       </div>
       <hr />
     </div>
 
-      <div class="col-md-10" style="margin: auto;">
-        <div class="row" style="margin-top: 20px !important;">
+      <div class="col-md-8" style="margin: auto; border-style: solid; border-color: #c2c2d6; border-radius: 8px;">
+        <div class="row" style="margin-top: 2rem;">
           <div class="col-md-12">
             <form>
               <div class="form-group">
-                <label for="recipient-name" class="col-form-label"> Naziv događaja: </label>
+                <label for="recipient-name" class="col-form-label" style="float: left;"> Naziv događaja </label>
                 <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="event.name"
                   [ngModelOptions]="{standalone: true}">
               </div>
               <div class="form-group">
-                <label for="recipient-name" class="col-form-label"> Datum i vrijeme: </label><br>
-                <input type="date" name="bday"
-                  style="border-width: 1px; padding: 10px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;"
-                  [(ngModel)]="event.date_time" [ngModelOptions]="{standalone: true}">
-              </div>
-              <div class="form-group">
-                <label for="detalji_zahtjev" class="col-form-label">Opis:</label>
+                <label for="detalji_zahtjev" class="col-form-label" style="float: left;">Detalji</label>
                 <textarea class="form-control" id="opis_objekta" style="height: 150px" [(ngModel)]="event.description"
                   [ngModelOptions]="{standalone: true}"></textarea>
               </div>
               <div class="form-group">
-                <label for="hitnost" class="col-form-label">Izaberi kategoriju:</label>
+                <label for="hitnost" class="col-form-label" style="float: left;">Izaberi kategoriju</label>
                 <select class="form-control" id="hitnost" [(ngModel)]="odabranaCategory" name="categories">
                   <option *ngFor="let p of categories" [value]="p.id">{{p.name}}</option>
                 </select>
               </div>
               <div class="form-group">
-                <label for="hitnost" class="col-form-label">Izaberi lokaciju:</label>
+                <label for="hitnost" class="col-form-label" style="float: left;">Izaberi lokaciju</label>
                 <select class="form-control" id="hitnost" [(ngModel)]="odabraniPlace" name="places">
                   <option *ngFor="let p of places" [value]="p.id">{{p.name}}</option>
                 </select>
               </div>
-              <div class="form-group">
-                <label for="recipient-name" class="col-form-label"> Slika: <br></label>
-                <input #file id="file" type="file" (change)="onUploadChange($event)" />
+              <div class="form-group" style="text-align: left">
+                <label for="recipient-name" class="col-form-label"> Datum i vrijeme </label>
+                <input type="date" name="bday"
+                       style="margin-left: 1rem; border-width: 1px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;"
+                       [(ngModel)]="event.date_time" [ngModelOptions]="{standalone: true}">
+              </div><br>
+              <div class="form-group" style="text-align: left">
+                <label for="recipient-name" class="col-form-label"> Fotografija </label>
+                <input #file id="file" type="file" (change)="onUploadChange($event)" style="margin-left: 3rem;"/>
+              </div>
+              <div class="form-group" >
+                <button type="button" class="btn btn-success" style="width: 100%; border-color: #5c4d5f; background-color: rgba(88, 65, 107, 0.94);" data-dismiss="modal" id="btn_podnesi_zahtjev"
+                        (click)="kreirajEvent()" data-toggle="modal" data-target="#modal1">Spremi
+                </button>
               </div>
             </form>
         </div>
-      </div>
-    </div>
-    <div class="row" style="margin-top: 10px; margin-bottom: 50px;">
-      <div class="col-9" style="margin: auto;">
-        <button type="button" class="btn btn-success" style="width: 100%;" data-dismiss="modal" id="btn_podnesi_zahtjev"
-          (click)="kreirajEvent()" data-toggle="modal" data-target="#modal1">Spremi
-        </button>
       </div>
     </div>
 
