@@ -33,7 +33,9 @@ public class EventService {
 
   public List<Event> getAll() throws ServiceException {
     try {
-      return eventRepository.findAll();
+      List<Event> events = eventRepository.findAll();
+      Collections.sort(events, new SortByDate());
+      return events;
     } catch (Exception e) {
       throw new ServiceException("Cannot fetch all events.");
     }
