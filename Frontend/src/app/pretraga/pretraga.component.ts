@@ -156,7 +156,8 @@ export class PretragaComponent implements OnInit {
     this.pretraziEvente();
   }
 
-  onChangedDate() {
+  onChangedDate(event) {
+    this.selectedDate = event;
     this.pretraziEvente();
   }
 
