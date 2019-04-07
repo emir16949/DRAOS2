@@ -6,6 +6,7 @@ import static com.eventpage.Security.Constants.TOKEN_PREFIX;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import java.io.IOException;
+import java.util.logging.Logger;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +25,10 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
   @Qualifier("userDetailsService")
   @Autowired
   private UserDetailsService userDetailsService;
-
   @Autowired
   private JwtTokenUtil jwtTokenUtil;
+  private static Logger log = Logger.getLogger("JwtAuthenticationFilter");
+
 
   @Override
   protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res,

@@ -2,6 +2,7 @@ package com.eventpage.Security;
 
 import com.eventpage.Model.User;
 import com.eventpage.Service.UserService;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.ResponseEntity;
@@ -18,22 +19,17 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/token")
-public class
-
-
-
-
-AuthenticationController {
+public class AuthenticationController {
 
   @Autowired
   private AuthenticationManager authenticationManager;
-
   @Autowired
   private JwtTokenUtil jwtTokenUtil;
-
   @Autowired
   @Qualifier("userDetailsService")
   private UserService userDetailsService;
+  private static Logger log = Logger.getLogger("AuthenticationController");
+
 
   @PostMapping(value = "/generate-token")
   public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginUser loginUser) {

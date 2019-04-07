@@ -5,6 +5,7 @@ import com.eventpage.Repository.UserRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -18,6 +19,7 @@ public class UserServiceForCRUD {
 
   private final UserRepository userRepository;
   private final BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
+  private static Logger log = Logger.getLogger("UserServiceForCRUD");
 
   @Autowired
   public UserServiceForCRUD(UserRepository usersRepository) {
@@ -77,17 +79,13 @@ public class UserServiceForCRUD {
     }
   }
 
-  public String putChangeUser(User u) throws ServiceException {
+  public User putChangeUser(User user) throws ServiceException {
     try {
-      Optional userHelp = userRepository.findById(u.getId());
-      User user = (User) userHelp.get();
-      user.setIme(u.getIme());
-      user.setPrezime(u.getPrezime());
-      user.setEmail(u.getEmail());
+      user.setPassword(bcrypt.encode(user.getPassword()));
       userRepository.save(user);
-      return "\"User with id = " + u.getId() + " saved successfully\"";
+      return user;
     } catch (Exception e) {
-      throw new ServiceException("Cannot update user with id = " + u.getId() + ".");
+      throw new ServiceException("Cannot update user with id = " + user.getId() + ".");
     }
   }
 

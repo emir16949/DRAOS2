@@ -76,8 +76,7 @@ export class AdminUseriComponent implements OnInit {
           this.searchedUsers.delete(element);
         }
       });
-    }
-    else {
+    } else {
       this.searchedUsers = null;
     }
   }

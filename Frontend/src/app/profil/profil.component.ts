@@ -31,7 +31,9 @@ export class ProfilComponent implements OnInit {
     if (this.user.password !== this.ponovniPassword) {
       alert('Password I ponovljeni password se ne slažu. Molimo unesite ih ponovo.');
     } else {
-      this.userService.updateUser(this.user).subscribe();
+      this.userService.updateUser(this.user).subscribe(data => {
+        alert('Korisnik uspješno editovan.');
+      });
     }
   }
 
