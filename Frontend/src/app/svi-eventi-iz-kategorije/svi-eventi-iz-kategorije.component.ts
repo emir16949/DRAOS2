@@ -66,4 +66,8 @@ export class SviEventiIzKategorijeComponent implements OnInit {
   mouseLeave() {
     this.mouseEnterHover = false;
   }
+
+  clickOnCarouselItem(event) {
+    this.router.navigate(['/detalji-eventa', event.id]);
+  }
 }

@@ -41,7 +41,8 @@ export class AdminUseriComponent implements OnInit {
   }
 
   deleteUser(user) {
-    this.userService.deleteUserById(user.id).subscribe(data => console.log(data));
+    this.userService.deleteUserById(user.id).subscribe();
+    setTimeout(() => { this.getAllUsers(); }, 1000);
   }
 
   pretragaUsername() {
