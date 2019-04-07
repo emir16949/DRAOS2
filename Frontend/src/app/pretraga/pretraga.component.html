@@ -36,7 +36,7 @@
         <input type="text" class="form-control" id="naziv_objekta" (change)="onChangedName()" [(ngModel)]="selectedName"
           placeholder="Pretraži" [ngModelOptions]="{standalone: true}" />
       </div>
-      <div class="col-1" style="padding: 0px;">
+      <div class="col-1" style="padding: 0px;padding-left: 2rem">
         <label style="color: transparent">Pretraga</label>
         <button (click)="pretraziEvente()" style="float: left; background-color: white; border-width: 1px; border-color: rgb(216, 216, 216);"
           data-toggle="modal" data-target="#exampleModal19" class="btn btn-primary">
@@ -48,7 +48,7 @@
 </div>
 
 
-<main role="main" style="background-color: lavender; margin: 0px">
+<main role="main" style="background-color: lavender; margin: 0px; min-height: 100%; margin: 0; padding: 0; padding-top: 1rem;">
   <div class="row" style="margin-left: 10%; margin-right: 10%;">
     <div class="col-4" *ngFor="let event of searchedEvents, let i = index" [class.selected]="event === selectedEvent"
       style="margin-bottom: 2%;">

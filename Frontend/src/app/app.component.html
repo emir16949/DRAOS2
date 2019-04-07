@@ -17,7 +17,7 @@
     <ul class="navbar-nav ml-auto">
       <li class="nav-item dropdown">
         <a *ngIf="isLoggedIn==true" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
-          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white">
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: white; cursor: pointer;">
           Admin opcije
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -33,7 +33,7 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/"></a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" style="cursor: pointer">
         <a class="nav-link" data-toggle="modal" (click)="pretraga()"><i class="fa fa-search"
             style="color: white; font-size: 18px;"></i></a>
       </li>
@@ -41,13 +41,10 @@
         <a class="nav-link" routerLink="/"></a>
       </li>
       <li class="nav-item" *ngIf="isLoggedIn==false">
-        <a class="nav-link" (click)="login()" style="color: white">Login</a>
+        <a class="nav-link" (click)="login()" style="color: white; cursor: pointer; padding-right: 1rem;">Prijava</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" routerLink="/"></a>
-      </li>
-      <li class="nav-item" *ngIf="isLoggedIn==true">
-        <a class="nav-link" (click)="odjaviSe()" style="color: white">Odjavi se</a>
+      <li class="nav-item" *ngIf="isLoggedIn==true" style="cursor: pointer; padding-right: 1rem;">
+          <a class="nav-link" (click)="odjaviSe()" style="color: white">Odjava</a>
       </li>
     </ul>
   </div>
