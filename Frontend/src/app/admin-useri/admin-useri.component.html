@@ -1,51 +1,55 @@
 <div class="text-center" style="margin-top: 4rem;">
-    <div class="col-md-10" style="margin: auto; margin-bottom: 2rem;">
-      <div class="row">
-        <div class="col-md-10" style="margin-top: 2rem;">
-          <h2 style="text-align: left; margin-left: 7%">MENADŽERI</h2>
-        </div>
-        <div class="col-md-2" style="margin-top: 2rem;">
-          <button style="width: 40%; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
-                  data-toggle="modal" data-target="#exampleModal19" class="btn btn-primary">
-            <i class="fa fa-user-plus" style="color: rgb(71, 71, 71); font-size: 20px;"></i>
-          </button>
+  <div class="col-md-10" style="margin: auto; margin-bottom: 2rem;">
+    <div class="row">
+      <div class="col-md-10" style="margin-top: 2rem;">
+        <h2 style="text-align: left; margin-left: 7%">MENADŽERI</h2>
+      </div>
+      <div class="col-md-2" style="margin-top: 2rem;">
+        <button style="width: 40%; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
+          data-toggle="modal" data-target="#exampleModal19" class="btn btn-primary">
+          <i class="fa fa-user-plus" style="color: rgb(71, 71, 71); font-size: 20px;"></i>
+        </button>
+      </div>
+    </div>
+    <hr />
+  </div>
+  <div class="col-md-10" style="margin: auto; ">
+    <div class="row" style="margin-top: 4rem !important; margin-bottom: 1.5rem !important;">
+      <div class="col-md-2" style="padding-right: 0px;">
+        <div class="navbar navbar-expand-lg navbar-light" style="margin-right: 0px !important; margin: auto;">
+          <!-- <ul class="navbar-nav ml-auto" style="margin-left: 0px !important;">
+            <li class="nav-item dropdown">
+              <a *ngIf="isAdmin==true" style="padding: 0px !important; float:left;" class="nav-link dropdown-toggle"
+                href="#" id="navbarDropdownMenuLink" aria-haspopup="true" aria-expanded="false">
+                Pretraži: </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" [ngModel]="selectedDropdow">
+                <a class="dropdown-item">Korisničko ime</a>
+                <a class="dropdown-item">Ime i/ili prezime</a>
+                <a class="dropdown-item">E-mail</a>
+                <a class="dropdown-item">Objekat</a>
+              </div>
+            </li>
+          </ul> -->
+          <p>Pretraži: </p>
         </div>
       </div>
-      <hr />
+      <div class="col-md-8" style="padding-left: 0px;">
+        <input type="text" style="float: left;" placeholder="Pretraži po imenu ili prezimenu ili emailu ili usernameu"
+          class="form-control" id="naziv_objekta" [(ngModel)]="username_pretraga" [ngModelOptions]="{standalone: true}"
+          (keyup)="keyUpFunction($event)">
+      </div>
+      <div class="col-md-2" style="padding-left: 0px;">
+        <!-- <button (click)="pretragaUsername()" style="float: inside; margin-left: 6%; width: 38%; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
+          data-toggle="modal" data-target="#exampleModal2" class="btn btn-primary">
+          <i class="fa fa-search" style="color: rgb(71, 71, 71); font-size: 18px;"></i>
+        </button> -->
+      </div>
     </div>
-    <div class="col-md-10" style="margin: auto; ">
-      <div class="row" style="margin-top: 4rem !important; margin-bottom: 1.5rem !important;">
-          <div class="col-md-2" style="padding-right: 0px;">
-            <div class="navbar navbar-expand-lg navbar-light" style="margin-right: 0px !important; margin: auto;">
-              <ul class="navbar-nav ml-auto" style="margin-left: 0px !important;">
-                <li class="nav-item dropdown">
-                  <a *ngIf="isAdmin==true" style="padding: 0px !important; float:left;" class="nav-link dropdown-toggle"
-                     href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Pretraži po: </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" routerLink="/admin-useri">Korisničko ime</a>
-                    <a class="dropdown-item" routerLink="/admin-lokacija">Ime i/ili prezime</a>
-                    <a class="dropdown-item" routerLink="/admin-kategorije">E-mail</a>
-                    <a class="dropdown-item" routerLink="/admin-events">Objekat</a>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md-8" style="padding-left: 0px;">
-            <input type="text" style="float: left;" placeholder="Pretraži" class="form-control" id="naziv_objekta"
-                   [(ngModel)]="username_pretraga" [ngModelOptions]="{standalone: true}">
-          </div>
-          <div class="col-md-2" style="padding-left: 0px;">
-            <button (click)="pretragaUsername()" style="float: inside; margin-left: 6%; width: 38%; background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
-                    data-toggle="modal" data-target="#exampleModal2" class="btn btn-primary">
-              <i class="fa fa-search" style="color: rgb(71, 71, 71); font-size: 18px;"></i>
-            </button>
-          </div>
-       </div>
-    </div>
-    <div class="row">
-      <div class="col-md-10" style="margin: auto;">
+  </div>
+  <div class="row">
+    <div class="col-md-10" style="margin: auto;">
+
+      <div *ngIf="searchedUsers === null">
         <table class="table table-hover">
           <thead>
             <tr>
@@ -73,7 +77,37 @@
           </tbody>
         </table>
       </div>
+      <div *ngIf="searchedUsers">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Korisničko ime</th>
+              <th scope="col">Ime i prezime</th>
+              <th scope="col">Akcije</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let user of searchedUsers, let i = index">
+            <tr>
+              <th scope="row">{{i + 1}}</th>
+              <td>{{user.username}}</td>
+              <td>{{user.ime + ' ' + user.prezime}}</td>
+              <td>
+                <!--<button (click)="openUserDetails(user)" style="background-color: inherit; border-width: 1px; border-color: rgb(216, 216, 216)"
+                  class="btn btn-primary pregledaj-profil">
+                  <i class="fa fa-eye" style="color: rgb(95, 95, 95); font-size: 20px;"></i>
+                </button>-->
+                <button (click)="deleteUser(user)" data-toggle="modal" data-target="#modal1" class="btn btn-danger">
+                  <i class="fa fa-trash" style="color: rgb(255, 255, 255); font-size: 20px;"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
     </div>
+  </div>
 
 </div>
 
@@ -91,7 +125,7 @@
             <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.ime" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label"> Prezime  </label>
+            <label for="recipient-name" class="col-form-label"> Prezime </label>
             <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.prezime" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
