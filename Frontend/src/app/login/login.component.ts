@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   username: any;
   password: any;
+  error: any = "";
+  success: any = false;
 
   constructor(private router: Router,
     private authService: AuthService,
@@ -23,26 +25,46 @@ export class LoginComponent implements OnInit {
   }
 
   prijaviSe(): void {
-    this.authService.attemptAuth(this.username, this.password)
-      .subscribe(
-        data => {
-          TokenStorage.saveToken(data.token);
-          TokenStorage.saveCurrentUser(this.username);
-          this.appComponent.goToHomePage();
-          this.appComponent.loggedUser = this.username;
-          this.appComponent.isLoggedIn = true;
-          this.appComponent.isAdmin = this.authService.isAdmin();
-        },
-        error => {
-          console.error('Login failed...' + error);
-          alert("Prijava nije uspjela. Pokušajte ponovo.");
-          //  this.alert.open('Login failed. Wrong username or password!', null, { duration: 3000 });
-        },
-        () => {
-          //          alert("Korisnik @" + this.username + " je uspješno prijavljen.");
-          //this.alert.open('Login successful', null, { duration: 3000 });
-        }
-      );
+    if(!this.password)
+      this.error = "* Šifra je obavezan unos.";
+
+    if(!this.username){
+      this.error = "* Korisničko ime je obavezan unos.";
+    }
+
+    if(this.error === ""){
+      this.authService.attemptAuth(this.username, this.password)
+        .subscribe(
+          data => {
+            TokenStorage.saveToken(data.token);
+            TokenStorage.saveCurrentUser(this.username);
+            this.appComponent.loggedUser = this.username;
+            this.appComponent.isLoggedIn = true;
+            this.appComponent.isAdmin = this.authService.isAdmin();
+            this.success = true;
+            setTimeout(() => {
+              this.appComponent.goToHomePage();
+            }, 2000);
+          },
+          error => {
+            this.error = "* Korisničko ime ili lozinka nisu ispravni. Ponovite unos.";
+            this.password = "";
+          },
+          () => {
+            this.success = true;
+            //          alert("Korisnik @" + this.username + " je uspješno prijavljen.");
+            //this.alert.open('Login successful', null, { duration: 3000 });
+          }
+        );
+    }
+  }
+
+  onChangeUsername(){
+    this.error = "";
+  }
+
+  onChangePassword(){
+    this.error = "";
   }
 
   keyDownFunction(event) {

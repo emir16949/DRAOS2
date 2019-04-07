@@ -15,8 +15,8 @@
   </div>
   <div class="col-md-10" style="margin: auto; ">
     <div class="row" style="margin-top: 4rem !important; margin-bottom: 1.5rem !important;">
-      <div class="col-md-2" style="padding-right: 0px;">
-        <div class="navbar navbar-expand-lg navbar-light" style="margin-right: 0px !important; margin: auto;">
+      <div class="col-md-1">
+        <div class="navbar navbar-expand-lg navbar-light" style="margin-right: 20px !important; margin: auto;">
           <!-- <ul class="navbar-nav ml-auto" style="margin-left: 0px !important;">
             <li class="nav-item dropdown">
               <a *ngIf="isAdmin==true" style="padding: 0px !important; float:left;" class="nav-link dropdown-toggle"
@@ -30,11 +30,11 @@
               </div>
             </li>
           </ul> -->
-          <p>Pretraži: </p>
+          <i class="fa fa-search" style="color: #444444; font-size: 20px;"></i>
         </div>
       </div>
-      <div class="col-md-8" style="padding-left: 0px;">
-        <input type="text" style="float: left;" placeholder="Pretraži po imenu ili prezimenu ili emailu ili usernameu"
+      <div class="col-md-9" style="padding-left: 0rem;">
+        <input type="text" style="float: left;" placeholder="Pretraži po ime/prezime/email/korisničko ime"
           class="form-control" id="naziv_objekta" [(ngModel)]="username_pretraga" [ngModelOptions]="{standalone: true}"
           (keyup)="keyUpFunction($event)">
       </div>
