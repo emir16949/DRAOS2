@@ -89,6 +89,20 @@ public class UserServiceForCRUD {
     }
   }
 
+  public User putChangeUserWithoutPassword(User user) throws ServiceException {
+    try {
+      Optional userHelp = userRepository.findById(user.getId());
+      User userToSave = (User) userHelp.get();
+      userToSave.setIme(user.getIme());
+      userToSave.setPrezime(user.getPrezime());
+      userToSave.setEmail(user.getEmail());
+      userRepository.save(userToSave);
+      return userToSave;
+    } catch (Exception e) {
+      throw new ServiceException("Cannot update user with id = " + user.getId() + ".");
+    }
+  }
+
   public List<User> getByUsername(String username) throws ServiceException {
     try {
       List<User> users = userRepository.findAll();

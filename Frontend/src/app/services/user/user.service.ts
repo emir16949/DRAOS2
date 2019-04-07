@@ -45,6 +45,16 @@ export class UserService {
     return this.http.put(this.USER_API, user, httpOptions);
   }
 
+  updateUserWithoutPassword(user: User): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+
+    return this.http.put(this.USER_API + '/withoutPassword', user, httpOptions);
+  }
+
   getAllUsers(): Observable<any> {
     return this.http.get(this.USER_API + '/all');
   }

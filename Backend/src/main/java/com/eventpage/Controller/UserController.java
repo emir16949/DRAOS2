@@ -62,6 +62,12 @@ public class UserController {
     return ResponseEntity.ok(userServiceForCRUD.putChangeUser(user));
   }
 
+  @PutMapping(value = "/withoutPassword")
+  public ResponseEntity putChangeUserWithoutPassword(@RequestBody User user)
+      throws ServiceException {
+    return ResponseEntity.ok(userServiceForCRUD.putChangeUserWithoutPassword(user));
+  }
+
   @GetMapping(value = "/username/{name}")
   public ResponseEntity getByTitle(@PathVariable("name") String name) throws ServiceException {
     return ResponseEntity.ok(userServiceForCRUD.getByUsername(name));
