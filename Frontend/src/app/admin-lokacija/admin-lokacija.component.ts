@@ -117,6 +117,22 @@ export class AdminLokacijaComponent implements OnInit {
       this.errorAdresa = " *";
       errorExist = true;
     }
+    if (errorExist === false && this.objekat.name.length < 3) {
+      this.error = " *Uneseni tekst je prekratak.";
+      this.errorNaziv = " *";
+      errorExist = true;
+    }
+    if (errorExist === false && this.objekat.description.length < 50) {
+      this.error = " *Uneseni tekst je prekratak.";
+      this.errorDetalji = " *";
+      errorExist = true;
+    }
+    if (errorExist === false && this.objekat.address.length < 5) {
+      this.error = " *Uneseni tekst je prekratak.";
+      this.errorAdresa = " *";
+      errorExist = true;
+    }
+
 
     if (errorExist === false) {
       this.objekat.city.id = this.odabraniGrad;
