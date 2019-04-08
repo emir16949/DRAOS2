@@ -6,8 +6,7 @@
         <h2 style="text-align: left; margin-left: 7%">LOKACIJE</h2>
       </div>
       <div class="col-md-2" style="margin-top: 2rem;">
-        <button class="btn btn-outline-secondary" type="submit" data-toggle="modal" data-target="#exampleModal"
-          style="width: 40%;">+</button>
+        <button class="btn btn-outline-secondary" type="submit" data-toggle="modal" data-target="#exampleModal" style="width: 40%;">+</button>
       </div>
     </div>
     <hr />
@@ -16,35 +15,36 @@
   <div class="col-md-10" style="margin: auto;">
 
     <div class="row">
-    <div class="col-md-6" *ngFor="let objekat of places">
-      <div class="card" style="margin-bottom: 5% !important; height: 90% !important;">
-        <div class="card-header">
-          <div class="row">
-            <div class="col-md-8">
-              <h4 style="margin-top: 0.5rem; float: left;">{{objekat.name}}</h4>
-            </div>
-            <div class="col-md-4" style="padding-right: 0px; ">
-              <button class="btn btn-outline-primary" style="float: right; border-color: #4e555b; color: #4e555b; margin-right: 10%" type="submit" data-toggle="modal"
-                      data-target="#modaluredi" (click)="urediPlace(objekat)">Uredi</button>
-              <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deletemodal"
-                      (click)="obrisiLokaciju(objekat)" *ngIf='mozeSeBrisati'>Obriši</button>
+      <div class="col-md-6" *ngFor="let objekat of places">
+        <div class="card" style="margin-bottom: 5% !important; height: 90% !important;">
+          <div class="card-header">
+            <div class="row">
+              <div class="col-md-8">
+                <h4 style="margin-top: 0.5rem; float: left;">{{objekat.name}}</h4>
+              </div>
+              <div class="col-md-4" style="padding-right: 0px; ">
+                <button class="btn btn-outline-primary" style="float: right; border-color: #4e555b; color: #4e555b; margin-right: 10%"
+                  type="submit" data-toggle="modal" data-target="#modaluredi" (click)="urediPlace(objekat)">Uredi</button>
+                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deletemodal" (click)="obrisiLokaciju(objekat)"
+                  *ngIf='mozeSeBrisati'>Obriši</button>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="card-body">
-          <div class="row">
-            <div class="col-md-5">
-              <img class="card-img-top" height="180rem" width="22rem" src="{{objekat.picture}}" alt="Card image cap">
-            </div>
-            <div class="col-md-7">
-              <h5 class="card-title" style="text-align: left; color: #4e555b; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Adresa: {{objekat.address}}</h5>
-              <hr/>
-              <p class="card-text" style="text-align: left;">Opis: {{objekat.description}}</p>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-5">
+                <img class="card-img-top" height="180rem" width="22rem" src="{{objekat.picture}}" alt="Card image cap">
+              </div>
+              <div class="col-md-7">
+                <h5 class="card-title" style="text-align: left; color: #4e555b; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Adresa:
+                  {{objekat.address}}</h5>
+                <hr />
+                <p class="card-text" style="text-align: left;">Opis: {{objekat.description}}</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
 
   </div>
@@ -63,24 +63,21 @@
         </div>
     </div>-->
 
-<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="exampleModalLabel"> Lokacija uspješno obrisana :)</h3>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal"
-          (click)="zatvori()">Zatvori</button>
+        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="zatvori()">Zatvori</button>
       </div>
     </div>
   </div>
 </div>
 
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -90,22 +87,24 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Naziv objekta </label>
-            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="objekat.name"
-              [ngModelOptions]="{standalone: true}">
+            <label style="color: red; font-size: 14px;">{{errorNaziv}}</label>
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="objekat.name" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Link postojeće web-stranice objekta
             </label>
-            <input type="text" class="form-control" id="link_objekta" [(ngModel)]="objekat.place_url"
-              [ngModelOptions]="{standalone: true}">
+            <label style="color: red; font-size: 14px;">{{errorLink}}</label>
+            <input type="text" class="form-control" id="link_objekta" [(ngModel)]="objekat.place_url" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
             <label for="detalji_zahtjev" class="col-form-label">Detalji</label>
+            <label style="color: red; font-size: 14px;">{{errorDetalji}}</label>
             <textarea class="form-control" id="opis_objekta" style="height: 150px" [(ngModel)]="objekat.description"
               [ngModelOptions]="{standalone: true}"></textarea>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Grad</label>
+            <label style="color: red; font-size: 14px;">{{errorGrad}}</label>
             <br>
             <select class="form-control" id="hitnost" [(ngModel)]="odabraniGrad" name="cities">
               <option *ngFor="let a of cities" [value]="a.id">{{a.name}}</option>
@@ -113,11 +112,12 @@
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Adresa </label>
-            <input type="text" class="form-control" id="adresa_objekta" [(ngModel)]="objekat.address"
-              [ngModelOptions]="{standalone: true}">
+            <label style="color: red; font-size: 14px;">{{errorAdresa}}</label>
+            <input type="text" class="form-control" id="adresa_objekta" [(ngModel)]="objekat.address" [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Menadžer objekta (korisničko ime)</label>
+            <label style="color: red; font-size: 14px;">{{errorMenadzer}}</label>
             <br>
             <select class="form-control" id="hitnost" [(ngModel)]="odabraniMenadzer" name="users">
               <option *ngFor="let a of users" [value]="a.id">{{a.username}}</option>
@@ -127,6 +127,7 @@
             <label for="recipient-name" class="col-form-label"> Fotografija <br></label>
             <input #file id="file" type="file" (change)="onUploadChange($event)" />
           </div>
+          <label style="color: red; font-size: 13px;">{{error}}</label>
         </form>
       </div>
       <div class="modal-footer">
@@ -138,8 +139,7 @@
 </div>
 
 
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -168,8 +168,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="modaluredi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div class="modal fade" id="modaluredi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -179,13 +178,13 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Naziv objekta</label>
-            <input type="text" class="form-control" id="naziv_usluga" value="{{ modal_naziv }}"
-              [(ngModel)]="objekatPut.name" [ngModelOptions]="{standalone: true}">
+            <input type="text" class="form-control" id="naziv_usluga" value="{{ modal_naziv }}" [(ngModel)]="objekatPut.name"
+              [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
             <label for="message-text" class="col-form-label">Detalji</label>
-            <textarea class="form-control" id="opis_usluga" value="{{ modal_opis }}"
-              [(ngModel)]="objekatPut.description" [ngModelOptions]="{standalone: true}"></textarea>
+            <textarea class="form-control" id="opis_usluga" value="{{ modal_opis }}" [(ngModel)]="objekatPut.description"
+              [ngModelOptions]="{standalone: true}"></textarea>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Adresa</label>
@@ -196,8 +195,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_podnesi_zahtjev"
-          (click)="sacuvajIzmjenePlace()">Spremi</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_podnesi_zahtjev" (click)="sacuvajIzmjenePlace()">Spremi</button>
       </div>
     </div>
   </div>

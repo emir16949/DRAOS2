@@ -31,6 +31,14 @@ export class AdminLokacijaComponent implements OnInit {
   @ViewChild('file') el: ElementRef;
   uploadedFile: string;
   mozeSeBrisati = true;
+  error: string;
+  errorNaziv: string;
+  errorLink: string;
+  errorDetalji: string;
+  errorGrad: string;
+  errorAdresa: string;
+  errorMenadzer: string;
+
 
   constructor(
     private placeService: PlaceService,
@@ -83,11 +91,40 @@ export class AdminLokacijaComponent implements OnInit {
   }
 
   kreirajObjekat() {
-    this.objekat.city.id = this.odabraniGrad;
-    this.objekat.picture = this.selectedImage;
-    this.objekat.manager.id = this.odabraniMenadzer;
-    this.placeService.createPlace(this.objekat).subscribe();
-    setTimeout(() => { this.getAllPlaces(); }, 1000);
+    let errorExist = false;
+    if (!this.objekat.name) {
+      this.error = " *Obavezno polje";
+      this.errorNaziv = " *";
+      errorExist = true;
+    }
+    if (!this.objekat.description) {
+      this.error = " *Obavezno polje";
+      this.errorDetalji = " *";
+      errorExist = true;
+    }
+    if (!this.odabraniGrad) {
+      this.error = " *Obavezno polje";
+      this.errorGrad = " *";
+      errorExist = true;
+    }
+    if (!this.odabraniMenadzer) {
+      this.error = " *Obavezno polje";
+      this.errorMenadzer = " *";
+      errorExist = true;
+    }
+    if (!this.objekat.address) {
+      this.error = " *Obavezno polje";
+      this.errorAdresa = " *";
+      errorExist = true;
+    }
+
+    if (errorExist === false) {
+      this.objekat.city.id = this.odabraniGrad;
+      this.objekat.picture = this.selectedImage;
+      this.objekat.manager.id = this.odabraniMenadzer;
+      this.placeService.createPlace(this.objekat).subscribe();
+      setTimeout(() => { this.getAllPlaces(); }, 1000);
+    }
   }
 
   prikaziDetalje(place) {
