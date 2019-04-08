@@ -93,9 +93,19 @@ export class AdminUseriComponent implements OnInit {
         }
       });
     }
-    if (errorExist === false) {
-
+    if (this.korisnik.ime.length < 3) {
+      if (errorExist === false)
+        this.error = " *Uneseni tekst je prekratak.";
+      this.errorIme = " *";
+      errorExist = true;
     }
+    if (this.korisnik.prezime.length < 3) {
+      if (errorExist === false)
+        this.error = " *Uneseni tekst je prekratak.";
+      this.errorPrezime = " *";
+      errorExist = true;
+    }
+
     if (errorExist === false) {
       this.korisnik.user_role.id = 2;
       this.userService.createUser(this.korisnik).subscribe();
