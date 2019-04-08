@@ -19,6 +19,12 @@ export class AdminUseriComponent implements OnInit {
   isLoggedIn = true;
   searchedUsers: Set<User> = null;
   selectedDropdow: string;
+  error: string;
+  errorIme: string;
+  errorPrezime: string;
+  errorUsername: string;
+  errorEmail: string;
+  errorSifra: string;
 
   constructor(
     private router: Router,
@@ -52,9 +58,49 @@ export class AdminUseriComponent implements OnInit {
   }
 
   kreirajUsera(): void {
-    this.korisnik.user_role.id = 2;
-    this.userService.createUser(this.korisnik).subscribe();
-    setTimeout(() => { this.getAllUsers(); }, 1000);
+    let errorExist = false;
+    if (!this.korisnik.ime) {
+      this.error = " *Obavezno polje";
+      this.errorIme = " *";
+      errorExist = true;
+    }
+    if (!this.korisnik.prezime) {
+      this.error = " *Obavezno polje";
+      this.errorPrezime = " *";
+      errorExist = true;
+    }
+    if (!this.korisnik.username) {
+      this.error = " *Obavezno polje";
+      this.errorUsername = " *";
+      errorExist = true;
+    }
+    if (!this.korisnik.email) {
+      this.error = " *Obavezno polje";
+      this.errorEmail = " *";
+      errorExist = true;
+    }
+    if (!this.korisnik.password) {
+      this.error = " *Obavezno polje";
+      this.errorSifra = " *";
+      errorExist = true;
+    }
+    if (errorExist === false) {
+      this.users.forEach(user => {
+        if (user.username === this.korisnik.username) {
+          this.error = " *Korisničko ime zauzeto. Izaberite drugo.";
+          this.errorUsername = " *";
+          errorExist = true;
+        }
+      });
+    }
+    if (errorExist === false) {
+
+    }
+    if (errorExist === false) {
+      this.korisnik.user_role.id = 2;
+      this.userService.createUser(this.korisnik).subscribe();
+      setTimeout(() => { this.getAllUsers(); }, 1000);
+    }
   }
 
   keyUpFunction(event): void {
@@ -79,5 +125,15 @@ export class AdminUseriComponent implements OnInit {
     } else {
       this.searchedUsers = null;
     }
+  }
+
+  clearModal(): void {
+    this.error = "";
+    this.errorIme = "";
+    this.errorPrezime = "";
+    this.errorUsername = "";
+    this.errorEmail = "";
+    this.errorSifra = "";
+    this.korisnik = new User();
   }
 }
