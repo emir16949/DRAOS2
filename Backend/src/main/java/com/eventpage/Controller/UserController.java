@@ -2,6 +2,7 @@ package com.eventpage.Controller;
 
 import com.eventpage.Model.User;
 import com.eventpage.Service.UserServiceForCRUD;
+import java.util.logging.Logger;
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
   private UserServiceForCRUD userServiceForCRUD;
+  private static Logger log = Logger.getLogger("UserController");
 
   public UserController(UserServiceForCRUD userServiceForCRUD) {
     this.userServiceForCRUD = userServiceForCRUD;
