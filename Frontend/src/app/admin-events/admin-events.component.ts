@@ -59,7 +59,7 @@ export class AdminEventsComponent implements OnInit {
   }
 
   validateFields(){
-    if(this.event.name === "" || this.event.description === "" || this.event.date_time === "" || !this.selectedImage || !this.odabranaCategory || !this.odabraniPlace)
+    if(this.event.name === "" || this.event.description === "" || !this.event.date_time || !this.selectedImage || !this.odabranaCategory || !this.odabraniPlace)
       this.error = "* Popunite obavezna polja!";
 
     if(this.error !== "")
