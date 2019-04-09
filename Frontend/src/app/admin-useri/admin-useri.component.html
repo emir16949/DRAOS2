@@ -14,6 +14,14 @@
     <hr />
   </div>
   <div class="col-md-10" style="margin: auto; ">
+    <div class="row">
+      <div class="col-md-12" style="width: 100%" *ngIf="success" class="alert alert-success" role="alert">
+        {{successMessage}}
+      </div>
+      <div *ngIf="errorNewEvent" class="alert alert-danger" role="alert">
+        {{errorMessage}}
+      </div>
+    </div>
     <div class="row" style="margin-top: 4rem !important; margin-bottom: 1.5rem !important;">
       <div class="col-md-1">
         <div class="navbar navbar-expand-lg navbar-light" style="margin-right: 20px !important; margin: auto;">

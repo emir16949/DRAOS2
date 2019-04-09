@@ -25,6 +25,10 @@ export class AdminUseriComponent implements OnInit {
   errorUsername: string;
   errorEmail: string;
   errorSifra: string;
+  success: any = false;
+  successMessage: any = "";
+  errorMessage: any = "";
+  errorNewEvent: any = false;
 
   constructor(
     private router: Router,
@@ -109,8 +113,11 @@ export class AdminUseriComponent implements OnInit {
     if (errorExist === false) {
       this.korisnik.user_role.id = 2;
       this.userService.createUser(this.korisnik).subscribe();
-      setTimeout(() => { this.getAllUsers(); }, 1000);
+      this.success  = true;
+      this.successMessage = "Uspješno kreiran novi menadžer!";
+      setTimeout(() => { this.getAllUsers(); this.success  = false;}, 2000);
     }
+
   }
 
   keyUpFunction(event): void {

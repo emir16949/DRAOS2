@@ -24,6 +24,10 @@ export class AdminEventsComponent implements OnInit {
   url: string;
   selectedImage: string;
   error: string = "";
+  success: any = false;
+  successMessage: any = "";
+  errorMessage: any = "";
+  errorNewEvent: any = false;
 
   constructor(
     private eventService: EventService,
@@ -76,7 +80,15 @@ export class AdminEventsComponent implements OnInit {
     let validated = this.validateFields();
     if(validated) {
       this.eventService.createEvent(this.event).subscribe();
-      window.location.reload();
+      this.success = true;
+      this.successMessage = "Uspješno kreiran novi dogadjaj!";
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
+    }
+    else {
+      this.errorNewEvent = true;
+      this.errorMessage = this.error;
     }
   }
 

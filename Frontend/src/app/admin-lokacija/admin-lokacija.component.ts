@@ -38,6 +38,10 @@ export class AdminLokacijaComponent implements OnInit {
   errorGrad: string;
   errorAdresa: string;
   errorMenadzer: string;
+  success: any = false;
+  successMessage: any = "";
+  errorMessage: any = "";
+  errorNewEvent: any = false;
 
 
   constructor(
@@ -142,7 +146,9 @@ export class AdminLokacijaComponent implements OnInit {
       this.objekat.picture = this.selectedImage;
       this.objekat.manager.id = this.odabraniMenadzer;
       this.placeService.createPlace(this.objekat).subscribe();
-      setTimeout(() => { this.getAllPlaces(); }, 1000);
+      this.success  = true;
+      this.successMessage = "Uspješno dodana nova lokacija!";
+      setTimeout(() => { this.getAllPlaces(); this.success = false; }, 2000);
     }
   }
 
