@@ -20,8 +20,10 @@ export class AdminEventsComponent implements OnInit {
   places: Array<any>;
   odabranaCategory: any;
   odabraniPlace: any;
+  minDate: any;
   url: string;
   selectedImage: string;
+  error: string = "";
 
   constructor(
     private eventService: EventService,
@@ -31,6 +33,9 @@ export class AdminEventsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
+    let date = new Date();
+    this.minDate = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2);
+
     this.categoryService.getAllCategory().subscribe(data => {
       this.categories = data;
     });
@@ -53,13 +58,26 @@ export class AdminEventsComponent implements OnInit {
     window.location.reload();
   }
 
+  validateFields(){
+    if(this.event.name === "" || this.event.description === "" || this.event.date_time === "" || !this.selectedImage || !this.odabranaCategory || !this.odabraniPlace)
+      this.error = "* Popunite obavezna polja!";
+
+    if(this.error !== "")
+      return false;
+
+    return true;
+  }
+
 
   kreirajEvent() {
     this.event.category.id = this.odabranaCategory;
     this.event.place.id = this.odabraniPlace;
     this.event.picture = this.selectedImage;
-    this.eventService.createEvent(this.event).subscribe();
-    window.location.reload();
+    let validated = this.validateFields();
+    if(validated) {
+      this.eventService.createEvent(this.event).subscribe();
+      window.location.reload();
+    }
   }
 
   zatvori() {
