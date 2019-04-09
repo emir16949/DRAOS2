@@ -48,7 +48,6 @@ export class LoginComponent implements OnInit {
           },
           error => {
             this.error = "* Korisničko ime ili lozinka nisu ispravni. Ponovite unos.";
-            this.password = "";
           },
           () => {
             this.success = true;
