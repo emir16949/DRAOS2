@@ -26,10 +26,11 @@ export class AdminUseriComponent implements OnInit {
   errorEmail: string;
   errorSifra: string;
   success: any = false;
-  successMessage: any = "";
-  errorMessage: any = "";
+  successMessage: any = '';
+  errorMessage: any = '';
   errorNewEvent: any = false;
   selectedUser: User = new User();
+  loggedInUsername: string;
 
   constructor(
     private router: Router,
@@ -39,6 +40,7 @@ export class AdminUseriComponent implements OnInit {
   ngOnInit() {
     this.getAllUsers();
     this.isAdmin = this.authService.isAdmin();
+    this.loggedInUsername = this.authService.getUserName();
   }
 
   getAllUsers() {
@@ -72,57 +74,59 @@ export class AdminUseriComponent implements OnInit {
   kreirajUsera(): void {
     let errorExist = false;
     if (!this.korisnik.ime) {
-      this.error = " *Obavezno polje";
-      this.errorIme = " *";
+      this.error = ' *Obavezno polje';
+      this.errorIme = ' *';
       errorExist = true;
     }
     if (!this.korisnik.prezime) {
-      this.error = " *Obavezno polje";
-      this.errorPrezime = " *";
+      this.error = ' *Obavezno polje';
+      this.errorPrezime = ' *';
       errorExist = true;
     }
     if (!this.korisnik.username) {
-      this.error = " *Obavezno polje";
-      this.errorUsername = " *";
+      this.error = ' *Obavezno polje';
+      this.errorUsername = ' *';
       errorExist = true;
     }
     if (!this.korisnik.email) {
-      this.error = " *Obavezno polje";
-      this.errorEmail = " *";
+      this.error = ' *Obavezno polje';
+      this.errorEmail = ' *';
       errorExist = true;
     }
     if (!this.korisnik.password) {
-      this.error = " *Obavezno polje";
-      this.errorSifra = " *";
+      this.error = ' *Obavezno polje';
+      this.errorSifra = ' *';
       errorExist = true;
     }
     if (errorExist === false) {
       this.users.forEach(user => {
         if (user.username === this.korisnik.username) {
-          this.error = " *Korisničko ime zauzeto. Izaberite drugo.";
-          this.errorUsername = " *";
+          this.error = ' *Korisničko ime zauzeto. Izaberite drugo.';
+          this.errorUsername = ' *';
           errorExist = true;
         }
       });
     }
     if (this.korisnik.ime.length < 3) {
-      if (errorExist === false)
-        this.error = " *Uneseni tekst je prekratak.";
-      this.errorIme = " *";
-      errorExist = true;
+      if (errorExist === false) {
+        this.error = ' *Uneseno ime je prekratko.';
+        this.errorIme = ' *';
+        errorExist = true;
+      }
     }
     if (this.korisnik.prezime.length < 3) {
-      if (errorExist === false)
-        this.error = " *Uneseni tekst je prekratak.";
-      this.errorPrezime = " *";
-      errorExist = true;
+      if (errorExist === false) {
+        this.error = ' *Uneseno prezime je prekratko.';
+        this.errorPrezime = ' *';
+        errorExist = true;
+      }
     }
 
     if (errorExist === false) {
       this.korisnik.user_role.id = 2;
       this.userService.createUser(this.korisnik).subscribe();
       this.success = true;
-      this.successMessage = "Uspješno kreiran novi menadžer!";
+      this.successMessage = 'Uspješno kreiran novi menadžer!';
       setTimeout(() => { this.getAllUsers(); this.success = false; }, 2000);
     }
 
@@ -153,12 +157,12 @@ export class AdminUseriComponent implements OnInit {
   }
 
   clearModal(): void {
-    this.error = "";
-    this.errorIme = "";
-    this.errorPrezime = "";
-    this.errorUsername = "";
-    this.errorEmail = "";
-    this.errorSifra = "";
+    this.error = '';
+    this.errorIme = '';
+    this.errorPrezime = '';
+    this.errorUsername = '';
+    this.errorEmail = '';
+    this.errorSifra = '';
     this.korisnik = new User();
   }
 }
