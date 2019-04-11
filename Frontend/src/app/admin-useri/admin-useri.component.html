@@ -56,7 +56,7 @@
               <td>{{user.username}}</td>
               <td>{{user.ime + ' ' + user.prezime}}</td>
               <td>
-                <button (click)="deleteUser(user)" data-toggle="modal" data-target="#modal1" class="btn btn-danger">
+                <button (click)="deleteUser(user)" data-toggle="modal" data-target="#deletemodal" class="btn btn-danger">
                   <i class="fa fa-trash" style="color: rgb(255, 255, 255); font-size: 20px;"></i>
                 </button>
               </td>
@@ -139,6 +139,20 @@
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" id="btn_modal_usluga" (click)="clearModal()" data-dismiss="modal">Zatvori</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="kreirajUsera()">Spremi</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel"> Želite li obrisati odabranog menadžera?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="deleteSelectedUser()">Obriši</button>
+        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="zatvori()">Zatvori</button>
       </div>
     </div>
   </div>

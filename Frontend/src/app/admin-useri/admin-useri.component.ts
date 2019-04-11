@@ -29,6 +29,7 @@ export class AdminUseriComponent implements OnInit {
   successMessage: any = "";
   errorMessage: any = "";
   errorNewEvent: any = false;
+  selectedUser: User = new User();
 
   constructor(
     private router: Router,
@@ -51,8 +52,15 @@ export class AdminUseriComponent implements OnInit {
   }
 
   deleteUser(user) {
-    this.userService.deleteUserById(user.id).subscribe();
-    setTimeout(() => { this.getAllUsers(); }, 1000);
+
+    this.selectedUser = user;
+
+  }
+
+  deleteSelectedUser() {
+    this.userService.deleteUserById(this.selectedUser.id).subscribe();
+    setTimeout(() => { this.getAllUsers(); }, 2000);
+
   }
 
   pretragaUsername() {
@@ -113,9 +121,9 @@ export class AdminUseriComponent implements OnInit {
     if (errorExist === false) {
       this.korisnik.user_role.id = 2;
       this.userService.createUser(this.korisnik).subscribe();
-      this.success  = true;
+      this.success = true;
       this.successMessage = "Uspješno kreiran novi menadžer!";
-      setTimeout(() => { this.getAllUsers(); this.success  = false;}, 2000);
+      setTimeout(() => { this.getAllUsers(); this.success = false; }, 2000);
     }
 
   }
