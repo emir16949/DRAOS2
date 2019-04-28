@@ -25,7 +25,7 @@ export class AdminLokacijaComponent implements OnInit {
   modal_adresa: any;
   adresa: any;
   url: string;
-  selectedImage: any;
+  selectedImage: string = '';
   odabraniMenadzer: number;
   users: Array<any>;
   @ViewChild('file') el: ElementRef;
@@ -43,6 +43,7 @@ export class AdminLokacijaComponent implements OnInit {
   errorMessage: any = "";
   errorNewEvent: any = false;
   deleteSelectedPlace: Place = new Place();
+  errorSlika: string;
   @ViewChild('newPlaceModal') placeModal: any;
 
 
@@ -94,9 +95,22 @@ export class AdminLokacijaComponent implements OnInit {
 
   handleReaderLoaded(e) {
     this.selectedImage = 'data:image/JPEG;base64,' + btoa(e.target.result);
+
+    if (this.selectedImage.length > 26) {
+      this.errorSlika = '';
+      this.error = '';
+    }
   }
 
   kreirajObjekat() {
+    this.errorLink = '';
+    this.errorNaziv = '';
+    this.errorDetalji = '';
+    this.errorAdresa = '';
+    this.errorGrad = '';
+    this.errorMenadzer = '';
+    this.errorSlika = '';
+
     let errorExist = false;
     if (!this.objekat.name) {
       this.error = " *Obavezno polje";
@@ -142,10 +156,18 @@ export class AdminLokacijaComponent implements OnInit {
       errorExist = true;
     }
 
-    if (this.objekat.place_url.length <= 4 || !this.objekat.place_url.match(/^((?:http:\/\/)|(?:https:\/\/))(www.)?((?:[a-zA-Z0-9]+\.[a-z]{3})|(?:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?::\d+)?))([\/a-zA-Z0-9\.]*)$/gm)) {
+    if (this.objekat.place_url.length <= 4 || !this.objekat.place_url.match(/([a-z0-9_\-]{1,5}:\/\/)?(([a-z0-9_\-]{1,}):([a-z0-9_\-]{1,})\@)?((www\.)|([a-z0-9_\-]{1,}\.)+)?([a-z0-9_\-]{3,})(\.[a-z]{2,4})(\/([a-z0-9_\-]{1,}\/)+)?([a-z0-9_\-]{1,})?(\.[a-z]{2,})?(([\?\&][a-z0-9_\-]{1,}\=[a-z0-9_\-]{1,})+)?/gi)) {
       if (errorExist === false) {
         this.errorLink = ' *';
         this.error = 'Unesite ispravan link postojeće web-stranice.';
+        errorExist = true;
+      }
+    }
+
+    if (this.selectedImage.length < 26) {
+      if (errorExist === false) {
+        this.errorSlika = ' *';
+        this.error = 'Odaberite fotografiju.';
         errorExist = true;
       }
     }

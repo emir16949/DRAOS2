@@ -11,6 +11,14 @@
     </div>
     <hr />
   </div>
+  <div class="row">
+    <div class="col-md-12" style="width: 100%" *ngIf="success" class="alert alert-success" role="alert">
+      {{successMessage}}
+    </div>
+    <div *ngIf="errorNewEvent" class="alert alert-danger" role="alert">
+      {{errorMessage}}
+    </div>
+  </div>
 
   <div class="col-md-10" style="margin: auto;">
 
@@ -134,7 +142,7 @@
             </select>
           </div>
           <div class="form-group">
-            <label for="recipient-name" class="col-form-label"> Fotografija <br></label>
+            <label for="recipient-name" class="col-form-label"> Fotografija <label style="color: red; font-size: 16px;">{{errorSlika}}</label><br></label>
             <input #file id="file" type="file" (change)="onUploadChange($event)" />
           </div>
           <label style="color: red; font-size: 16px;">{{error}}</label>
