@@ -157,36 +157,8 @@
 </div>
 
 
-<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel"> Informacije o objektu </h3>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Naziv</label>
-            <input type="text" class="form-control" id="naziv_usluga" value="{{ modal_naziv }}" disabled>
-          </div>
-          <div class="form-group">
-            <label for="message-text" class="col-form-label">Detalji</label>
-            <textarea class="form-control" id="opis_usluga" value="{{ modal_opis }}" disabled></textarea>
-          </div>
-          <div class="form-group">
-            <label for="recipient-name" class="col-form-label">Adresa</label>
-            <input type="text" class="form-control" id="cijena_usluga" value="{{ modal_adresa }}" disabled>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="modaluredi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div #editPlaceModal class="modal fade" id="modaluredi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -196,24 +168,35 @@
         <form>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Naziv objekta</label>
+            <label style="color: red; font-size: 16px;">{{errorNaziv}}</label>
             <input type="text" class="form-control" id="naziv_usluga" value="{{ modal_naziv }}" [(ngModel)]="objekatPut.name"
               [ngModelOptions]="{standalone: true}">
           </div>
           <div class="form-group">
+            <label for="recipient-name" class="col-form-label"> Link postojeće web-stranice objekta
+            </label>
+            <label style="color: red; font-size: 16px;">{{errorLink}}</label>
+            <input type="text" class="form-control" id="link_objekta" [(ngModel)]="objekatPut.place_url"
+              [ngModelOptions]="{standalone: true}">
+          </div>
+          <div class="form-group">
             <label for="message-text" class="col-form-label">Detalji</label>
+            <label style="color: red; font-size: 16px;">{{errorDetalji}}</label>
             <textarea class="form-control" id="opis_usluga" value="{{ modal_opis }}" [(ngModel)]="objekatPut.description"
               [ngModelOptions]="{standalone: true}"></textarea>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">Adresa</label>
+            <label style="color: red; font-size: 16px;">{{errorAdresa}}</label>
             <input type="text" class="form-control" id="cijena_usluga" [(ngModel)]="objekatPut.address"
               [ngModelOptions]="{standalone: true}">
           </div>
+          <label style="color: red; font-size: 16px;">{{error}}</label>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" id="btn_podnesi_zahtjev" (click)="sacuvajIzmjenePlace()">Spremi</button>
+        <button type="button" class="btn btn-primary" id="btn_podnesi_zahtjev" (click)="sacuvajIzmjenePlace()">Spremi</button>
       </div>
     </div>
   </div>
