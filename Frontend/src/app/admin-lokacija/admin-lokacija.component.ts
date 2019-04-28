@@ -43,6 +43,7 @@ export class AdminLokacijaComponent implements OnInit {
   errorMessage: any = "";
   errorNewEvent: any = false;
   deleteSelectedPlace: Place = new Place();
+  @ViewChild('newPlaceModal') placeModal: any;
 
 
   constructor(
@@ -141,6 +142,14 @@ export class AdminLokacijaComponent implements OnInit {
       errorExist = true;
     }
 
+    if (this.objekat.place_url.length <= 4 || !this.objekat.place_url.match(/^((?:http:\/\/)|(?:https:\/\/))(www.)?((?:[a-zA-Z0-9]+\.[a-z]{3})|(?:\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}(?::\d+)?))([\/a-zA-Z0-9\.]*)$/gm)) {
+      if (errorExist === false) {
+        this.errorLink = ' *';
+        this.error = 'Unesite ispravan link postojeće web-stranice.';
+        errorExist = true;
+      }
+    }
+
 
     if (errorExist === false) {
       this.objekat.city.id = this.odabraniGrad;
@@ -148,6 +157,7 @@ export class AdminLokacijaComponent implements OnInit {
       this.objekat.manager.id = this.odabraniMenadzer;
       this.placeService.createPlace(this.objekat).subscribe();
       this.success = true;
+      this.placeModal.nativeElement.click();
       this.successMessage = "Uspješno dodana nova lokacija!";
       setTimeout(() => { this.getAllPlaces(); this.success = false; }, 2000);
     }
