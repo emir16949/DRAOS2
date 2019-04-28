@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../core/auth.service';
 import { UserService } from '../services/user/user.service';
@@ -31,7 +31,8 @@ export class AdminUseriComponent implements OnInit {
   errorNewEvent: any = false;
   selectedUser: User = new User();
   loggedInUsername: string;
-
+  passwordDrugiPut: string = '';
+  @ViewChild('newUserModal') userModal: any;
   constructor(
     private router: Router,
     private userService: UserService,
@@ -61,7 +62,9 @@ export class AdminUseriComponent implements OnInit {
 
   deleteSelectedUser() {
     this.userService.deleteUserById(this.selectedUser.id).subscribe();
-    setTimeout(() => { this.getAllUsers(); }, 2000);
+    this.success = true;
+    this.successMessage = 'Menadžer uspješno obrisan!';
+    setTimeout(() => { this.getAllUsers(), this.success = false; }, 2000);
 
   }
 
@@ -121,13 +124,30 @@ export class AdminUseriComponent implements OnInit {
         errorExist = true;
       }
     }
+    if (this.korisnik.password !== this.passwordDrugiPut) {
+      if (errorExist === false) {
+        this.error = ' *Šifre se ne poklapaju.';
+        this.errorSifra = ' *';
+        errorExist = true;
+      }
+    }
+
+    var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+.[a-z0-9-]/;
+
+    if (this.korisnik.email.length <= 5 || !EMAIL_REGEXP.test(this.korisnik.email)) {
+      this.errorEmail = ' *';
+      this.error = 'Unesite ispravan format maila!';
+      errorExist = true;
+    }
 
     if (errorExist === false) {
       this.korisnik.user_role.id = 2;
       this.userService.createUser(this.korisnik).subscribe();
       this.success = true;
+      this.userModal.nativeElement.click();
       this.successMessage = 'Uspješno kreiran novi menadžer!';
       setTimeout(() => { this.getAllUsers(); this.success = false; }, 2000);
+
     }
 
   }

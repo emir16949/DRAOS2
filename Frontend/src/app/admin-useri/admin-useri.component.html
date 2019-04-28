@@ -30,9 +30,8 @@
         </div>
       </div>
       <div class="col-md-9" style="padding-left: 0rem;">
-        <input type="text" style="float: left;" placeholder="Pretraži po ime/prezime/email/korisničko ime"
-          class="form-control" id="naziv_objekta" [(ngModel)]="username_pretraga" [ngModelOptions]="{standalone: true}"
-          (keyup)="keyUpFunction($event)">
+        <input type="text" style="float: left;" placeholder="Pretraži po ime/prezime/email/korisničko ime" class="form-control"
+          id="naziv_objekta" [(ngModel)]="username_pretraga" [ngModelOptions]="{standalone: true}" (keyup)="keyUpFunction($event)">
       </div>
       <div class="col-md-2" style="padding-left: 0px;">
       </div>
@@ -97,7 +96,7 @@
 </div>
 
 
-<div class="modal fade" id="exampleModal19" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+<div #newUserModal class="modal fade" id="exampleModal19" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -109,26 +108,26 @@
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Ime </label>
             <label style="color: red; font-size: 14px;">{{errorIme}}</label>
-            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.ime"
-              [ngModelOptions]="{standalone: true}" required>
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.ime" [ngModelOptions]="{standalone: true}"
+              required>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Prezime </label>
             <label style="color: red; font-size: 14px;">{{errorPrezime}}</label>
-            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.prezime"
-              [ngModelOptions]="{standalone: true}" required>
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.prezime" [ngModelOptions]="{standalone: true}"
+              required>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Korisničko ime </label>
             <label style="color: red; font-size: 14px;">{{errorUsername}}</label>
-            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.username"
-              [ngModelOptions]="{standalone: true}" required>
+            <input type="text" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.username" [ngModelOptions]="{standalone: true}"
+              required>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> E-mail </label>
             <label style="color: red; font-size: 14px;">{{errorEmail}}</label>
-            <input type="email" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.email"
-              [ngModelOptions]="{standalone: true}" email="false" required>
+            <input type="email" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.email" [ngModelOptions]="{standalone: true}"
+              email="false" required>
           </div>
           <div class="form-group">
             <label for="recipient-name" class="col-form-label"> Šifra </label>
@@ -136,30 +135,32 @@
             <input type="password" class="form-control" id="naziv_objekta" [(ngModel)]="korisnik.password"
               [ngModelOptions]="{standalone: true}" required>
           </div>
+          <div class="form-group">
+            <label for="recipient-name1" class="col-form-label"> Ponovo unesite šifru: </label>
+            <label style="color: red; font-size: 14px;">{{errorSifra}}</label>
+            <input type="password" class="form-control" id="naziv_objekta1" [(ngModel)]="passwordDrugiPut"
+              [ngModelOptions]="{standalone: true}" required>
+          </div>
           <label style="color: red; font-size: 13px;">{{error}}</label>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" (click)="clearModal()"
-          data-dismiss="modal">Zatvori</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="kreirajUsera()">Spremi</button>
+        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" (click)="clearModal()" data-dismiss="modal">Zatvori</button>
+        <button type="button" class="btn btn-primary" (click)="kreirajUsera()">Spremi</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="exampleModalLabel"> Želite li obrisati odabranog menadžera?</h3>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal"
-          (click)="deleteSelectedUser()">Obriši</button>
-        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal"
-          (click)="zatvori()">Zatvori</button>
+        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="deleteSelectedUser()">Obriši</button>
+        <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="zatvori()">Zatvori</button>
       </div>
     </div>
   </div>
