@@ -42,6 +42,7 @@ export class AdminLokacijaComponent implements OnInit {
   successMessage: any = "";
   errorMessage: any = "";
   errorNewEvent: any = false;
+  deleteSelectedPlace: Place = new Place();
 
 
   constructor(
@@ -146,7 +147,7 @@ export class AdminLokacijaComponent implements OnInit {
       this.objekat.picture = this.selectedImage;
       this.objekat.manager.id = this.odabraniMenadzer;
       this.placeService.createPlace(this.objekat).subscribe();
-      this.success  = true;
+      this.success = true;
       this.successMessage = "Uspješno dodana nova lokacija!";
       setTimeout(() => { this.getAllPlaces(); this.success = false; }, 2000);
     }
@@ -172,8 +173,15 @@ export class AdminLokacijaComponent implements OnInit {
     this.objekatPut.city.id = place.city.id;
   }
 
-  obrisiLokaciju(place) {
-    this.placeService.deletePlace(place.id).subscribe();
+  obrisiLokaciju(place: Place) {
+    this.deleteSelectedPlace = place;
+  }
+
+  deleteSelectedLocation() {
+    this.placeService.deletePlace(this.deleteSelectedPlace.id).subscribe();
+    this.success = true;
+    this.successMessage = 'Objekat uspješno obrisan!';
+    setTimeout(() => { this.getAllPlaces(), this.success = false; }, 2000);
   }
 
   zatvori() {
