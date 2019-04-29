@@ -145,7 +145,10 @@
             <label for="recipient-name" class="col-form-label"> Fotografija <label style="color: red; font-size: 16px;">{{errorSlika}}</label><br></label>
             <input #file id="file" type="file" (change)="onUploadChange($event)" />
           </div>
-          <label style="color: red; font-size: 16px;">{{error}}</label>
+          <!-- <label style="color: red; font-size: 16px;">{{error}}</label> -->
+          <div *ngIf="errorExist" class="alert alert-danger" role="alert">
+            {{error}}
+          </div>
         </form>
       </div>
       <div class="modal-footer">
@@ -191,7 +194,10 @@
             <input type="text" class="form-control" id="cijena_usluga" [(ngModel)]="objekatPut.address"
               [ngModelOptions]="{standalone: true}">
           </div>
-          <label style="color: red; font-size: 16px;">{{error}}</label>
+          <!-- <label style="color: red; font-size: 16px;">{{error}}</label> -->
+          <div *ngIf="errorExist" class="alert alert-danger" role="alert">
+            {{error}}
+          </div>
         </form>
       </div>
       <div class="modal-footer">

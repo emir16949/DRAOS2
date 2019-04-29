@@ -44,6 +44,7 @@ export class AdminLokacijaComponent implements OnInit {
   errorNewEvent: any = false;
   deleteSelectedPlace: Place = new Place();
   errorSlika: string;
+  errorExist: boolean = false;
   @ViewChild('newPlaceModal') placeModal: any;
   @ViewChild('editPlaceModal') editPlaceModal: any;
 
@@ -112,69 +113,69 @@ export class AdminLokacijaComponent implements OnInit {
     this.errorMenadzer = '';
     this.errorSlika = '';
 
-    let errorExist = false;
+    this.errorExist = false;
     if (!this.objekat.name) {
       this.error = " *Obavezno polje";
       this.errorNaziv = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (!this.objekat.description) {
       this.error = " *Obavezno polje";
       this.errorDetalji = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (!this.odabraniGrad) {
       this.error = " *Obavezno polje";
       this.errorGrad = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (!this.odabraniMenadzer) {
       this.error = " *Obavezno polje";
       this.errorMenadzer = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (!this.objekat.address) {
       this.error = " *Obavezno polje";
       this.errorAdresa = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (this.objekat.name.length < 3) {
-      if (errorExist === false)
+      if (this.errorExist === false)
         this.error = " *Uneseni tekst je prekratak.";
       this.errorNaziv = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (this.objekat.description.length < 3) {
-      if (errorExist === false)
+      if (this.errorExist === false)
         this.error = " *Uneseni tekst je prekratak.";
       this.errorDetalji = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (this.objekat.address.length < 5) {
-      if (errorExist === false)
+      if (this.errorExist === false)
         this.error = " *Uneseni tekst je prekratak.";
       this.errorAdresa = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
 
     if (this.objekat.place_url.length <= 4 || !this.objekat.place_url.match(/([a-z0-9_\-]{1,5}:\/\/)?(([a-z0-9_\-]{1,}):([a-z0-9_\-]{1,})\@)?((www\.)|([a-z0-9_\-]{1,}\.)+)?([a-z0-9_\-]{3,})(\.[a-z]{2,4})(\/([a-z0-9_\-]{1,}\/)+)?([a-z0-9_\-]{1,})?(\.[a-z]{2,})?(([\?\&][a-z0-9_\-]{1,}\=[a-z0-9_\-]{1,})+)?/gi)) {
-      if (errorExist === false) {
+      if (this.errorExist === false) {
         this.errorLink = ' *';
         this.error = 'Unesite ispravan link postojeće web-stranice.';
-        errorExist = true;
+        this.errorExist = true;
       }
     }
 
     if (this.selectedImage.length < 26) {
-      if (errorExist === false) {
+      if (this.errorExist === false) {
         this.errorSlika = ' *';
         this.error = 'Odaberite fotografiju.';
-        errorExist = true;
+        this.errorExist = true;
       }
     }
 
 
-    if (errorExist === false) {
+    if (this.errorExist === false) {
       this.objekat.city.id = this.odabraniGrad;
       this.objekat.picture = this.selectedImage;
       this.objekat.manager.id = this.odabraniMenadzer;
@@ -198,51 +199,51 @@ export class AdminLokacijaComponent implements OnInit {
     this.errorDetalji = '';
     this.errorAdresa = '';
 
-    let errorExist = false;
+    this.errorExist = false;
     if (!this.objekatPut.name) {
       this.error = " *Obavezno polje";
       this.errorNaziv = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (!this.objekatPut.description) {
       this.error = " *Obavezno polje";
       this.errorDetalji = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
 
     if (!this.objekatPut.address) {
       this.error = " *Obavezno polje";
       this.errorAdresa = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (this.objekatPut.name.length < 3) {
-      if (errorExist === false)
+      if (this.errorExist === false)
         this.error = " *Uneseni tekst je prekratak.";
       this.errorNaziv = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (this.objekatPut.description.length < 3) {
-      if (errorExist === false)
+      if (this.errorExist === false)
         this.error = " *Uneseni tekst je prekratak.";
       this.errorDetalji = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
     if (this.objekatPut.address.length < 5) {
-      if (errorExist === false)
+      if (this.errorExist === false)
         this.error = " *Uneseni tekst je prekratak.";
       this.errorAdresa = " *";
-      errorExist = true;
+      this.errorExist = true;
     }
 
     if (this.objekatPut.place_url.length <= 4 || !this.objekatPut.place_url.match(/([a-z0-9_\-]{1,5}:\/\/)?(([a-z0-9_\-]{1,}):([a-z0-9_\-]{1,})\@)?((www\.)|([a-z0-9_\-]{1,}\.)+)?([a-z0-9_\-]{3,})(\.[a-z]{2,4})(\/([a-z0-9_\-]{1,}\/)+)?([a-z0-9_\-]{1,})?(\.[a-z]{2,})?(([\?\&][a-z0-9_\-]{1,}\=[a-z0-9_\-]{1,})+)?/gi)) {
-      if (errorExist === false) {
+      if (this.errorExist === false) {
         this.errorLink = ' *';
         this.error = 'Unesite ispravan link postojeće web-stranice.';
-        errorExist = true;
+        this.errorExist = true;
       }
     }
 
-    if (errorExist === false) {
+    if (this.errorExist === false) {
       this.placeService.changePlace(this.objekatPut).subscribe();
       this.success = true;
       this.editPlaceModal.nativeElement.click();

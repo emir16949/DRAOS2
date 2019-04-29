@@ -32,6 +32,7 @@ export class AdminUseriComponent implements OnInit {
   selectedUser: User = new User();
   loggedInUsername: string;
   passwordDrugiPut: string = '';
+  errorExist: boolean = false;
   @ViewChild('newUserModal') userModal: any;
   constructor(
     private router: Router,
@@ -75,72 +76,74 @@ export class AdminUseriComponent implements OnInit {
   }
 
   kreirajUsera(): void {
-    let errorExist = false;
+    this.errorExist = false;
     if (!this.korisnik.ime) {
       this.error = ' *Obavezno polje';
       this.errorIme = ' *';
-      errorExist = true;
+      this.errorExist = true;
     }
     if (!this.korisnik.prezime) {
       this.error = ' *Obavezno polje';
       this.errorPrezime = ' *';
-      errorExist = true;
+      this.errorExist = true;
     }
     if (!this.korisnik.username) {
       this.error = ' *Obavezno polje';
       this.errorUsername = ' *';
-      errorExist = true;
+      this.errorExist = true;
     }
     if (!this.korisnik.email) {
       this.error = ' *Obavezno polje';
       this.errorEmail = ' *';
-      errorExist = true;
+      this.errorExist = true;
     }
     if (!this.korisnik.password) {
       this.error = ' *Obavezno polje';
       this.errorSifra = ' *';
-      errorExist = true;
+      this.errorExist = true;
     }
-    if (errorExist === false) {
+    if (this.errorExist === false) {
       this.users.forEach(user => {
         if (user.username === this.korisnik.username) {
           this.error = ' *Korisničko ime zauzeto. Izaberite drugo.';
           this.errorUsername = ' *';
-          errorExist = true;
+          this.errorExist = true;
         }
       });
     }
     if (this.korisnik.ime.length < 3) {
-      if (errorExist === false) {
+      if (this.errorExist === false) {
         this.error = ' *Uneseno ime je prekratko.';
         this.errorIme = ' *';
-        errorExist = true;
+        this.errorExist = true;
       }
     }
     if (this.korisnik.prezime.length < 3) {
-      if (errorExist === false) {
+      if (this.errorExist === false) {
         this.error = ' *Uneseno prezime je prekratko.';
         this.errorPrezime = ' *';
-        errorExist = true;
+        this.errorExist = true;
       }
     }
     if (this.korisnik.password !== this.passwordDrugiPut) {
-      if (errorExist === false) {
+      if (this.errorExist === false) {
         this.error = ' *Šifre se ne poklapaju.';
         this.errorSifra = ' *';
-        errorExist = true;
+        this.errorExist = true;
       }
     }
 
     var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+.[a-z0-9-]/;
 
     if (this.korisnik.email.length <= 5 || !EMAIL_REGEXP.test(this.korisnik.email)) {
-      this.errorEmail = ' *';
-      this.error = 'Unesite ispravan format maila!';
-      errorExist = true;
+      if (this.errorExist === false) {
+        this.errorEmail = ' *';
+        this.error = 'Unesite ispravan format maila!';
+        this.errorExist = true;
+      }
     }
 
-    if (errorExist === false) {
+    if (this.errorExist === false) {
       this.korisnik.user_role.id = 2;
       this.userService.createUser(this.korisnik).subscribe();
       this.success = true;
