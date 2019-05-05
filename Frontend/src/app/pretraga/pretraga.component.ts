@@ -44,6 +44,7 @@ export class PretragaComponent implements OnInit {
     });
     this.eventService.getAllEvents().subscribe(data => {
       this.events = data;
+      this.searchedEvents = data;
     });
     this.placeService.getAllPlaces().subscribe(data => {
       this.places = data;
