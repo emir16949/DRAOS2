@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class EventService {
 
-  public API = '//192.168.99.100:8080';
+  public API = '//localhost:8080';
   public EVENT_API = this.API + '/event';
   result: Array<Object>;
 

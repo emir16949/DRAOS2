@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class CityService {
 
-  public API = '//192.168.99.100:8080';
+  public API = '//localhost:8080';
   public CITY_API = this.API + '/city';
 
   result: Array<Object>;

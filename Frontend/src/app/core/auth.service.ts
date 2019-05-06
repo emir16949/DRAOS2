@@ -7,7 +7,7 @@ import { TokenStorage } from './token.storage';
 @Injectable()
 export class AuthService {
 
-  TOKEN_API_URL = 'http://192.168.99.100:8080/token/generate-token';
+  TOKEN_API_URL = 'http://localhost:8080/token/generate-token';
 
   jwtHelper: JwtHelperService = new JwtHelperService();
 

@@ -9,7 +9,7 @@ import { Place } from './Place';
 
 export class PlaceService {
 
-  public API = '//192.168.99.100:8080';
+  public API = '//localhost:8080';
   public PLACE_API = this.API + '/place';
   public CITY_API = this.API + '/city/all';
 

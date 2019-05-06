@@ -8,7 +8,7 @@ import { Category } from '../category/Category';
 })
 export class CategoryService {
 
-  public API = '//192.168.99.100:8080';
+  public API = '//localhost:8080';
   public CATEGORY_API = this.API + '/category';
   result: Array<Object>;
 
