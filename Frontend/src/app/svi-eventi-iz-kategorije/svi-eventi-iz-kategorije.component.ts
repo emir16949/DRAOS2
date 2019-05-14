@@ -20,6 +20,7 @@ export class SviEventiIzKategorijeComponent implements OnInit {
   modal_kategorija: any;
   isAdmin: any;
   mouseEnterHover: any = false;
+  bojaKategorije: any;
 
   constructor(
     private eventService: EventService,
@@ -31,6 +32,17 @@ export class SviEventiIzKategorijeComponent implements OnInit {
     let kategorija = localStorage.getItem('kategorija');
     if (kategorija == null) {
       kategorija = 'Muzika';
+    }
+    if (kategorija === 'Muzika') {
+      this.bojaKategorije = '#36befa';
+    } else if (kategorija === 'Kultura') {
+      this.bojaKategorije = '#ff724f';
+    } else if (kategorija === 'Sport') {
+      this.bojaKategorije = '#27ab93';
+    } else if (kategorija === 'Zabava') {
+      this.bojaKategorije = '#ffd33b';
+    } else if (kategorija === 'Nauka') {
+      this.bojaKategorije = '#b831f3';
     }
     this.eventService.getEventsByCategory(kategorija).subscribe(data => {
       this.events = data;
@@ -69,5 +81,9 @@ export class SviEventiIzKategorijeComponent implements OnInit {
 
   clickOnCarouselItem(event) {
     this.router.navigate(['/detalji-eventa', event.id]);
+  }
+
+  changeBackground() {
+    return { 'background-color': this.bojaKategorije };
   }
 }
