@@ -23,6 +23,7 @@ import { CityService } from './services/place/city.service';
 import { UserService } from './services/user/user.service';
 import { SviEventiIzKategorijeComponent } from './svi-eventi-iz-kategorije/svi-eventi-iz-kategorije.component';
 import { UserDetaljiComponent } from './user-detalji/user-detalji.component';
+import { MojiEventiComponent } from './moji-eventi/moji-eventi.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'svi-eventi-iz-kategorije', pathMatch: 'full' },
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registracija', component: RegistracijaComponent },
   { path: 'profil', component: ProfilComponent },
-  { path: 'pretraga', component: PretragaComponent }
+  { path: 'pretraga', component: PretragaComponent },
+  { path: 'moji-eventi', component: MojiEventiComponent, canActivate: [AuthGuard] }
 ];
 
 
@@ -51,7 +53,8 @@ const routes: Routes = [
     ProfilComponent,
     PretragaComponent,
     DetaljiEventaComponent,
-    SviEventiIzKategorijeComponent
+    SviEventiIzKategorijeComponent,
+    MojiEventiComponent
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
   items: Array<any> = [
     { 'name': 'muzika', 'text': 'Muzika', 'color': 'lineBlue' },
     { 'name': 'kultura', 'text': 'Kultura', 'color': 'lineOrange' },
-    { 'name': 'sport', 'text': 'Sport ', 'color': 'lineGreen' },
+    { 'name': 'sport', 'text': 'Sport', 'color': 'lineGreen' },
     { 'name': 'zabava', 'text': 'Zabava', 'color': 'lineYellow' },
     { 'name': 'nauka', 'text': 'Nauka', 'color': 'linePurple' }
   ];

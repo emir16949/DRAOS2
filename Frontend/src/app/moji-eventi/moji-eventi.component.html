@@ -1,0 +1,156 @@
+<div class="text-center" style="margin-top: 4rem;">
+    <div class="col-md-10" style="margin: auto; margin-bottom: 2rem;">
+        <div class="row">
+            <div class="col-md-10" style="margin-top: 2rem;">
+                <h2 style="text-align: left; margin-left: 7%">Moji događaji</h2>
+            </div>
+            <div class="col-md-2" style="margin-top: 2rem;">
+                <button class="btn btn-outline-secondary" routerLink="/admin-events" style="width: 40%;">+</button>
+            </div>
+        </div>
+        <hr />
+    </div>
+
+    <div class="row">
+        <div class="col-md-12" style="width: 100%" *ngIf="success" class="alert alert-success" role="alert">
+            {{successMessage}}
+        </div>
+        <div *ngIf="errorNewEvent" class="alert alert-danger" role="alert">
+            {{errorMessage}}
+        </div>
+    </div>
+
+    <div class="col-md-10" style="margin: auto;">
+
+        <div class="row">
+            <div class="col-md-6" *ngFor="let event of events, let i = index">
+                <!-- <div class="row" *ngIf="deleteSelectedPlace.id === objekat.id">
+                    <div class="col-md-12" style="width: 100%" *ngIf="success" class="alert alert-success" role="alert">
+                        {{successMessage}}
+                    </div>
+                    <div *ngIf="errorNewEvent" class="alert alert-danger" role="alert">
+                        {{errorMessage}}
+                    </div>
+                </div> -->
+                <div class="card" style="margin-bottom: 5% !important; height: 90% !important;">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h4 style="margin-top: 0.5rem; float: left;">{{ event.name }}</h4>
+                            </div>
+                            <div class="col-md-4" style="padding-right: 0px; ">
+                                <button class="btn btn-outline-primary" style="float: right; border-color: #4e555b; color: #4e555b; margin-right: 10%"
+                                    type="submit" data-toggle="modal" data-target="#modaluredi" (click)="urediEvent(event)">Uredi</button>
+                                <button class="btn btn-outline-danger" data-toggle="modal" data-target="#deletemodal"
+                                    (click)="obrisiEvent(event)">Obriši</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body" (click)="prikaziDetalje(event)">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <img class="card-img-top" height="180rem" width="22rem" src="{{event.picture}}" alt="Card image cap">
+                            </div>
+                            <div class="col-md-7">
+                                <p class="card-title" style="text-align: left; color: #4e555b; text-overflow: ellipsis; white-space: nowrap; overflow: hidden;">Datum:
+                                    {{ event.date_time | date: "dd.MM.yyyy. HH:mm"
+                                    }}</p>
+                                <hr />
+                                <p class="card-text" style="text-align: left;">Opis:
+                                    {{event.description.substr(0,100)}}...</p>
+                                <br>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<div #editPlaceModal class="modal fade" id="modaluredi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"> Uredi informacije o događaju </h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Naziv</label>
+                        <label style="color: red; font-size: 16px;">{{errorNaziv}}</label>
+                        <input type="text" class="form-control" id="naziv_usluga" value="{{ modal_naziv }}" [(ngModel)]="eventPut.name"
+                            [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label"> Opis
+                        </label>
+                        <label style="color: red; font-size: 16px;">{{errorDescription}}</label>
+                        <textarea type="text" style="height: 150px" class="form-control" id="link_objekta" [(ngModel)]="eventPut.description"
+                            [ngModelOptions]="{standalone: true}"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Cijena</label>
+                        <label style="color: red; font-size: 16px;">{{errorCijena}}</label>
+                        <input type="number" min="0" class="form-control" id="opis_usluga" value="{{ modal_opis }}"
+                            [(ngModel)]="eventPut.price" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="col-form-label">Datum i vrijeme</label>
+                        <label style="color: red; font-size: 16px;">{{errorDatum}}</label>
+                        <input type="date" min="{{minDate}}" class="form-control" id="opis_usluga" value="{{ modal_opis }}"
+                            [(ngModel)]="eventPut.date_time" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <div class="form-group">
+                        <label for="hitnost" class="col-form-label" style="float: left;">Lokacija<label style="color: red; font-size: 16px;">{{errorPlace}}</label></label>
+                        <select class="form-control" id="hitnost" [(ngModel)]="odabraniPlace" name="places">
+                            <option *ngFor="let p of places" [value]="p.id" [(ngModel)]="eventPut.places">{{p.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="hitnost" class="col-form-label" style="float: left;">Kategorija<label style="color: red; font-size: 16px;">{{errorCategory}}</label></label>
+                        <select class="form-control" id="hitnost" [(ngModel)]="odabranaCategory" name="categories">
+                            <option *ngFor="let p of categories" [value]="p.id">{{p.name}}</option>
+                        </select>
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Adresa</label>
+                        <label style="color: red; font-size: 16px;">{{errorAdresa}}</label>
+                        <input type="text" class="form-control" id="cijena_usluga" [(ngModel)]="objekatPut.address"
+                            [ngModelOptions]="{standalone: true}">
+                    </div> -->
+                    <div class="form-group" style="text-align: left">
+                        <label for="recipient-name" class="col-form-label">Odaberi novu fotografiju<label style="color: red; font-size: 16px;">{{errorImage}}</label></label>
+                        <input #file id="file" type="file" (change)="onUploadChange($event)" style="margin-left: 3rem;" />
+                    </div>
+                    <div *ngIf="errorExist" class="alert alert-danger" role="alert">
+                        {{error}}
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal">Zatvori</button>
+                <button type="button" class="btn btn-primary" id="btn_podnesi_zahtjev" (click)="sacuvajIzmjeneEvent()">Spremi</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deletemodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel"> Želite li obrisati odabrani događaj?</h3>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="btn_modal_usluga" data-dismiss="modal" (click)="deleteSelectedEvents()">Obriši</button>
+                <button type="button" class="btn btn-secondary" id="btn_modal_usluga" data-dismiss="modal" (click)="zatvori()">Odustani</button>
+            </div>
+        </div>
+    </div>
+</div>
