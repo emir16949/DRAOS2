@@ -149,6 +149,15 @@ export class PretragaComponent implements OnInit {
     this.pretraziEvente();
   }
 
+  ocistiPolja() {
+    this.selectedCategory = 0;
+    this.selectedCity = 0;
+    this.selectedDate = null;
+    this.selectedName = null;
+    this.selectedPlace = 0;
+    this.pretraziEvente();
+  }
+
   onChangedCategory() {
     this.pretraziEvente();
   }
