@@ -15,7 +15,9 @@ export class UserDetaljiComponent implements OnInit {
   constructor(private route: ActivatedRoute, private userService: UserService) { }
 
   ngOnInit() {
-    this.route.params.subscribe(params => { this.id = params['idUser']; console.log(params) });
+    this.route.params.subscribe(params => {
+      this.id = params['idUser'];
+    });
     this.getUserById();
   }
 

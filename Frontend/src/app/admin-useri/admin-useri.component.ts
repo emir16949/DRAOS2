@@ -31,9 +31,12 @@ export class AdminUseriComponent implements OnInit {
   errorNewEvent: any = false;
   selectedUser: User = new User();
   loggedInUsername: string;
-  passwordDrugiPut: string = '';
-  errorExist: boolean = false;
+  passwordDrugiPut = '';
+  errorExist = false;
+  trenutniPasswordChecked = true;
   @ViewChild('newUserModal') userModal: any;
+  @ViewChild('editUserModal') editUserModal: any;
+
   constructor(
     private router: Router,
     private userService: UserService,
@@ -133,7 +136,7 @@ export class AdminUseriComponent implements OnInit {
       }
     }
 
-    var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+.[a-z0-9-]/;
+    const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+.[a-z0-9-]/;
 
     if (this.korisnik.email.length <= 5 || !EMAIL_REGEXP.test(this.korisnik.email)) {
       if (this.errorExist === false) {
@@ -166,7 +169,10 @@ export class AdminUseriComponent implements OnInit {
       this.searchedUsers.forEach(element => {
         let existName = false;
         words.forEach(word => {
-          if (element.ime.toLowerCase().includes(word.toLowerCase()) || element.prezime.toLowerCase().includes(word.toLowerCase()) || element.username.toLowerCase().includes(word.toLowerCase()) || element.email.toLowerCase().includes(word.toLowerCase())) {
+          if (element.ime.toLowerCase().includes(word.toLowerCase()) ||
+            element.prezime.toLowerCase().includes(word.toLowerCase()) ||
+            element.username.toLowerCase().includes(word.toLowerCase()) ||
+            element.email.toLowerCase().includes(word.toLowerCase())) {
             existName = true;
           }
         });
@@ -187,5 +193,83 @@ export class AdminUseriComponent implements OnInit {
     this.errorEmail = '';
     this.errorSifra = '';
     this.korisnik = new User();
+  }
+
+  editUser(user) {
+    this.korisnik = user;
+    this.korisnik.password = '';
+  }
+
+  urediUsera() {
+    this.errorExist = false;
+    if (!this.korisnik.ime) {
+      this.error = ' *Obavezno polje';
+      this.errorIme = ' *';
+      this.errorExist = true;
+    }
+    if (!this.korisnik.prezime) {
+      this.error = ' *Obavezno polje';
+      this.errorPrezime = ' *';
+      this.errorExist = true;
+    }
+    if (!this.korisnik.username) {
+      this.error = ' *Obavezno polje';
+      this.errorUsername = ' *';
+      this.errorExist = true;
+    }
+    if (!this.korisnik.email) {
+      this.error = ' *Obavezno polje';
+      this.errorEmail = ' *';
+      this.errorExist = true;
+    }
+    if (!this.trenutniPasswordChecked && !this.korisnik.password) {
+      this.error = ' *Obavezno polje';
+      this.errorSifra = ' *';
+      this.errorExist = true;
+    }
+    if (this.korisnik.ime.length < 3) {
+      if (this.errorExist === false) {
+        this.error = ' *Uneseno ime je prekratko.';
+        this.errorIme = ' *';
+        this.errorExist = true;
+      }
+    }
+    if (this.korisnik.prezime.length < 3) {
+      if (this.errorExist === false) {
+        this.error = ' *Uneseno prezime je prekratko.';
+        this.errorPrezime = ' *';
+        this.errorExist = true;
+      }
+    }
+    if (!this.trenutniPasswordChecked && this.korisnik.password !== this.passwordDrugiPut) {
+      if (this.errorExist === false) {
+        this.error = ' *Šifre se ne poklapaju.';
+        this.errorSifra = ' *';
+        this.errorExist = true;
+      }
+    }
+
+    const EMAIL_REGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@[a-z0-9-]+.[a-z0-9-]/;
+
+    if (this.korisnik.email.length <= 5 || !EMAIL_REGEXP.test(this.korisnik.email)) {
+      if (this.errorExist === false) {
+        this.errorEmail = ' *';
+        this.error = 'Unesite ispravan format maila!';
+        this.errorExist = true;
+      }
+    }
+
+    if (this.errorExist === false) {
+      this.korisnik.user_role.id = 2;
+      if (this.trenutniPasswordChecked) {
+        this.userService.updateUserWithoutPassword(this.korisnik).subscribe();
+      } else {
+        this.userService.updateUser(this.korisnik).subscribe();
+      }
+      this.success = true;
+      this.editUserModal.nativeElement.click();
+      this.successMessage = 'Uspješno ažuriran korisnik!';
+      setTimeout(() => { this.getAllUsers(); this.success = false; }, 2000);
+    }
   }
 }

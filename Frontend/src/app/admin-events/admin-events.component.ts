@@ -24,17 +24,17 @@ export class AdminEventsComponent implements OnInit {
   minDate: any;
   url: string;
   selectedImage: string;
-  error: string = "";
+  error = '';
   success: any = false;
-  successMessage: any = "";
-  errorMessage: any = "";
+  successMessage: any = '';
+  errorMessage: any = '';
   errorNewEvent: any = false;
-  errorName: string = '';
-  errorDescription: string = '';
-  errorDate: string = '';
-  errorCategory: string = '';
-  errorPlace: string = '';
-  errorImage: string = '';
+  errorName = '';
+  errorDescription = '';
+  errorDate = '';
+  errorCategory = '';
+  errorPlace = '';
+  errorImage = '';
 
   constructor(
     private eventService: EventService,
@@ -44,8 +44,8 @@ export class AdminEventsComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit() {
-    let date = new Date();
-    this.minDate = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2);
+    const date = new Date();
+    this.minDate = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
 
     this.event.date_time = this.minDate;
 
@@ -79,11 +79,11 @@ export class AdminEventsComponent implements OnInit {
     this.errorImage = '';
     this.errorPlace = '';
     let errorExist = false;
-    if (this.event.name === "") {
+    if (this.event.name === '') {
       this.errorName = ' *';
       errorExist = true;
     }
-    if (this.event.description === "") {
+    if (this.event.description === '') {
       this.errorDescription = ' *';
       errorExist = true;
     }
@@ -104,12 +104,12 @@ export class AdminEventsComponent implements OnInit {
       errorExist = true;
     }
     if (errorExist) {
-      this.error = "* Popunite obavezna polja!";
+      this.error = '* Popunite obavezna polja!';
       return false;
     } else {
       if (this.event.name.length < 3) {
         this.errorName = ' *';
-        this.error = "* Uneseno ime je prekratko!";
+        this.error = '* Uneseno ime je prekratko!';
         return false;
       }
     }
@@ -122,16 +122,15 @@ export class AdminEventsComponent implements OnInit {
     this.event.category.id = this.odabranaCategory;
     this.event.place.id = this.odabraniPlace;
     this.event.picture = this.selectedImage;
-    let validated = this.validateFields();
+    const validated = this.validateFields();
     if (validated) {
       this.eventService.createEvent(this.event).subscribe();
       this.success = true;
-      this.successMessage = "Uspješno kreiran novi dogadjaj!";
+      this.successMessage = 'Uspješno kreiran novi dogadjaj!';
       setTimeout(() => {
         window.location.reload();
       }, 3000);
-    }
-    else {
+    } else {
       this.errorNewEvent = true;
       this.errorMessage = this.error;
     }

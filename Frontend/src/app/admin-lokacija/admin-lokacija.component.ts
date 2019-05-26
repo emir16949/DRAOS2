@@ -25,7 +25,7 @@ export class AdminLokacijaComponent implements OnInit {
   modal_adresa: any;
   adresa: any;
   url: string;
-  selectedImage: string = '';
+  selectedImage = '';
   odabraniMenadzer: number;
   users: Array<any>;
   @ViewChild('file') el: ElementRef;
@@ -39,12 +39,12 @@ export class AdminLokacijaComponent implements OnInit {
   errorAdresa: string;
   errorMenadzer: string;
   success: any = false;
-  successMessage: any = "";
-  errorMessage: any = "";
+  successMessage: any = '';
+  errorMessage: any = '';
   errorNewEvent: any = false;
   deleteSelectedPlace: Place = new Place();
   errorSlika: string;
-  errorExist: boolean = false;
+  errorExist = false;
   @ViewChild('newPlaceModal') placeModal: any;
   @ViewChild('editPlaceModal') editPlaceModal: any;
 
@@ -115,46 +115,46 @@ export class AdminLokacijaComponent implements OnInit {
 
     this.errorExist = false;
     if (!this.objekat.name) {
-      this.error = " *Obavezno polje";
-      this.errorNaziv = " *";
+      this.error = ' *Obavezno polje';
+      this.errorNaziv = ' *';
       this.errorExist = true;
     }
     if (!this.objekat.description) {
-      this.error = " *Obavezno polje";
-      this.errorDetalji = " *";
+      this.error = ' *Obavezno polje';
+      this.errorDetalji = ' *';
       this.errorExist = true;
     }
     if (!this.odabraniGrad) {
-      this.error = " *Obavezno polje";
-      this.errorGrad = " *";
+      this.error = ' *Obavezno polje';
+      this.errorGrad = ' *';
       this.errorExist = true;
     }
     if (!this.odabraniMenadzer) {
-      this.error = " *Obavezno polje";
-      this.errorMenadzer = " *";
+      this.error = ' *Obavezno polje';
+      this.errorMenadzer = ' *';
       this.errorExist = true;
     }
     if (!this.objekat.address) {
-      this.error = " *Obavezno polje";
-      this.errorAdresa = " *";
+      this.error = ' *Obavezno polje';
+      this.errorAdresa = ' *';
       this.errorExist = true;
     }
     if (this.objekat.name.length < 3) {
       if (this.errorExist === false)
-        this.error = " *Uneseni tekst je prekratak.";
-      this.errorNaziv = " *";
+        this.error = ' *Uneseni tekst je prekratak.';
+      this.errorNaziv = ' *';
       this.errorExist = true;
     }
     if (this.objekat.description.length < 3) {
       if (this.errorExist === false)
-        this.error = " *Uneseni tekst je prekratak.";
-      this.errorDetalji = " *";
+        this.error = ' *Uneseni tekst je prekratak.';
+      this.errorDetalji = ' *';
       this.errorExist = true;
     }
     if (this.objekat.address.length < 5) {
       if (this.errorExist === false)
-        this.error = " *Uneseni tekst je prekratak.";
-      this.errorAdresa = " *";
+        this.error = ' *Uneseni tekst je prekratak.';
+      this.errorAdresa = ' *';
       this.errorExist = true;
     }
 
@@ -182,7 +182,7 @@ export class AdminLokacijaComponent implements OnInit {
       this.placeService.createPlace(this.objekat).subscribe();
       this.success = true;
       this.placeModal.nativeElement.click();
-      this.successMessage = "Uspješno dodana nova lokacija!";
+      this.successMessage = 'Uspješno dodana nova lokacija!';
       setTimeout(() => { this.getAllPlaces(); this.success = false; }, 2000);
     }
   }
@@ -201,37 +201,37 @@ export class AdminLokacijaComponent implements OnInit {
 
     this.errorExist = false;
     if (!this.objekatPut.name) {
-      this.error = " *Obavezno polje";
-      this.errorNaziv = " *";
+      this.error = ' *Obavezno polje';
+      this.errorNaziv = ' *';
       this.errorExist = true;
     }
     if (!this.objekatPut.description) {
-      this.error = " *Obavezno polje";
-      this.errorDetalji = " *";
+      this.error = ' *Obavezno polje';
+      this.errorDetalji = ' *';
       this.errorExist = true;
     }
 
     if (!this.objekatPut.address) {
-      this.error = " *Obavezno polje";
-      this.errorAdresa = " *";
+      this.error = ' *Obavezno polje';
+      this.errorAdresa = ' *';
       this.errorExist = true;
     }
     if (this.objekatPut.name.length < 3) {
       if (this.errorExist === false)
-        this.error = " *Uneseni tekst je prekratak.";
-      this.errorNaziv = " *";
+        this.error = ' *Uneseni tekst je prekratak.';
+      this.errorNaziv = ' *';
       this.errorExist = true;
     }
     if (this.objekatPut.description.length < 3) {
       if (this.errorExist === false)
-        this.error = " *Uneseni tekst je prekratak.";
-      this.errorDetalji = " *";
+        this.error = ' *Uneseni tekst je prekratak.';
+      this.errorDetalji = ' *';
       this.errorExist = true;
     }
     if (this.objekatPut.address.length < 5) {
       if (this.errorExist === false)
-        this.error = " *Uneseni tekst je prekratak.";
-      this.errorAdresa = " *";
+        this.error = ' *Uneseni tekst je prekratak.';
+      this.errorAdresa = ' *';
       this.errorExist = true;
     }
 
@@ -247,7 +247,7 @@ export class AdminLokacijaComponent implements OnInit {
       this.placeService.changePlace(this.objekatPut).subscribe();
       this.success = true;
       this.editPlaceModal.nativeElement.click();
-      this.successMessage = "Objekat uspješno ažuriran!";
+      this.successMessage = 'Objekat uspješno ažuriran!';
       setTimeout(() => { this.getAllPlaces(); this.success = false; }, 2000);
     }
 
