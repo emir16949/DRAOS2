@@ -35,6 +35,11 @@ export class AdminEventsComponent implements OnInit {
   errorCategory = '';
   errorPlace = '';
   errorImage = '';
+  ponoviDogadjaj = false;
+  sedmicnoChecked = false;
+  sedmicnoBroj: number;
+  mjesecnoChecked = false;
+  mjesecnoBroj: number;
 
   constructor(
     private eventService: EventService,
@@ -158,5 +163,14 @@ export class AdminEventsComponent implements OnInit {
 
   handleReaderLoaded(e) {
     this.selectedImage = 'data:image/JPEG;base64,' + btoa(e.target.result);
+  }
+
+  ponoviDogadjajChanged() {
+    if (!this.ponoviDogadjaj) {
+      this.sedmicnoChecked = false;
+      this.sedmicnoBroj = null;
+      this.mjesecnoChecked = false;
+      this.mjesecnoBroj = null;
+    }
   }
 }

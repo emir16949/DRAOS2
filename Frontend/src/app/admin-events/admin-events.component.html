@@ -46,6 +46,32 @@
               style="margin-left: 1rem; border-width: 1px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;"
               [(ngModel)]="event.date_time" [ngModelOptions]="{standalone: true}">
           </div><br>
+          <div class="form-group" style="text-align: left; margin-left: 1.2rem">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" [(ngModel)]="ponoviDogadjaj"
+              [ngModelOptions]="{standalone: true}" (change)='ponoviDogadjajChanged()'>
+            <label class="form-check-label" for="exampleCheck1">Ponovi događaj...</label>
+            <br>
+            <div *ngIf='ponoviDogadjaj'>
+              <input type="radio" class="form-check-input" [(ngModel)]="sedmicnoChecked"
+                [ngModelOptions]="{standalone: true}" value='1'>
+              <label class="form-check-label" for="exampleCheck1">sedmično, narednih </label>
+              <span style='margin: 0.3rem;'></span>
+              <input type="number" class="form-check-label" id="exampleCheck1" [(ngModel)]="sedmicnoBroj"
+                [ngModelOptions]="{standalone: true}">
+              <span style='margin: 0.3rem;'></span>
+              <label class="form-check-label" for="exampleCheck1"> sedmica</label>
+              <br>
+              <input type="radio" class="form-check-input" [(ngModel)]="mjesecnoChecked"
+                [ngModelOptions]="{standalone: true}" value='2'>
+              <label class="form-check-label" for="exampleCheck1">mjesečno, narednih </label>
+              <span style='margin: 0.3rem;'></span>
+              <input type="number" class="form-check-label" id="exampleCheck1" [(ngModel)]="mjesecnoBroj"
+                [ngModelOptions]="{standalone: true}">
+              <span style='margin: 0.3rem;'></span>
+              <label class="form-check-label" for="exampleCheck1"> mjeseci</label>
+              <br>
+            </div>
+          </div>
           <div class="form-group" style="text-align: left">
             <label for="recipient-name" class="col-form-label"> Fotografija<label
                 style="color: red; font-size: 16px;">{{errorImage}}</label></label>
