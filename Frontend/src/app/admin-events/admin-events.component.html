@@ -52,23 +52,27 @@
             <label class="form-check-label" for="exampleCheck1">Ponovi događaj...</label>
             <br>
             <div *ngIf='ponoviDogadjaj'>
-              <input type="radio" class="form-check-input" [(ngModel)]="sedmicnoChecked"
-                [ngModelOptions]="{standalone: true}" value='1'>
+              <input type="radio" class="form-check-input" [(ngModel)]="sedmicnoMjesecnoChecked"
+                [ngModelOptions]="{standalone: true}" value='sedmicno'>
               <label class="form-check-label" for="exampleCheck1">sedmično, narednih </label>
               <span style='margin: 0.3rem;'></span>
               <input type="number" class="form-check-label" id="exampleCheck1" [(ngModel)]="sedmicnoBroj"
-                [ngModelOptions]="{standalone: true}">
+                [ngModelOptions]="{standalone: true}" min='0' max='10'>
               <span style='margin: 0.3rem;'></span>
-              <label class="form-check-label" for="exampleCheck1"> sedmica</label>
+              <label class="form-check-label" for="exampleCheck1" *ngIf='sedmicnoBroj == 1'> sedmicu</label>
+              <label class="form-check-label" for="exampleCheck1" *ngIf='sedmicnoBroj == 2 || sedmicnoBroj == 3 || sedmicnoBroj == 4'> sedmice</label>
+              <label class="form-check-label" for="exampleCheck1" *ngIf='sedmicnoBroj != 1 && sedmicnoBroj != 2 && sedmicnoBroj != 3 && sedmicnoBroj != 4'> sedmica</label>
               <br>
-              <input type="radio" class="form-check-input" [(ngModel)]="mjesecnoChecked"
-                [ngModelOptions]="{standalone: true}" value='2'>
+              <input type="radio" class="form-check-input" [(ngModel)]="sedmicnoMjesecnoChecked"
+                [ngModelOptions]="{standalone: true}" value='mjesecno'>
               <label class="form-check-label" for="exampleCheck1">mjesečno, narednih </label>
               <span style='margin: 0.3rem;'></span>
               <input type="number" class="form-check-label" id="exampleCheck1" [(ngModel)]="mjesecnoBroj"
-                [ngModelOptions]="{standalone: true}">
+                [ngModelOptions]="{standalone: true}" min='0' max='10'>
               <span style='margin: 0.3rem;'></span>
-              <label class="form-check-label" for="exampleCheck1"> mjeseci</label>
+              <label class="form-check-label" for="exampleCheck1" *ngIf='mjesecnoBroj == 1'> mjesec</label>
+              <label class="form-check-label" for="exampleCheck1" *ngIf='mjesecnoBroj == 2 || mjesecnoBroj == 3 || mjesecnoBroj == 4'> mjeseca</label>
+              <label class="form-check-label" for="exampleCheck1" *ngIf='mjesecnoBroj != 1 && mjesecnoBroj != 2 && mjesecnoBroj != 3 && mjesecnoBroj != 4'> mjeseci</label>
               <br>
             </div>
           </div>

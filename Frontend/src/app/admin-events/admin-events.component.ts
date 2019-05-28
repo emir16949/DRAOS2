@@ -36,9 +36,8 @@ export class AdminEventsComponent implements OnInit {
   errorPlace = '';
   errorImage = '';
   ponoviDogadjaj = false;
-  sedmicnoChecked = false;
+  sedmicnoMjesecnoChecked = 'nista';
   sedmicnoBroj: number;
-  mjesecnoChecked = false;
   mjesecnoBroj: number;
 
   constructor(
@@ -130,8 +129,27 @@ export class AdminEventsComponent implements OnInit {
     const validated = this.validateFields();
     if (validated) {
       this.eventService.createEvent(this.event).subscribe();
+      if (this.sedmicnoMjesecnoChecked === 'sedmicno' && this.sedmicnoBroj > 0) {
+        for (let i = 1; i <= this.sedmicnoBroj; i++) {
+          const date = new Date(this.event.date_time);
+          const addedTime = 7 * 86400 * 1000;
+          date.setTime(date.getTime() + addedTime);
+          this.event.date_time = date;
+          this.eventService.createEvent(this.event).subscribe();
+        }
+        this.successMessage = 'Uspješno kreirani novi događaji!';
+      } else if (this.sedmicnoMjesecnoChecked === 'mjesecno' && this.mjesecnoBroj > 0) {
+        for (let i = 1; i <= this.mjesecnoBroj; i++) {
+          const date = new Date(this.event.date_time);
+          date.setMonth(date.getMonth() + 1);
+          this.event.date_time = date;
+          this.eventService.createEvent(this.event).subscribe();
+        }
+        this.successMessage = 'Uspješno kreirani novi događaji!';
+      } else {
+        this.successMessage = 'Uspješno kreiran novi događaj!';
+      }
       this.success = true;
-      this.successMessage = 'Uspješno kreiran novi dogadjaj!';
       setTimeout(() => {
         window.location.reload();
       }, 3000);
@@ -167,9 +185,8 @@ export class AdminEventsComponent implements OnInit {
 
   ponoviDogadjajChanged() {
     if (!this.ponoviDogadjaj) {
-      this.sedmicnoChecked = false;
+      this.sedmicnoMjesecnoChecked = 'nista';
       this.sedmicnoBroj = null;
-      this.mjesecnoChecked = false;
       this.mjesecnoBroj = null;
     }
   }
