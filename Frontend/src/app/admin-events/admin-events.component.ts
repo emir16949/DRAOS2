@@ -24,17 +24,21 @@ export class AdminEventsComponent implements OnInit {
   minDate: any;
   url: string;
   selectedImage: string;
-  error: string = "";
+  error = '';
   success: any = false;
-  successMessage: any = "";
-  errorMessage: any = "";
+  successMessage: any = '';
+  errorMessage: any = '';
   errorNewEvent: any = false;
-  errorName: string = '';
-  errorDescription: string = '';
-  errorDate: string = '';
-  errorCategory: string = '';
-  errorPlace: string = '';
-  errorImage: string = '';
+  errorName = '';
+  errorDescription = '';
+  errorDate = '';
+  errorCategory = '';
+  errorPlace = '';
+  errorImage = '';
+  ponoviDogadjaj = false;
+  sedmicnoMjesecnoChecked = 'nista';
+  sedmicnoBroj: number;
+  mjesecnoBroj: number;
 
   constructor(
     private eventService: EventService,
@@ -79,11 +83,11 @@ export class AdminEventsComponent implements OnInit {
     this.errorImage = '';
     this.errorPlace = '';
     let errorExist = false;
-    if (this.event.name === "") {
+    if (this.event.name === '') {
       this.errorName = ' *';
       errorExist = true;
     }
-    if (this.event.description === "") {
+    if (this.event.description === '') {
       this.errorDescription = ' *';
       errorExist = true;
     }
@@ -104,12 +108,12 @@ export class AdminEventsComponent implements OnInit {
       errorExist = true;
     }
     if (errorExist) {
-      this.error = "* Popunite obavezna polja!";
+      this.error = '* Popunite obavezna polja!';
       return false;
     } else {
       if (this.event.name.length < 3) {
         this.errorName = ' *';
-        this.error = "* Uneseno ime je prekratko!";
+        this.error = '* Uneseno ime je prekratko!';
         return false;
       }
     }
@@ -122,16 +126,34 @@ export class AdminEventsComponent implements OnInit {
     this.event.category.id = this.odabranaCategory;
     this.event.place.id = this.odabraniPlace;
     this.event.picture = this.selectedImage;
-    let validated = this.validateFields();
+    const validated = this.validateFields();
     if (validated) {
       this.eventService.createEvent(this.event).subscribe();
+      if (this.sedmicnoMjesecnoChecked === 'sedmicno' && this.sedmicnoBroj > 0) {
+        for (let i = 1; i <= this.sedmicnoBroj; i++) {
+          const date = new Date(this.event.date_time);
+          const addedTime = 7 * 86400 * 1000;
+          date.setTime(date.getTime() + addedTime);
+          this.event.date_time = date;
+          this.eventService.createEvent(this.event).subscribe();
+        }
+        this.successMessage = 'Uspješno kreirani novi događaji!';
+      } else if (this.sedmicnoMjesecnoChecked === 'mjesecno' && this.mjesecnoBroj > 0) {
+        for (let i = 1; i <= this.mjesecnoBroj; i++) {
+          const date = new Date(this.event.date_time);
+          date.setMonth(date.getMonth() + 1);
+          this.event.date_time = date;
+          this.eventService.createEvent(this.event).subscribe();
+        }
+        this.successMessage = 'Uspješno kreirani novi događaji!';
+      } else {
+        this.successMessage = 'Uspješno kreiran novi događaj!';
+      }
       this.success = true;
-      this.successMessage = "Uspješno kreiran novi dogadjaj!";
       setTimeout(() => {
         window.location.reload();
       }, 3000);
-    }
-    else {
+    } else {
       this.errorNewEvent = true;
       this.errorMessage = this.error;
     }
@@ -159,5 +181,13 @@ export class AdminEventsComponent implements OnInit {
 
   handleReaderLoaded(e) {
     this.selectedImage = 'data:image/JPEG;base64,' + btoa(e.target.result);
+  }
+
+  ponoviDogadjajChanged() {
+    if (!this.ponoviDogadjaj) {
+      this.sedmicnoMjesecnoChecked = 'nista';
+      this.sedmicnoBroj = null;
+      this.mjesecnoBroj = null;
+    }
   }
 }

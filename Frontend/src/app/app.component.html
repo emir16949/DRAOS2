@@ -9,8 +9,8 @@
     <ul id="grouplist" class="navbar-nav mr-auto" style="height: 60px !important;">
       <li *ngFor="let item of items; let i=index" (click)="select(i)"
         [ngClass]="{'nav-item': true, 'active': selectedIndex == i}" style="width: 90px;">
-        <a class="nav-link" routerLink="/{{item.name}}"
-          style="color: white; text-align: center; padding-top: 10px;">{{ item.text }}
+        <a class="nav-link" routerLink="/{{item.name}}" style="color: white; text-align: center; padding-top: 10px;">{{
+          item.text }}
           <hr class="lineMeni {{item.color}}" style="margin-top: 8px"></a>
       </li>
     </ul>
@@ -22,8 +22,9 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
           <a class="dropdown-item" (click)="pocistiIndex()" routerLink="/admin-useri"
-            *ngIf="isAdmin==true">Menadžeri</a>
+            *ngIf="isAdmin==true">Korisnici</a>
           <a class="dropdown-item" (click)="pocistiIndex()" routerLink="/admin-lokacija">Lokacije</a>
+          <a class="dropdown-item" (click)="pocistiIndex()" routerLink="/moji-eventi">Događaji</a>
           <a class="dropdown-item" (click)="pocistiIndex()" routerLink="/admin-events">Novi događaj</a>
         </div>
       </li>
@@ -37,7 +38,7 @@
       <li class="nav-item" style="cursor: pointer">
         <a class="nav-link" data-toggle="modal" (click)="pretraga()"
           style="color: white; cursor: pointer; padding-right: 1rem;"><i class="fa fa-search"
-            style="color: white; font-size: 18px;"></i>  Pretraga</a>
+            style="color: white; font-size: 18px;"></i> Pretraga</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" routerLink="/"></a>

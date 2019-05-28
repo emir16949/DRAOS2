@@ -91,6 +91,8 @@ public class PlaceService {
       Place place = (Place) placeHelp.get();
       place.setName(placeFromRequest.getName());
       place.setDescription(placeFromRequest.getDescription());
+      place.setAddress(placeFromRequest.getAddress());
+      place.setPlace_url(placeFromRequest.getPlace_url());
       placeRepository.save(place);
       return "Place with id = " + place.getId() + " and name = " + place.getName()
           + " updated successfully";
