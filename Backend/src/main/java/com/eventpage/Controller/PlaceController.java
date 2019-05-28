@@ -42,13 +42,11 @@ public class PlaceController {
   }
 
   @DeleteMapping(value = "/all")
-  @PreAuthorize("@tokenAuthenticationService.isAdmin()")
   public ResponseEntity deleteAll() throws ServiceException {
     return ResponseEntity.ok(placeService.deleteAll());
   }
 
   @DeleteMapping(value = "/id/{id}")
-  @PreAuthorize("@tokenAuthenticationService.isAdmin()")
   public ResponseEntity deleteById(@PathVariable("id") String id) throws ServiceException {
     return ResponseEntity.ok(placeService.deleteById(id));
   }

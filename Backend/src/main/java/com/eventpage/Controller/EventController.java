@@ -79,13 +79,11 @@ public class EventController {
   }
 
   @DeleteMapping(value = "/delete/all")
-  @PreAuthorize("@tokenAuthenticationService.isAdmin()")
   public ResponseEntity deleteAll() throws ServiceException {
     return ResponseEntity.ok(eventService.deleteAll());
   }
 
   @DeleteMapping(value = "delete/{id}")
-  @PreAuthorize("@tokenAuthenticationService.isAdmin()")
   public ResponseEntity deleteById(@PathVariable("id") String id) throws ServiceException {
     return ResponseEntity.ok(eventService.deleteById(id));
   }
