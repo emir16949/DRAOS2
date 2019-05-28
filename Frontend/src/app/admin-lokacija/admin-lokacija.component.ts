@@ -250,7 +250,6 @@ export class AdminLokacijaComponent implements OnInit {
       this.successMessage = 'Objekat uspješno ažuriran!';
       setTimeout(() => { this.getAllPlaces(); this.success = false; }, 2000);
     }
-
   }
 
   urediPlace(place) {
