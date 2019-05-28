@@ -12,6 +12,7 @@ import { EventService } from '../services/event/event.service';
 export class SviEventiIzKategorijeComponent implements OnInit {
 
   eventPut: Event = new Event();
+  allEvents: Array<any>;
   events: Array<any>;
   event: Event = new Event();
   selectedEvent: Event;
@@ -46,7 +47,16 @@ export class SviEventiIzKategorijeComponent implements OnInit {
     }
     this.eventService.getEventsByCategory(kategorija).subscribe(data => {
       this.events = data;
+      this.allEvents = data;
     });
+  }
+
+  prikaziAdminDogadjaje() {
+    this.events = this.events.filter((event) => event.place.manager.user_role.id == 1);
+  }
+
+  prikaziSveDogadjaje() {
+    this.events = this.allEvents;
   }
 
   prikaziDetalje(event: any) {

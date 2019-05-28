@@ -36,7 +36,7 @@
           <div class="form-group" style="text-align: left">
             <label for="recipient-name" class="col-form-label"> Datum i vrijeme<label style="color: red; font-size: 16px;">{{errorDate}}</label>
             </label>
-            <input type="date" name="bday" min="{{minDate}}" style="margin-left: 1rem; border-width: 1px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;"
+            <input type="datetime-local" name="bday" min="{{minDate}}" style="margin-left: 1rem; border-width: 1px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;"
               [(ngModel)]="event.date_time" [ngModelOptions]="{standalone: true}">
           </div><br>
           <div class="form-group" style="text-align: left">

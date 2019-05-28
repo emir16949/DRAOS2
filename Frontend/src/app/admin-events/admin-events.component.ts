@@ -45,7 +45,7 @@ export class AdminEventsComponent implements OnInit {
 
   ngOnInit() {
     let date = new Date();
-    this.minDate = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2);
+    this.minDate = date.getFullYear() + "-" + ("0" + (date.getMonth() + 1)).slice(-2) + "-" + ("0" + date.getDate()).slice(-2) + "T00:00";
 
     this.event.date_time = this.minDate;
 

@@ -1,7 +1,6 @@
 <main role="main" style="background-color: lavender; margin: 0px;" *ngIf="events.length > 0">
-
   <!--carousel-->
-  <div id="myCarousel" class="carousel slide" data-ride="carousel" (mouseenter)="mouseEnter()" style="width: 80%;margin-left: 10%; height: 25rem; margin-bottom: 0px; padding-top: 0.5rem"
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" (mouseenter)="mouseEnter()" style="width: 80%;margin-left: 10%; height: 25rem; padding-top: 0.5rem;"
     (mouseleave)="mouseLeave()">
     <ol class="carousel-indicators">
       <li *ngFor="let event of events; let i = index" data-target="#myCarousel" data-slide-to="i" class="{{ (i == 0) ? 'active' : ''}}"></li>
@@ -35,6 +34,9 @@
   <div class="container marketing">
     <hr class="featurette-divider" [ngStyle]="changeBackground()" style="height: 3px;  margin: 2rem 0;">
   </div>
+
+  <button  type="button" class="btn btn-secondary" *ngIf="isAdmin==true" id="btn_admin_events" data-dismiss="modal" (click)="prikaziAdminDogadjaje()" style="width: 15%; margin-left: 12%; margin-top: 0rem; margin-bottom: 1rem;">Moji događaji </button>
+  <button  type="button" class="btn btn-secondary" *ngIf="isAdmin==true" id="btn_all_events" data-dismiss="modal" (click)="prikaziSveDogadjaje()" style="width: 15%; margin-top: 0rem; margin-bottom: 1rem;">Svi događaji </button>
 
   <div class="row" style="margin-left: 10%; margin-right: 10%;">
 
