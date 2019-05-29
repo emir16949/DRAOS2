@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
+import { AuthService } from '../core/auth.service';
+import { TokenStorage } from '../core/token.storage';
+import { Category } from '../services/category/Category';
+import { CategoryService } from '../services/category/category.service';
 import { Event } from '../services/event/Event';
 import { EventService } from '../services/event/event.service';
-import { AuthService } from '../core/auth.service';
-import { PlaceService } from '../services/place/place.service';
-import { TokenStorage } from '../core/token.storage';
 import { Place } from '../services/place/Place';
+import { PlaceService } from '../services/place/place.service';
 
 @Component({
   selector: 'moji-eventi',
@@ -30,14 +32,17 @@ export class MojiEventiComponent implements OnInit {
   successMessage = '';
   minDate = null;
   places: Array<any>;
-  categories: Array<any>;
+  categories: Array<Category>;
+  odabranaKategorija: any;
+  odabraniPlace: any;
 
   constructor(
     private eventService: EventService,
     private router: Router,
     private appComponent: AppComponent,
     private placeService: PlaceService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private categoryService: CategoryService) { }
 
   ngOnInit() {
     const date = new Date();
@@ -71,6 +76,14 @@ export class MojiEventiComponent implements OnInit {
             this.places.push(place);
           }
         }
+      }
+    });
+
+    this.categoryService.getAllCategory().subscribe((response: Array<any>) => {
+      this.categories = new Array(response.length);
+      for (let i = 0; i < response.length; i++) {
+        delete response[i].events;
+        this.categories[i] = response[i];
       }
     });
   }
@@ -135,6 +148,16 @@ export class MojiEventiComponent implements OnInit {
   }
 
   sacuvajIzmjeneEvent() {
+    this.categories.forEach(category => {
+      if (category.id == this.odabranaKategorija) {
+        this.eventPut.category = category;
+      }
+    });
+    this.places.forEach(place => {
+      if (place.id == this.odabraniPlace) {
+        this.eventPut.place = place;
+      }
+    });
     // this.errorLink = '';
     // this.errorNaziv = '';
     // this.errorDetalji = '';
@@ -197,6 +220,8 @@ export class MojiEventiComponent implements OnInit {
   urediEvent(event: Event) {
     // this.adresa = place.address.name;
     this.eventPut = event;
+    this.odabranaKategorija = this.eventPut.category.id;
+    this.odabraniPlace = this.eventPut.place.id;
     // this.objekatPut.name = place.name;
     // this.objekatPut.place_url = place.place_url;
     // this.objekatPut.description = place.description;
