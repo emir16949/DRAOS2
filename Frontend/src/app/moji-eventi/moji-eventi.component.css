@@ -1,3 +1,8 @@
-.modalurediAdmin {
-    width: 800px;
+.btn-default{
+        margin-right: 5%;
+        margin-top: 5%;
+    }
+    
+#modalurediAdmin {
+    width: 100%;
 }

@@ -94,19 +94,6 @@
                         <textarea type="text" style="height: 150px" class="form-control" id="link_objekta" [(ngModel)]="opisPut"
                             [ngModelOptions]="{standalone: true}"></textarea>
                     </div>
-                    <div class="form-group" style="text-align: left">
-                        <label for="recipient-name" class="col-form-label"> Cijena<label style="color: red; font-size: 16px;">{{errorCijena}}</label>
-                        </label>
-                        <input type="number" min="0" style="margin-left: 1rem; border-width: 1px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;"
-                            [(ngModel)]="cijenaPut" [ngModelOptions]="{standalone: true}">
-                        <label for="recipient-name" class="col-form-label"> KM</label>
-                    </div>
-                    <div class="form-group" style="text-align: left">
-                        <label for="recipient-name" class="col-form-label"> Datum i vrijeme<label style="color: red; font-size: 16px;">{{errorDate}}</label>
-                        </label>
-                        <input type="datetime-local" name="bday" style="margin-left: 1rem; border-width: 1px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;"
-                            [(ngModel)]="datumPut" [ngModelOptions]="{standalone: true}">
-                    </div>
                     <div class="form-group">
                         <label for="hitnost" class="col-form-label" style="float: left;">Lokacija<label style="color: red; font-size: 16px;">{{errorPlace}}</label></label>
                         <select class="form-control" id="hitnost" [(ngModel)]="odabraniPlace" name="places">
@@ -119,7 +106,21 @@
                             <option *ngFor="let c of categories" [value]="c.id">{{c.name}}</option>
                         </select>
                     </div>
-
+                    <br>
+                    <div class="form-group" style="text-align: left">
+                        <label for="recipient-name" class="col-form-label"> Cijena<label style="color: red; font-size: 16px;">{{errorCijena}}</label>
+                        </label>
+                        <input type="number" min="0" style="margin-left: 5.1rem; border-width: 1px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;"
+                            [(ngModel)]="cijenaPut" [ngModelOptions]="{standalone: true}">
+                        <label for="recipient-name" class="col-form-label" style="margin-left: 1rem;"> KM</label>
+                    </div>
+                    <div class="form-group" style="text-align: left">
+                        <label for="recipient-name" class="col-form-label"> Datum i vrijeme<label style="color: red; font-size: 16px;">{{errorDate}}</label>
+                        </label>
+                        <input type="datetime-local" name="bday" style="margin-left: 1rem; border-width: 1px; border-style: solid; height: 40px; border-color: rgba(158,162,162,0.76); border-radius: 8px;"
+                            [(ngModel)]="datumPut" [ngModelOptions]="{standalone: true}">
+                    </div>
+                    <br>
                     <div class="form-group" style="text-align: left">
                         <label for="recipient-name" class="col-form-label">Odaberi novu fotografiju<label style="color: red; font-size: 16px;">{{errorImage}}</label></label>
                         <input #file id="file" type="file" (change)="onUploadChange($event)" style="margin-left: 3rem;" />
