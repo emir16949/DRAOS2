@@ -35,8 +35,11 @@
     <hr class="featurette-divider" [ngStyle]="changeBackground()" style="height: 3px;  margin: 2rem 0;">
   </div>
 
-  <button  type="button" class="btn btn-secondary" *ngIf="isAdmin==true" id="btn_admin_events" data-dismiss="modal" (click)="prikaziAdminDogadjaje()" style="width: 15%; margin-left: 12%; margin-top: 0rem; margin-bottom: 1rem;">Moji događaji </button>
-  <button  type="button" class="btn btn-secondary" *ngIf="isAdmin==true" id="btn_all_events" data-dismiss="modal" (click)="prikaziSveDogadjaje()" style="width: 15%; margin-top: 0rem; margin-bottom: 1rem;">Svi događaji </button>
+  <button type="button" class="btn btn-secondary" *ngIf="isAdmin==true" id="btn_admin_events" data-dismiss="modal"
+    (click)="prikaziAdminDogadjaje()" style="width: 15%; margin-left: 12%; margin-top: 0rem; margin-bottom: 1rem;">Moji
+    događaji </button>
+  <button type="button" class="btn btn-secondary" *ngIf="isAdmin==true" id="btn_all_events" data-dismiss="modal"
+    (click)="prikaziSveDogadjaje()" style="width: 15%; margin-top: 0rem; margin-bottom: 1rem;">Svi događaji </button>
 
   <div class="row" style="margin-left: 10%; margin-right: 10%;">
 
