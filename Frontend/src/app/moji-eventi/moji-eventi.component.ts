@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 import { AuthService } from '../core/auth.service';
@@ -35,6 +35,19 @@ export class MojiEventiComponent implements OnInit {
   categories: Array<Category>;
   odabranaKategorija: any;
   odabraniPlace: any;
+  selectedDate: any;
+
+  error: any;
+  errorExist = false;
+  errorNaziv = '';
+  nazivPut = '';
+  opisPut = '';
+  cijenaPut = 0;
+  datumPut = new Date();
+  errorDescription = '';
+  errorCijena = '';
+  selectedImage = '';
+  @ViewChild('editEventModal') editEventModal: any;
 
   constructor(
     private eventService: EventService,
@@ -148,6 +161,10 @@ export class MojiEventiComponent implements OnInit {
   }
 
   sacuvajIzmjeneEvent() {
+    this.errorCijena = '';
+    this.error = '';
+    this.errorDescription = '';
+
     this.categories.forEach(category => {
       if (category.id == this.odabranaKategorija) {
         this.eventPut.category = category;
@@ -158,75 +175,66 @@ export class MojiEventiComponent implements OnInit {
         this.eventPut.place = place;
       }
     });
-    // this.errorLink = '';
-    // this.errorNaziv = '';
-    // this.errorDetalji = '';
-    // this.errorAdresa = '';
+    if (!this.nazivPut) {
+      this.error = " *Obavezno polje";
+      this.errorNaziv = " *";
+      this.errorExist = true;
+    }
 
-    // this.errorExist = false;
-    // if (!this.objekatPut.name) {
-    //     this.error = " *Obavezno polje";
-    //     this.errorNaziv = " *";
-    //     this.errorExist = true;
-    // }
-    // if (!this.objekatPut.description) {
-    //     this.error = " *Obavezno polje";
-    //     this.errorDetalji = " *";
-    //     this.errorExist = true;
-    // }
+    if (!this.opisPut) {
+      this.error = " *Obavezno polje";
+      this.errorDescription = " *";
+      this.errorExist = true;
+    }
 
-    // if (!this.objekatPut.address) {
-    //     this.error = " *Obavezno polje";
-    //     this.errorAdresa = " *";
-    //     this.errorExist = true;
-    // }
-    // if (this.objekatPut.name.length < 3) {
-    //     if (this.errorExist === false)
-    //         this.error = " *Uneseni tekst je prekratak.";
-    //     this.errorNaziv = " *";
-    //     this.errorExist = true;
-    // }
-    // if (this.objekatPut.description.length < 3) {
-    //     if (this.errorExist === false)
-    //         this.error = " *Uneseni tekst je prekratak.";
-    //     this.errorDetalji = " *";
-    //     this.errorExist = true;
-    // }
-    // if (this.objekatPut.address.length < 5) {
-    //     if (this.errorExist === false)
-    //         this.error = " *Uneseni tekst je prekratak.";
-    //     this.errorAdresa = " *";
-    //     this.errorExist = true;
-    // }
+    if (!this.cijenaPut) {
+      this.error = " *Obavezno polje";
+      this.errorCijena = " *";
+      this.errorExist = true;
+    }
 
-    // if (this.objekatPut.place_url.length <= 4 || !this.objekatPut.place_url.match(/([a-z0-9_\-]{1,5}:\/\/)?(([a-z0-9_\-]{1,}):([a-z0-9_\-]{1,})\@)?((www\.)|([a-z0-9_\-]{1,}\.)+)?([a-z0-9_\-]{3,})(\.[a-z]{2,4})(\/([a-z0-9_\-]{1,}\/)+)?([a-z0-9_\-]{1,})?(\.[a-z]{2,})?(([\?\&][a-z0-9_\-]{1,}\=[a-z0-9_\-]{1,})+)?/gi)) {
-    //     if (this.errorExist === false) {
-    //         this.errorLink = ' *';
-    //         this.error = 'Unesite ispravan link postojeće web-stranice.';
-    //         this.errorExist = true;
-    //     }
-    // }
+    if (this.errorExist) {
+      this.error = '* Popunite obavezna polja!';
+      return false;
+    } else {
+      if (this.nazivPut.length < 3) {
+        this.errorNaziv = ' *';
+        this.error = '* Uneseno ime je prekratko!';
+        return false;
+      }
+    }
 
-    // if (this.errorExist === false) {
-    //     this.placeService.changePlace(this.objekatPut).subscribe();
-    //     this.success = true;
-    //     this.editPlaceModal.nativeElement.click();
-    //     this.successMessage = "Objekat uspješno ažuriran!";
-    //     setTimeout(() => { this.getAllPlaces(); this.success = false; }, 2000);
-    // }
+    if (!this.errorExist) {
 
+      this.eventPut.name = this.nazivPut;
+      this.eventPut.description = this.opisPut;
+      this.eventPut.price = this.cijenaPut;
+      this.eventPut.category = this.odabranaKategorija;
+      this.eventPut.place = this.odabraniPlace;
+      this.eventPut.date_time = this.datumPut;
+      if (this.selectedImage) {
+        this.eventPut.picture = this.selectedImage;
+      }
+      this.eventService.changeEvent(this.eventPut).subscribe();
+      this.success = true;
+      this.editEventModal.nativeElement.click();
+      this.successMessage = "Događaj uspješno ažuriran!";
+      setTimeout(() => { this.getAllEvents(); this.success = false; }, 2000);
+
+    }
   }
 
   urediEvent(event: Event) {
     // this.adresa = place.address.name;
+    this.nazivPut = event.name;
+    this.opisPut = event.description;
+    this.cijenaPut = event.price;
+
     this.eventPut = event;
+    this.selectedDate = this.eventPut.date_time;
+    this.datumPut = this.eventPut.date_time;
     this.odabranaKategorija = this.eventPut.category.id;
     this.odabraniPlace = this.eventPut.place.id;
-    // this.objekatPut.name = place.name;
-    // this.objekatPut.place_url = place.place_url;
-    // this.objekatPut.description = place.description;
-    // this.objekatPut.address = place.address;
-    // this.objekatPut.city.id = place.city.id;
   }
 
   deleteSelectedEvents() {
@@ -234,5 +242,20 @@ export class MojiEventiComponent implements OnInit {
     this.success = true;
     this.successMessage = 'Događaj uspješno obrisan!';
     setTimeout(() => { this.getAllEvents(), this.success = false; }, 2000);
+  }
+
+  onUploadChange(evt: any) {
+    const file = evt.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onload = this.handleReaderLoaded.bind(this);
+      reader.readAsBinaryString(file);
+    }
+  }
+
+  handleReaderLoaded(e) {
+    this.selectedImage = 'data:image/JPEG;base64,' + btoa(e.target.result);
   }
 }
