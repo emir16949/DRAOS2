@@ -43,7 +43,7 @@ export class MojiEventiComponent implements OnInit {
   nazivPut = '';
   opisPut = '';
   cijenaPut = 0;
-  datumPut = new Date();
+  datumPut: any;
   errorDescription = '';
   errorCijena = '';
   selectedImage = '';
@@ -232,7 +232,7 @@ export class MojiEventiComponent implements OnInit {
 
     this.eventPut = event;
     this.selectedDate = this.eventPut.date_time;
-    this.datumPut = this.eventPut.date_time;
+    this.datumPut = new Date(this.eventPut.date_time).toISOString().slice(0, -1);
     this.odabranaKategorija = this.eventPut.category.id;
     this.odabraniPlace = this.eventPut.place.id;
   }
