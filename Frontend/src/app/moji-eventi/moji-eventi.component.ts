@@ -209,8 +209,6 @@ export class MojiEventiComponent implements OnInit {
       this.eventPut.name = this.nazivPut;
       this.eventPut.description = this.opisPut;
       this.eventPut.price = this.cijenaPut;
-      this.eventPut.category = this.odabranaKategorija;
-      this.eventPut.place = this.odabraniPlace;
       this.eventPut.date_time = this.datumPut;
       if (this.selectedImage) {
         this.eventPut.picture = this.selectedImage;
