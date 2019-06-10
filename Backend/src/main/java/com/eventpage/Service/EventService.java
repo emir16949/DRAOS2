@@ -1,7 +1,10 @@
 package com.eventpage.Service;
 
+import com.eventpage.Model.Category;
 import com.eventpage.Model.Event;
+import com.eventpage.Model.Place;
 import com.eventpage.Repository.EventRepository;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -236,7 +239,12 @@ public class EventService {
       Optional eventHelp = eventRepository.findById(eventFromRequest.getId());
       Event event = (Event) eventHelp.get();
       event.setName(eventFromRequest.getName());
+      event.setDate_time(eventFromRequest.getDate_time());
+      event.setPicture(eventFromRequest.getPicture());
       event.setDescription(eventFromRequest.getDescription());
+      event.setCategory(eventFromRequest.getCategory());
+      event.setPlace(eventFromRequest.getPlace());
+      event.setPrice(eventFromRequest.getPrice());
       eventRepository.save(event);
       return "Event with id = " + event.getId() + " saved successfully as " + event.getName();
     } catch (Exception e) {

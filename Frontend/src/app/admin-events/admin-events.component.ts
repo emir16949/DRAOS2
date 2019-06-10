@@ -76,6 +76,8 @@ export class AdminEventsComponent implements OnInit {
   }
 
   validateFields() {
+    this.error = '';
+    this.errorNewEvent = false;
     this.errorName = '';
     this.errorDescription = '';
     this.errorDate = '';
@@ -113,7 +115,7 @@ export class AdminEventsComponent implements OnInit {
     } else {
       if (this.event.name.length < 3) {
         this.errorName = ' *';
-        this.error = '* Uneseno ime je prekratko!';
+        this.error = '* Uneseno ime je prekratko (minimalno 3 karaktera).';
         return false;
       }
     }

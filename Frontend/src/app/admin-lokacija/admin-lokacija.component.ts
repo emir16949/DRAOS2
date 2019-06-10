@@ -141,19 +141,19 @@ export class AdminLokacijaComponent implements OnInit {
     }
     if (this.objekat.name.length < 3) {
       if (this.errorExist === false)
-        this.error = ' *Uneseni tekst je prekratak.';
+        this.error = ' *Uneseni tekst je prekratak (minimalno 3 karaktera).';
       this.errorNaziv = ' *';
       this.errorExist = true;
     }
     if (this.objekat.description.length < 3) {
       if (this.errorExist === false)
-        this.error = ' *Uneseni tekst je prekratak.';
+        this.error = ' *Uneseni tekst je prekratak (minimalno 3 karaktera).';
       this.errorDetalji = ' *';
       this.errorExist = true;
     }
     if (this.objekat.address.length < 5) {
       if (this.errorExist === false)
-        this.error = ' *Uneseni tekst je prekratak.';
+        this.error = ' *Uneseni tekst je prekratak (minimalno 5 karaktera).';
       this.errorAdresa = ' *';
       this.errorExist = true;
     }
@@ -183,7 +183,8 @@ export class AdminLokacijaComponent implements OnInit {
       this.success = true;
       this.placeModal.nativeElement.click();
       this.successMessage = 'Uspješno dodana nova lokacija!';
-      setTimeout(() => { this.getAllPlaces(); this.success = false; }, 2000);
+      setTimeout(() => this.getAllPlaces(), 200);
+      setTimeout(() => this.success = false, 2000);
     }
   }
 
@@ -218,19 +219,19 @@ export class AdminLokacijaComponent implements OnInit {
     }
     if (this.objekatPut.name.length < 3) {
       if (this.errorExist === false)
-        this.error = ' *Uneseni tekst je prekratak.';
+        this.error = ' *Uneseni tekst je prekratak (minimalno 3 karaktera).';
       this.errorNaziv = ' *';
       this.errorExist = true;
     }
     if (this.objekatPut.description.length < 3) {
       if (this.errorExist === false)
-        this.error = ' *Uneseni tekst je prekratak.';
+        this.error = ' *Uneseni tekst je prekratak (minimalno 3 karaktera).';
       this.errorDetalji = ' *';
       this.errorExist = true;
     }
     if (this.objekatPut.address.length < 5) {
       if (this.errorExist === false)
-        this.error = ' *Uneseni tekst je prekratak.';
+        this.error = ' *Uneseni tekst je prekratak (minimalno 5 karaktera).';
       this.errorAdresa = ' *';
       this.errorExist = true;
     }
@@ -248,7 +249,8 @@ export class AdminLokacijaComponent implements OnInit {
       this.success = true;
       this.editPlaceModal.nativeElement.click();
       this.successMessage = 'Objekat uspješno ažuriran!';
-      setTimeout(() => { this.getAllPlaces(); this.success = false; }, 2000);
+      setTimeout(() => this.getAllPlaces(), 200);
+      setTimeout(() => this.success = false, 2000);
     }
   }
 
@@ -270,7 +272,8 @@ export class AdminLokacijaComponent implements OnInit {
     this.placeService.deletePlace(this.deleteSelectedPlace.id).subscribe();
     this.success = true;
     this.successMessage = 'Objekat uspješno obrisan!';
-    setTimeout(() => { this.getAllPlaces(), this.success = false; }, 2000);
+    setTimeout(() => this.getAllPlaces(), 200);
+    setTimeout(() => this.success = false, 2000);
   }
 
   zatvori() {

@@ -16,7 +16,6 @@ public class Role {
 
   private int id;
   @NotNull
-  @Size(min = 2, max = 10)
   private String role;
   private Set<User> users;
 

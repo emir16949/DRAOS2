@@ -56,6 +56,7 @@ public class UserServiceForCRUD {
       User u = userRepository.save(user);
       return u;
     } catch (Exception e) {
+      log.info(e.getMessage());
       throw new ServiceException("Cannot create user");
     }
   }

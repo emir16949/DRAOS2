@@ -68,8 +68,8 @@ export class AdminUseriComponent implements OnInit {
     this.userService.deleteUserById(this.selectedUser.id).subscribe();
     this.success = true;
     this.successMessage = 'Menadžer uspješno obrisan!';
-    setTimeout(() => { this.getAllUsers(), this.success = false; }, 2000);
-
+    setTimeout(() => this.getAllUsers(), 200);
+    setTimeout(() => this.success = false, 2000);
   }
 
   pretragaUsername() {
@@ -116,14 +116,14 @@ export class AdminUseriComponent implements OnInit {
     }
     if (this.korisnik.ime.length < 3) {
       if (this.errorExist === false) {
-        this.error = ' *Uneseno ime je prekratko.';
+        this.error = ' *Uneseno ime je prekratko (najmanje 3 karaktera).';
         this.errorIme = ' *';
         this.errorExist = true;
       }
     }
     if (this.korisnik.prezime.length < 3) {
       if (this.errorExist === false) {
-        this.error = ' *Uneseno prezime je prekratko.';
+        this.error = ' *Uneseno prezime je prekratko (najmanje 3 karaktera).';
         this.errorPrezime = ' *';
         this.errorExist = true;
       }
@@ -152,8 +152,8 @@ export class AdminUseriComponent implements OnInit {
       this.success = true;
       this.userModal.nativeElement.click();
       this.successMessage = 'Uspješno kreiran novi menadžer!';
-      setTimeout(() => { this.getAllUsers(); this.success = false; }, 2000);
-
+      setTimeout(() => this.getAllUsers(), 200);
+      setTimeout(() => this.success = false, 2000);
     }
 
   }
@@ -193,6 +193,7 @@ export class AdminUseriComponent implements OnInit {
     this.errorEmail = '';
     this.errorSifra = '';
     this.korisnik = new User();
+    setTimeout(() => this.getAllUsers(), 200);
   }
 
   editUser(user) {
@@ -229,14 +230,14 @@ export class AdminUseriComponent implements OnInit {
     }
     if (this.korisnik.ime.length < 3) {
       if (this.errorExist === false) {
-        this.error = ' *Uneseno ime je prekratko.';
+        this.error = ' *Uneseno ime je prekratko (najmanje 3 karaktera).';
         this.errorIme = ' *';
         this.errorExist = true;
       }
     }
     if (this.korisnik.prezime.length < 3) {
       if (this.errorExist === false) {
-        this.error = ' *Uneseno prezime je prekratko.';
+        this.error = ' *Uneseno prezime je prekratko (najmanje 3 karaktera).';
         this.errorPrezime = ' *';
         this.errorExist = true;
       }
@@ -269,7 +270,8 @@ export class AdminUseriComponent implements OnInit {
       this.success = true;
       this.editUserModal.nativeElement.click();
       this.successMessage = 'Uspješno ažuriran korisnik!';
-      setTimeout(() => { this.getAllUsers(); this.success = false; }, 2000);
+      setTimeout(() => this.getAllUsers(), 200);
+      setTimeout(() => this.success = false, 2000);
     }
   }
 }

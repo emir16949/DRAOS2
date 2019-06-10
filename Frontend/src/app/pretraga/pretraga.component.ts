@@ -75,7 +75,7 @@ export class PretragaComponent implements OnInit {
         }
       });
     }
-    if (this.selectedPlace) {
+    if (this.selectedPlace != 0) {
       this.searchedEvents.forEach(element => {
         if (element.place.id != this.selectedPlace) {
           this.searchedEvents.delete(element);
@@ -105,8 +105,8 @@ export class PretragaComponent implements OnInit {
       this.searchedEvents.forEach(element => {
         const eventDate = this.convertDate(element.date_time);
 
-        if (this.reverseAndTimeStamp(eventDate) > this.reverseAndTimeStamp(startDate) && this.reverseAndTimeStamp(eventDate) < this.reverseAndTimeStamp(endDate)) {
-        } else {
+        if (!(this.reverseAndTimeStamp(eventDate) >= this.reverseAndTimeStamp(startDate) &&
+          this.reverseAndTimeStamp(eventDate) <= this.reverseAndTimeStamp(endDate))) {
           this.searchedEvents.delete(element);
         }
       });

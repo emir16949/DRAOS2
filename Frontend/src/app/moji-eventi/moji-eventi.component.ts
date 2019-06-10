@@ -102,14 +102,12 @@ export class MojiEventiComponent implements OnInit {
   }
 
   getAllEvents() {
-    let tempEvents = new Array<Event>();
     this.events = new Array<Event>();
     this.eventService.getAllEvents().subscribe(data => {
-      tempEvents = data;
       if (this.isAdmin) {
         this.events = data;
       } else {
-        tempEvents.forEach(event => {
+        data.forEach(event => {
           if (event.place.manager.username === TokenStorage.getCurrentUser()) {
             this.events.push(event);
           }
@@ -129,15 +127,6 @@ export class MojiEventiComponent implements OnInit {
     this.modal_naziv = event.name;
     this.modal_opis = event.description;
     this.modal_kategorija = event.category.name;
-  }
-
-  // sacuvajIzmjeneEvent() {
-  //     this.eventService.changeEvent(this.eventPut).subscribe();
-  //     window.location.reload();
-  // }
-
-  zatvori() {
-    window.location.reload();
   }
 
   mouseEnter() {
@@ -187,7 +176,7 @@ export class MojiEventiComponent implements OnInit {
       this.errorExist = true;
     }
 
-    if (!this.cijenaPut) {
+    if (this.cijenaPut == null || this.cijenaPut == undefined) {
       this.error = " *Obavezno polje";
       this.errorCijena = " *";
       this.errorExist = true;
@@ -199,7 +188,7 @@ export class MojiEventiComponent implements OnInit {
     } else {
       if (this.nazivPut.length < 3) {
         this.errorNaziv = ' *';
-        this.error = '* Uneseno ime je prekratko!';
+        this.error = '* Uneseno ime je prekratko (minimalno 3 karaktera).';
         return false;
       }
     }
@@ -217,13 +206,12 @@ export class MojiEventiComponent implements OnInit {
       this.success = true;
       this.editEventModal.nativeElement.click();
       this.successMessage = "Događaj uspješno ažuriran!";
-      setTimeout(() => { this.getAllEvents(); this.success = false; }, 2000);
-
+      setTimeout(() => this.getAllEvents(), 200);
+      setTimeout(() => this.success = false, 2000);
     }
   }
 
   urediEvent(event: Event) {
-    // this.adresa = place.address.name;
     this.nazivPut = event.name;
     this.opisPut = event.description;
     this.cijenaPut = event.price;
@@ -239,7 +227,8 @@ export class MojiEventiComponent implements OnInit {
     this.eventService.deleteEvent(this.deleteSelectedEvent.id).subscribe();
     this.success = true;
     this.successMessage = 'Događaj uspješno obrisan!';
-    setTimeout(() => { this.getAllEvents(), this.success = false; }, 2000);
+    setTimeout(() => this.getAllEvents(), 200);
+    setTimeout(() => this.success = false, 2000);
   }
 
   onUploadChange(evt: any) {
